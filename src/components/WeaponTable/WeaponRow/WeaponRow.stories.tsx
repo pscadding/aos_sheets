@@ -1,5 +1,13 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { WeaponRow } from './WeaponRow';
+import { mockUnits } from '../../../mock_data/mock_units';
+import { Weapon } from '../../../models/Weapon';
+
+let mockWeaponsMap: { [key: string]: Weapon } = {};
+
+mockUnits[0].weapons.forEach((weapon) => {
+  mockWeaponsMap[weapon.name] = weapon;
+});
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -7,7 +15,12 @@ export default {
   component: WeaponRow,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
-    backgroundColor: { control: 'color' }
+    backgroundColor: { control: 'color' },
+    weapon: {
+      options: mockUnits[0].weapons.map((weapon) => weapon.name), // An array of serializable values
+      mapping: mockWeaponsMap,
+      defaultValue: mockUnits[0].weapons[0].name
+    }
   }
 } as ComponentMeta<typeof WeaponRow>;
 
@@ -23,15 +36,3 @@ const Template: ComponentStory<typeof WeaponRow> = (args) => {
 };
 
 export const Primary = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
-  weapon: {
-    name: 'Bogbark Staff',
-    range: '3"',
-    attacks: '2',
-    toHit: '3+',
-    toWound: '3+',
-    rend: '-1',
-    damage: 'D3'
-  }
-};

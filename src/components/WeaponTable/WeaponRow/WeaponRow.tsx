@@ -7,7 +7,8 @@ interface WeaponRowProps {
 }
 
 const Cell = styled.td`
-  padding: ${AppStyle.spacing.small};
+  padding: ${AppStyle.spacing.xxsmall};
+  text-align: center;
 `;
 
 /**
@@ -21,7 +22,7 @@ export const WeaponRow = ({ weapon }: WeaponRowProps) => {
       <Cell>{weapon.attacks}</Cell>
       <Cell>{weapon.toHit}</Cell>
       <Cell>{weapon.toWound}</Cell>
-      <Cell>{weapon.rend}</Cell>
+      <Cell>{weapon.rend ? weapon.rend : '-'}</Cell>
       <Cell>{weapon.damage}</Cell>
     </tr>
   );

@@ -1,12 +1,10 @@
-import { Unit } from '../../models/Unit';
 import { Weapon } from '../../models/Weapon';
 import { WeaponRow } from './WeaponRow/WeaponRow';
 import { AppStyle } from '../../styles/style';
 import styled from 'styled-components';
-import './weapontable.css';
 
 interface WeaponTableProps {
-  unit: Unit;
+  weapons: Weapon[];
   /**
    * Optional click handler
    */
@@ -14,41 +12,51 @@ interface WeaponTableProps {
 }
 
 const TableHeader = styled.th`
-  border: 2px solid white;
-  border-top: 0;
-  border-bottom: 0;
+  padding-top: ${AppStyle.spacing.xsmall};
+  padding-bottom: ${AppStyle.spacing.xsmall};
+  padding-left: ${AppStyle.spacing.medium};
+  padding-right: ${AppStyle.spacing.medium};
+
+  &.name {
+    width: 300px;
+  }
 `;
 
-const HeaderRow = styled.tr``;
+const HeaderRow = styled.tr`
+  border-bottom: ${AppStyle.sizes.small} solid ${AppStyle.roles.table.border};
+  border-top: ${AppStyle.sizes.small} solid ${AppStyle.roles.table.border};
+  background-color: ${AppStyle.roles.table.headerBackground};
+`;
 
 const Table = styled.table`
-  border: 2px solid white;
-  border-top: 0;
-  border-bottom: 0;
+  border-bottom: ${AppStyle.sizes.small} solid ${AppStyle.roles.table.border};
   border-collapse: collapse;
+  table-layout: fixed;
 `;
 
 /**
  * Primary UI component for user interaction
  */
-export const WeaponTable = ({ unit, ...props }: WeaponTableProps) => {
-  const rows = unit.weapons.map((weapon: Weapon, index) => {
+export const WeaponTable = ({ weapons, ...props }: WeaponTableProps) => {
+  const rows = weapons.map((weapon: Weapon, index) => {
     return <WeaponRow key={index} weapon={weapon}></WeaponRow>;
   });
 
   return (
     <div className="WeaponTable">
       <Table>
-        <HeaderRow>
-          <TableHeader>Melee Weapons</TableHeader>
-          <TableHeader>Range</TableHeader>
-          <TableHeader>Attacks</TableHeader>
-          <TableHeader>To Hit</TableHeader>
-          <TableHeader>To Wound</TableHeader>
-          <TableHeader>Rend</TableHeader>
-          <TableHeader>Damage</TableHeader>
-        </HeaderRow>
-        {rows}
+        <tbody>
+          <HeaderRow>
+            <TableHeader className="name">Melee Weapons</TableHeader>
+            <TableHeader>Range</TableHeader>
+            <TableHeader>Attacks</TableHeader>
+            <TableHeader>To Hit</TableHeader>
+            <TableHeader>To Wound</TableHeader>
+            <TableHeader>Rend</TableHeader>
+            <TableHeader>Damage</TableHeader>
+          </HeaderRow>
+          {rows}
+        </tbody>
       </Table>
     </div>
   );
