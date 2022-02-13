@@ -1,7 +1,7 @@
 export interface Weapon {
   name: string;
-  range: number;
-  attacks: number | string;
+  range: string;
+  attacks: string;
   toHit: string;
   toWound: string;
   rend: string;
