@@ -1,25 +1,24 @@
 import React from 'react';
-import { Unit } from '../../models/Unit';
 import styled, { css } from 'styled-components';
-import { WeaponTable } from '../WeaponTable/WeaponTable';
-import { UnitName } from '../UnitName/UnitName';
-import { UnitStatTable } from '../UnitStatTable/UnitStatTable';
 import { AppStyle } from '../../styles/style';
-import { Keywords } from '../Keywords/Keywords';
 
 export enum direction {
   vertical,
   horizontal
 }
 
-interface ContainerProps {
+interface ContainerStyleProps {
   direction?: direction;
   spacing?: string;
+  columns?: number;
+}
+
+interface ContainerProps extends ContainerStyleProps {
   children: React.ReactNode;
 }
 
 const ContainerStyle = styled.div`
-  ${(props: { direction?: direction; spacing?: string }) => {
+  ${(props: ContainerStyleProps) => {
     let spacing = '';
     if (props.direction !== direction.vertical) {
       spacing = `        
@@ -31,12 +30,29 @@ const ContainerStyle = styled.div`
         margin-left: 0px;
       }
       `;
+    } else {
+      spacing = `        
+      & > * {
+        margin-top: ${props.spacing};
+      }
+  
+      & > :first-child {
+        margin-top: 0px;
+      }
+      `;
+    }
+
+    let layout = `
+    display: flex;
+    flex-direction: ${props.direction === direction.vertical ? 'column' : 'row'};
+    `;
+
+    if (props.columns !== null) {
+      layout = `column-count: ${props.columns};`;
     }
 
     return css`
-      display: flex;
-      flex-direction: ${(props: { direction?: direction }) =>
-        props.direction === direction.vertical ? 'column' : 'row'};
+      ${layout}
       ${spacing}
     `;
   }}
@@ -45,14 +61,16 @@ const ContainerStyle = styled.div`
 /**
  * Primary UI component for user interaction
  */
-export const Container = ({ spacing, direction, ...props }: ContainerProps) => {
+export const Container = ({ spacing, direction, columns, ...props }: ContainerProps) => {
   return (
-    <ContainerStyle className="Container" spacing={spacing} direction={direction}>
+    <ContainerStyle className="Container" spacing={spacing} direction={direction} columns={columns}>
       {props.children}
     </ContainerStyle>
   );
 };
 
 Container.defaultProps = {
-  direction: direction.horizontal
+  direction: direction.horizontal,
+  spacing: '0px',
+  columns: null
 };

@@ -25,21 +25,23 @@ const Title = styled.div`
   display: flex;
   align-items: center;
 
-  & h1 {
+  & h3 {
     margin: 0px;
     color: ${AppStyle.roles.panel.dark.color};
   }
 `;
 
 const KeywordList = styled.div`
-  border: ${AppStyle.sizes.small} solid ${AppStyle.roles.table.border};
+  border: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.table.border};
   border-bottom-width: 0px;
+  border-top-right-radius: ${AppStyle.sizes.small};
   display: flex;
   flex-wrap: wrap;
   padding: ${AppStyle.spacing.xsmall};
   padding-left: ${AppStyle.spacing.small};
   padding-right: ${AppStyle.spacing.small};
   width: 100%;
+  font-weight: bold;
 `;
 
 /**
@@ -54,9 +56,13 @@ export const Keywords = ({ keywords, ...props }: KeywordsProps) => {
   return (
     <Container className="Keywords">
       <Title>
-        <h1>Keywords</h1>
+        <h3>Keywords</h3>
       </Title>
       <KeywordList>{keywordText}</KeywordList>
     </Container>
   );
+};
+
+Keywords.defaultProps = {
+  keywords: []
 };

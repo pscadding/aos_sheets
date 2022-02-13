@@ -6,29 +6,58 @@ import ReactMarkdown from 'react-markdown';
 
 interface AbilityContainerProps {
   abilities: Ability[];
-  type: AbilityType;
 }
 
 const ReactMarkdownStyle = styled(ReactMarkdown)`
-  margin: 0px;
+  & > p {
+    margin: 0px;
+  }
+`;
+
+const HeadingStyle = styled.h4`
+  margin-top: 0px;
+  margin-bottom: ${AppStyle.spacing.xsmall};
+`;
+
+const ContainerStyle = styled.div`
+  column-count: 2;
+`;
+
+const AbilityItem = styled.div`
+  break-inside: avoid-column;
+  margin-top: ${AppStyle.spacing.xsmall};
+  padding: ${AppStyle.spacing.xsmall};
+  padding-left: ${AppStyle.spacing.small};
+  padding-left: ${AppStyle.spacing.small};
+  border-radius: 0.3em;
+  background-color: ${(props: { type: AbilityType }) => {
+    switch (props.type) {
+      case AbilityType.Spell:
+        return AppStyle.roles.abilities.background.spells;
+      case AbilityType.Ability:
+        return AppStyle.roles.abilities.background.ability;
+      default:
+        return AppStyle.roles.abilities.background.other;
+    }
+  }};
 `;
 
 /**
  * Primary UI component for user interaction
  */
-export const AbilityContainer = ({ abilities, type, ...props }: AbilityContainerProps) => {
+export const AbilityContainer = ({ abilities, ...props }: AbilityContainerProps) => {
   let abilityComponents;
   if (abilities) {
     abilityComponents = abilities
-      .filter((ability) => ability.type === type)
+      // .filter((ability) => ability.type === type)
       .map((ability, index) => {
         return (
-          <div key={index}>
-            <h4>{ability.name}</h4>
+          <AbilityItem key={index} type={ability.type}>
+            <HeadingStyle>{ability.name}</HeadingStyle>
             <ReactMarkdownStyle>{ability.description}</ReactMarkdownStyle>
-          </div>
+          </AbilityItem>
         );
       });
   }
-  return <Container direction={direction.vertical}>{abilityComponents}</Container>;
+  return <ContainerStyle>{abilityComponents}</ContainerStyle>;
 };

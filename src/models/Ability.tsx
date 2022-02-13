@@ -1,5 +1,6 @@
 export enum AbilityType {
   CommandAbility,
+  Ability,
   Spell,
   Standard
 }

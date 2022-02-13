@@ -11,7 +11,7 @@ mockUnits[0].weapons.forEach((weapon) => {
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Components/WeaponRow',
+  title: 'Components/WeaponTable/WeaponRow',
   component: WeaponRow,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
