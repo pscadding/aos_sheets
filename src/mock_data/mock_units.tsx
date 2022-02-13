@@ -29,6 +29,16 @@ export const mockUnits: Unit[] = [
         rend: '',
         damage: '1'
       }
+    ],
+    keywords: [
+      'Destruction',
+      'Orruk Warclans',
+      'Orruk',
+      'Kruleboyz',
+      'Hero',
+      'Wizard',
+      'Swampcalla Shaman',
+      'Swampcalla Shaman and Pot-grot'
     ]
   },
   {
@@ -58,6 +68,7 @@ export const mockUnits: Unit[] = [
         rend: '',
         damage: '1'
       }
-    ]
+    ],
+    keywords: ['Destruction', 'Orruk Warclans', 'Orruk', 'Kruleboyz', 'Gutrippaz']
   }
 ];

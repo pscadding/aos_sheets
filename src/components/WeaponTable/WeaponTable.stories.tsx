@@ -19,24 +19,11 @@ export default {
     weapons: {
       options: mockUnits.map((unit) => unit.name), // An array of serializable values
       mapping: mockWeaponsMap
-    }
+    },
+    defaultValue: mockUnits[0].name
   }
 } as ComponentMeta<typeof WeaponTable>;
 
 const Template: ComponentStory<typeof WeaponTable> = (args) => <WeaponTable {...args} />;
 
 export const Primary = Template.bind({});
-
-Primary.args = {
-  weapons: [
-    {
-      name: 'Bogbark Staff',
-      range: '3"',
-      attacks: '2',
-      toHit: '3+',
-      toWound: '3+',
-      rend: '-1',
-      damage: 'D3'
-    }
-  ]
-};

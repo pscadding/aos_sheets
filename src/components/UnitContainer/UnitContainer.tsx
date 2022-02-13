@@ -1,9 +1,11 @@
 import { Unit } from '../../models/Unit';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { WeaponTable } from '../WeaponTable/WeaponTable';
 import { UnitName } from '../UnitName/UnitName';
 import { UnitStatCircle } from '../UnitStatCircle/UnitStatCircle';
 import { AppStyle } from '../../styles/style';
+import { Keywords } from '../Keywords/Keywords';
+import { Container, direction } from '../Container/Container';
 
 interface UnitContainerProps {
   unit: Unit;
@@ -13,12 +15,7 @@ interface UnitContainerProps {
   onClick?: () => void;
 }
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: ${(props: { vertical?: boolean }) => (props.vertical ? 'column' : 'row')};
-`;
-
-const TopRight = styled(Container)`
+const RightSide = styled.div`
   margin-left: ${AppStyle.spacing.medium};
 `;
 
@@ -27,12 +24,17 @@ const TopRight = styled(Container)`
  */
 export const UnitContainer = ({ unit, ...props }: UnitContainerProps) => {
   return (
-    <Container className="UnitContainer">
+    <Container>
       <UnitStatCircle stats={unit.stats} />
-      <TopRight vertical={true}>
-        <UnitName name={unit.name} subName={unit.subName} />
-        <WeaponTable weapons={unit.weapons} />
-      </TopRight>
+      <RightSide>
+        <Container direction={direction.vertical}>
+          <Container spacing="0px">
+            <UnitName name={unit.name} subName={unit.subName} />
+            <Keywords keywords={unit.keywords} />
+          </Container>
+          <WeaponTable weapons={unit.weapons} />
+        </Container>
+      </RightSide>
     </Container>
   );
 };

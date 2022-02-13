@@ -6,4 +6,5 @@ export interface Unit {
   subName?: string;
   stats: UnitStats;
   weapons: Weapon[];
+  keywords: string[];
 }

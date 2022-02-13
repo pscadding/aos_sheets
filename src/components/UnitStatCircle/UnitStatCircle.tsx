@@ -42,10 +42,11 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border: ${AppStyle.sizes.small} solid ${AppStyle.roles.table.border};
   border-radius: 50%;
-  width: 6.5em;
+  min-width: 6.5em;
   height: 6.5em;
-  background: ${AppStyle.roles.panel.background};
+  background: ${AppStyle.roles.panel.light.background};
 `;
 
 /**

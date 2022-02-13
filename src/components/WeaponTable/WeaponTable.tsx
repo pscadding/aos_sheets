@@ -16,9 +16,10 @@ const TableHeader = styled.th`
   padding-bottom: ${AppStyle.spacing.xsmall};
   padding-left: ${AppStyle.spacing.medium};
   padding-right: ${AppStyle.spacing.medium};
+  white-space: nowrap;
 
   &.name {
-    width: 300px;
+    width: 100%;
   }
 `;
 

@@ -6,6 +6,12 @@ export const roleColor = {
     border: colors.darkSky
   },
   panel: {
-    background: colors.lightGray
+    dark: {
+      background: colors.darkSky,
+      color: colors.boneWhite
+    },
+    light: {
+      background: colors.lightGray
+    }
   }
 };
