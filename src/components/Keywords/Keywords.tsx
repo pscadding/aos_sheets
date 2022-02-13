@@ -37,6 +37,8 @@ const KeywordList = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding: ${AppStyle.spacing.xsmall};
+  padding-left: ${AppStyle.spacing.small};
+  padding-right: ${AppStyle.spacing.small};
   width: 100%;
 `;
 

@@ -2,7 +2,7 @@ import { Unit } from '../../models/Unit';
 import styled, { css } from 'styled-components';
 import { WeaponTable } from '../WeaponTable/WeaponTable';
 import { UnitName } from '../UnitName/UnitName';
-import { UnitStatCircle } from '../UnitStatCircle/UnitStatCircle';
+import { UnitStatTable } from '../UnitStatTable/UnitStatTable';
 import { AppStyle } from '../../styles/style';
 import { Keywords } from '../Keywords/Keywords';
 import { Container, direction } from '../Container/Container';
@@ -16,7 +16,7 @@ interface UnitContainerProps {
 }
 
 const RightSide = styled.div`
-  margin-left: ${AppStyle.spacing.medium};
+  // margin-left: ${AppStyle.spacing.medium};
 `;
 
 /**
@@ -25,7 +25,7 @@ const RightSide = styled.div`
 export const UnitContainer = ({ unit, ...props }: UnitContainerProps) => {
   return (
     <Container>
-      <UnitStatCircle stats={unit.stats} />
+      <UnitStatTable stats={unit.stats} />
       <RightSide>
         <Container direction={direction.vertical}>
           <Container spacing="0px">

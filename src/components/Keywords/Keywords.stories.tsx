@@ -16,7 +16,7 @@ export default {
   argTypes: {
     backgroundColor: { control: 'color' },
     keywords: {
-      options: mockUnits.map((unit) => unit.keywords), // An array of serializable values
+      options: mockUnits.map((unit) => unit.name), // An array of serializable values
       mapping: mockUnitsMap, // Maps serializable option values to complex arg values
       defaultValue: mockUnits[0].name
     }

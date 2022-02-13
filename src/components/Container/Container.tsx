@@ -3,7 +3,7 @@ import { Unit } from '../../models/Unit';
 import styled, { css } from 'styled-components';
 import { WeaponTable } from '../WeaponTable/WeaponTable';
 import { UnitName } from '../UnitName/UnitName';
-import { UnitStatCircle } from '../UnitStatCircle/UnitStatCircle';
+import { UnitStatTable } from '../UnitStatTable/UnitStatTable';
 import { AppStyle } from '../../styles/style';
 import { Keywords } from '../Keywords/Keywords';
 
