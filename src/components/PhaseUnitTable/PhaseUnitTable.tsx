@@ -14,16 +14,21 @@ const Header = styled.th`
   padding-left: ${AppStyle.spacing.small};
   padding-right: ${AppStyle.spacing.small};
   background-color: ${(props: { phase: Phase }) => getPhaseColor(props.phase)};
-  border-top-left-radius: ${AppStyle.sizes.small};
-  border-top-right-radius: ${AppStyle.sizes.small};
+  filter: brightness(85%);
+  border-top-left-radius: ${AppStyle.sizes.xSmall};
+  border-top-right-radius: ${AppStyle.sizes.xSmall};
+  font-size: 150%;
 `;
 
 const Table = styled.table`
-  border-spacing: 0px;
+  border-spacing: ${AppStyle.spacing.medium} 0px;
+  table-layout: fixed;
+  width: 100%;
 `;
 
 const UnitName = styled.p`
   padding: ${AppStyle.spacing.small};
+  margin: 0px;
 `;
 
 const Column = styled.td`
@@ -45,25 +50,29 @@ export const PhaseUnitTable = ({ units, ...props }: PhaseUnitTableProps) => {
       );
     });
 
-  const unitsByColumn = phases.map((phase, phaseIndex) => {
-    const unitNames = units
-      .filter((unit) => {
-        const abilities = unit.abilities.filter((ability) =>
-          ability.phases?.includes(Phase[phase as PhaseStrings])
-        );
-        return !!abilities.length;
-      })
-      .map((unit, unitIndex) => (
-        <UnitName key={unitIndex}>
-          {unit.name} {unit.subName}
-        </UnitName>
-      ));
-    return (
-      <Column key={phaseIndex} phase={Phase[phase as PhaseStrings]}>
-        <Container direction={direction.vertical}>{unitNames}</Container>
-      </Column>
-    );
-  });
+  const unitsByColumn = phases
+    .filter((phase) => phase !== 'Any')
+    .map((phase, phaseIndex) => {
+      const unitNames = units
+        .filter((unit) => {
+          const abilities = unit.abilities.filter((ability) =>
+            ability.phases?.includes(Phase[phase as PhaseStrings])
+          );
+          return !!abilities.length;
+        })
+        .map((unit, unitIndex) => (
+          <UnitName key={unitIndex}>
+            {unit.name} {unit.subName}
+          </UnitName>
+        ));
+      return (
+        <Column key={phaseIndex} phase={Phase[phase as PhaseStrings]}>
+          <Container direction={direction.vertical} spacing={AppStyle.spacing.xsmall}>
+            {unitNames}
+          </Container>
+        </Column>
+      );
+    });
 
   return (
     <Table>

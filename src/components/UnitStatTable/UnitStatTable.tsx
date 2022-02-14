@@ -12,11 +12,11 @@ interface UnitStatTableProps {
 
 const Cell = styled.th`
   margin: ${AppStyle.spacing.xxsmall};
-  font-weight: normal;
+  font-weight: Bold;
 `;
 
 const Title = styled(Cell)`
-  font-weight: bold;
+  font-weight: normal;
 `;
 
 const Table = styled.table`
