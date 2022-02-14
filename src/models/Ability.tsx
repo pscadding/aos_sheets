@@ -1,18 +1,10 @@
+import { Phase } from './Phase';
+
 export enum AbilityType {
   CommandAbility,
   Ability,
   Spell,
   Standard
-}
-
-export enum Phase {
-  Hero,
-  Movement,
-  Shooting,
-  Charge,
-  Combat,
-  Battleshock,
-  Any
 }
 
 export interface Ability {

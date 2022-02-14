@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { AppStyle } from '../../../styles/style';
 import { Container, direction } from '../../Container/Container';
 import { UnitContainer } from '../../UnitContainer/UnitContainer';
+import { PhaseUnitTable } from '../../PhaseUnitTable/PhaseUnitTable';
 
 interface ArmySummaryPageProps {
   units: Unit[];
@@ -24,8 +25,11 @@ export const ArmySummaryPage = ({ units, ...props }: ArmySummaryPageProps) => {
     </UnitWrapper>
   ));
   return (
-    <Container columns={2} direction={direction.vertical}>
-      {unitComponents}
+    <Container direction={direction.vertical} spacing={AppStyle.spacing.large}>
+      <PhaseUnitTable units={units}></PhaseUnitTable>
+      <Container columns={2} direction={direction.vertical}>
+        {unitComponents}
+      </Container>
     </Container>
   );
 };

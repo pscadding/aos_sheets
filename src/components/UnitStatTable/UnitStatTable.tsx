@@ -13,21 +13,21 @@ interface UnitStatTableProps {
 const Cell = styled.th`
   margin: ${AppStyle.spacing.xxsmall};
   font-weight: normal;
-  // font-size: 70%;
 `;
 
 const Title = styled(Cell)`
-  font-size: 100%;
   font-weight: bold;
 `;
 
 const Table = styled.table`
-  border-top-left-radius: ${AppStyle.sizes.small};
   padding: ${AppStyle.spacing.xsmall};
   min-width: 5em;
   height: ${AppStyle.sizes.large};
-  background-color: ${AppStyle.roles.panel.dark.background};
   color: ${AppStyle.roles.panel.dark.color};
+`;
+
+const Wrapper = styled.div`
+  background-color: ${AppStyle.roles.panel.dark.background};
 `;
 
 /**
@@ -35,25 +35,27 @@ const Table = styled.table`
  */
 export const UnitStatTable = ({ stats, ...props }: UnitStatTableProps) => {
   return (
-    <Table>
-      <tbody>
-        <tr>
-          <Title>M</Title>
-          <Cell>{stats?.move}</Cell>
-        </tr>
-        <tr>
-          <Title>W</Title>
-          <Cell>{stats?.wounds}</Cell>
-        </tr>
-        <tr>
-          <Title>S</Title>
-          <Cell>{stats?.save}</Cell>
-        </tr>
-        <tr>
-          <Title>B</Title>
-          <Cell>{stats?.bravery}</Cell>
-        </tr>
-      </tbody>
-    </Table>
+    <Wrapper>
+      <Table>
+        <tbody>
+          <tr>
+            <Title>M</Title>
+            <Cell>{stats?.move}</Cell>
+          </tr>
+          <tr>
+            <Title>W</Title>
+            <Cell>{stats?.wounds}</Cell>
+          </tr>
+          <tr>
+            <Title>S</Title>
+            <Cell>{stats?.save}</Cell>
+          </tr>
+          <tr>
+            <Title>B</Title>
+            <Cell>{stats?.bravery}</Cell>
+          </tr>
+        </tbody>
+      </Table>
+    </Wrapper>
   );
 };

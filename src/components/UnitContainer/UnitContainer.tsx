@@ -10,18 +10,19 @@ import { AbilityContainer } from '../AbilityContainer/AbilityContainer';
 
 interface UnitContainerProps {
   unit: Unit;
-  /**
-   * Optional click handler
-   */
-  onClick?: () => void;
 }
 
+const OuterWrapper = styled.div`
+  padding: ${AppStyle.sizes.xSmall};
+  border-bottom: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.table.border};
+  border-bottom-right-radius: ${AppStyle.sizes.xSmall};
+  border-bottom-left-radius: ${AppStyle.sizes.xSmall};
+`;
+
 const TopWrapper = styled.div`
-  border: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.table.border};
-  border-top-right-radius: ${AppStyle.sizes.small};
-  border-top-left-radius: ${AppStyle.sizes.small};
-  outline: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.table.border};
-  outline-offset: -2px;
+  border-top-right-radius: ${AppStyle.sizes.xSmall};
+  border-top-left-radius: ${AppStyle.sizes.xSmall};
+  box-shadow: 0px 0px 0px ${AppStyle.sizes.xSmall} ${AppStyle.roles.table.border};
 `;
 
 const RightWrapper = styled.div`
@@ -37,24 +38,26 @@ const LowerContainer = styled.div`
  */
 export const UnitContainer = ({ unit, ...props }: UnitContainerProps) => {
   return (
-    <Container direction={direction.vertical}>
-      <TopWrapper>
-        <Container>
-          <UnitStatTable stats={unit?.stats} />
-          <RightWrapper>
-            <Container direction={direction.vertical}>
-              <Container spacing="0px">
-                <UnitName name={unit?.name} subName={unit?.subName} />
-                <Keywords keywords={unit?.keywords} />
+    <OuterWrapper>
+      <Container direction={direction.vertical}>
+        <TopWrapper>
+          <Container>
+            <UnitStatTable stats={unit?.stats} />
+            <RightWrapper>
+              <Container direction={direction.vertical}>
+                <Container spacing="0px">
+                  <UnitName name={unit?.name} subName={unit?.subName} />
+                  <Keywords keywords={unit?.keywords} />
+                </Container>
+                <WeaponsTable weapons={unit?.weapons} />
               </Container>
-              <WeaponsTable weapons={unit?.weapons} />
-            </Container>
-          </RightWrapper>
-        </Container>
-      </TopWrapper>
-      <LowerContainer>
-        <AbilityContainer abilities={unit?.abilities} />
-      </LowerContainer>
-    </Container>
+            </RightWrapper>
+          </Container>
+        </TopWrapper>
+        <LowerContainer>
+          <AbilityContainer abilities={unit?.abilities} />
+        </LowerContainer>
+      </Container>
+    </OuterWrapper>
   );
 };

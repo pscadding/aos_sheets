@@ -1,5 +1,6 @@
 import { Unit, UnitType } from '../models/Unit';
-import { AbilityType, Phase } from '../models/Ability';
+import { AbilityType } from '../models/Ability';
+import { Phase } from '../models/Phase';
 import { WeaponType } from '../models/Weapon';
 
 export const mockUnits: Unit[] = [

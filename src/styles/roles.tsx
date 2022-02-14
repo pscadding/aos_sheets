@@ -2,6 +2,9 @@ import { colors } from './colors';
 
 export const roleColor = {
   table: {
+    dark: {
+      color: colors.darkSky
+    },
     headerBackground: colors.overcastSky,
     border: colors.darkSky
   },
@@ -20,6 +23,16 @@ export const roleColor = {
       spells: colors.lavender,
       ability: colors.boneWhite,
       other: colors.transparent
+    }
+  },
+  phases: {
+    background: {
+      hero: colors.celadon,
+      movement: colors.middleBlue,
+      shooting: colors.maximumBlue,
+      charge: colors.shadowBlue,
+      combat: colors.blueBell,
+      battleshock: colors.kobi
     }
   }
 };

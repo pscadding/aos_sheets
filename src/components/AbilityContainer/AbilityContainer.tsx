@@ -21,6 +21,7 @@ const HeadingStyle = styled.h4`
 
 const ContainerStyle = styled.div`
   column-count: 2;
+  margin-top: ${AppStyle.spacing.small};
 `;
 
 const AbilityItem = styled.div`
@@ -48,16 +49,14 @@ const AbilityItem = styled.div`
 export const AbilityContainer = ({ abilities, ...props }: AbilityContainerProps) => {
   let abilityComponents;
   if (abilities) {
-    abilityComponents = abilities
-      // .filter((ability) => ability.type === type)
-      .map((ability, index) => {
-        return (
-          <AbilityItem key={index} type={ability.type}>
-            <HeadingStyle>{ability.name}</HeadingStyle>
-            <ReactMarkdownStyle>{ability.description}</ReactMarkdownStyle>
-          </AbilityItem>
-        );
-      });
+    abilityComponents = abilities.map((ability, index) => {
+      return (
+        <AbilityItem key={index} type={ability.type}>
+          <HeadingStyle>{ability.name}</HeadingStyle>
+          <ReactMarkdownStyle>{ability.description}</ReactMarkdownStyle>
+        </AbilityItem>
+      );
+    });
   }
   return <ContainerStyle>{abilityComponents}</ContainerStyle>;
 };
