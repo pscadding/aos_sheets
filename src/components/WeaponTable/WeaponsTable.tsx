@@ -19,17 +19,12 @@ export const WeaponsTable = ({ weapons, ...props }: WeaponsTableProps) => {
 
   if (missileWeapons.length) {
     tables.push(
-      <WeaponTypeTable
-        key="missileWeaponsTable"
-        last={!meleeWeapons.length}
-        weapons={missileWeapons}></WeaponTypeTable>
+      <WeaponTypeTable key="missileWeaponsTable" weapons={missileWeapons}></WeaponTypeTable>
     );
   }
 
   if (meleeWeapons.length) {
-    tables.push(
-      <WeaponTypeTable key="meleeWeaponsTable" last={true} weapons={meleeWeapons}></WeaponTypeTable>
-    );
+    tables.push(<WeaponTypeTable key="meleeWeaponsTable" weapons={meleeWeapons}></WeaponTypeTable>);
   }
 
   return <div>{tables}</div>;

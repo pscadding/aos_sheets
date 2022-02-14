@@ -16,6 +16,14 @@ interface UnitContainerProps {
   onClick?: () => void;
 }
 
+const TopWrapper = styled.div`
+  border: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.table.border};
+  border-top-right-radius: ${AppStyle.sizes.small};
+  border-top-left-radius: ${AppStyle.sizes.small};
+  outline: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.table.border};
+  outline-offset: -2px;
+`;
+
 const RightWrapper = styled.div`
   width: 100%;
 `;
@@ -30,18 +38,20 @@ const LowerContainer = styled.div`
 export const UnitContainer = ({ unit, ...props }: UnitContainerProps) => {
   return (
     <Container direction={direction.vertical}>
-      <Container>
-        <UnitStatTable stats={unit?.stats} />
-        <RightWrapper>
-          <Container direction={direction.vertical}>
-            <Container spacing="0px">
-              <UnitName name={unit?.name} subName={unit?.subName} />
-              <Keywords keywords={unit?.keywords} />
+      <TopWrapper>
+        <Container>
+          <UnitStatTable stats={unit?.stats} />
+          <RightWrapper>
+            <Container direction={direction.vertical}>
+              <Container spacing="0px">
+                <UnitName name={unit?.name} subName={unit?.subName} />
+                <Keywords keywords={unit?.keywords} />
+              </Container>
+              <WeaponsTable weapons={unit?.weapons} />
             </Container>
-            <WeaponsTable weapons={unit?.weapons} />
-          </Container>
-        </RightWrapper>
-      </Container>
+          </RightWrapper>
+        </Container>
+      </TopWrapper>
       <LowerContainer>
         <AbilityContainer abilities={unit?.abilities} />
       </LowerContainer>

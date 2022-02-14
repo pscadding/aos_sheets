@@ -32,9 +32,6 @@ const Title = styled.div`
 `;
 
 const KeywordList = styled.div`
-  border: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.table.border};
-  border-bottom-width: 0px;
-  border-top-right-radius: ${AppStyle.sizes.small};
   display: flex;
   flex-wrap: wrap;
   padding: ${AppStyle.spacing.xsmall};

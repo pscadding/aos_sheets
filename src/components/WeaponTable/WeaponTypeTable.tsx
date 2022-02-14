@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 interface WeaponTypeTableProps {
   weapons: Weapon[];
-  last: boolean;
 }
 
 const TableHeader = styled.th`
@@ -21,23 +20,16 @@ const TableHeader = styled.th`
 `;
 
 const HeaderRow = styled.tr`
-  border-bottom: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.table.border};
-  border-top: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.table.border};
   background-color: ${AppStyle.roles.table.headerBackground};
 `;
-
 const Table = styled.table`
-  border-bottom: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.table.border};
-  border-collapse: collapse;
-  table-layout: fixed;
-  border-bottom-width: ${(props: { last?: boolean }) =>
-    props.last ? AppStyle.sizes.xSmall : '0px'};
+  border-spacing: 0px;
 `;
 
 /**
  * Primary UI component for user interaction
  */
-export const WeaponTypeTable = ({ weapons, last, ...props }: WeaponTypeTableProps) => {
+export const WeaponTypeTable = ({ weapons, ...props }: WeaponTypeTableProps) => {
   const rows = weapons.map((weapon: Weapon, index) => {
     return <WeaponRow key={index} weapon={weapon}></WeaponRow>;
   });
@@ -47,7 +39,7 @@ export const WeaponTypeTable = ({ weapons, last, ...props }: WeaponTypeTableProp
 
   return (
     <div className="WeaponTable">
-      <Table last={last}>
+      <Table>
         <tbody>
           <HeaderRow>
             <TableHeader className="name">{typeName}</TableHeader>
@@ -63,8 +55,4 @@ export const WeaponTypeTable = ({ weapons, last, ...props }: WeaponTypeTableProp
       </Table>
     </div>
   );
-};
-
-WeaponTypeTable.defaultProps = {
-  last: true
 };
