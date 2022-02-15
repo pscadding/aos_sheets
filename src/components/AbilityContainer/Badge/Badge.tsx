@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { AppStyle } from '../../styles/style';
+import { AppStyle } from '../../../styles/style';
 
 interface BadgeProps {
   label: string;
@@ -8,8 +8,12 @@ interface BadgeProps {
 
 const BadgeContainer = styled.div`
   background-color: ${(props: { color: string }) => props.color};
-  border-radius: ${AppStyle.sizes.medium};
-  padding: ${AppStyle.sizes.small};
+  border-top-right-radius: ${AppStyle.sizes.medium};
+  border-bottom-right-radius: ${AppStyle.sizes.medium};
+  padding: ${AppStyle.spacing.xSmall};
+  padding-right: ${AppStyle.spacing.medium};
+  padding-left: ${AppStyle.spacing.medium};
+  margin-right: ${AppStyle.spacing.small};
 `;
 
 /**

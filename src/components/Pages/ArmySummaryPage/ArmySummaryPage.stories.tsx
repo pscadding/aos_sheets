@@ -2,6 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ArmySummaryPage } from './ArmySummaryPage';
 import { Unit } from '../../../models/Unit';
 import { mockUnits } from '../../../mock_data/mock_units';
+import { mockArmyAbilities } from '../../../mock_data/army_abilities';
 
 let mockUnitsMap: { [key: string]: Unit } = {};
 
@@ -26,5 +27,6 @@ const Template: ComponentStory<typeof ArmySummaryPage> = (args) => (
 export const Primary = Template.bind({});
 
 Primary.args = {
-  units: mockUnits
+  units: mockUnits,
+  armyAbilities: mockArmyAbilities
 };

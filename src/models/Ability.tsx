@@ -1,6 +1,7 @@
 import { Phase } from './Phase';
 
 export enum AbilityType {
+  BattleTrait = 'Battle Trait',
   CommandAbility = 'Command Ability',
   Ability = 'Ability',
   Spell = 'Spell',

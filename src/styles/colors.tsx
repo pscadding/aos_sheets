@@ -9,5 +9,6 @@ export const colors = {
   shadowBlue: '#798EA9',
   blueBell: '#918BC7',
   kobi: '#CC97B1',
+  apricot: '#FDC7AA',
   transparent: 'rgba(0, 0, 0, 0)'
 };

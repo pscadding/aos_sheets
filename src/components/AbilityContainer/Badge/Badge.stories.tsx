@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { AppStyle } from '../../styles/style';
+import { AppStyle } from '../../../styles/style';
 import { Badge } from './Badge';
 
 export default {

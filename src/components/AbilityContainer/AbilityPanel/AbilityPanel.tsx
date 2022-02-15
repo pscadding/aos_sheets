@@ -4,7 +4,7 @@ import { Container } from '../../Container/Container';
 import { Ability, AbilityType } from '../../../models/Ability';
 import ReactMarkdown from 'react-markdown';
 import { PhaseColorStack } from '../../PhaseColorStack/PhaseColorStack';
-import { Badge } from '../../Badge/Badge';
+import { Badge } from '../Badge/Badge';
 
 interface AbilityPanelProps {
   ability: Ability;
@@ -19,6 +19,7 @@ const ReactMarkdownStyle = styled(ReactMarkdown)`
 const HeadingStyle = styled.h4`
   margin-top: 0px;
   margin-bottom: ${AppStyle.spacing.xSmall};
+  margin-left: ${AppStyle.spacing.small};
 `;
 
 const AbilityItem = styled.div`
@@ -27,24 +28,32 @@ const AbilityItem = styled.div`
   border-radius: 0.3em;
 `;
 
+const TextWrapper = styled.div`
+  margin-bottom: ${AppStyle.spacing.small};
+  margin-right: ${AppStyle.spacing.small};
+`;
+
+const HeaderRow = styled.div`
+  display: flex;
+  align-items: baseline;
+`;
+
+const DescriptionWrapper = styled.div`
+  margin-left: ${AppStyle.spacing.small};
+`;
+
 function colorByAbilityType(type: AbilityType): string {
   switch (type) {
     case AbilityType.Spell:
       return AppStyle.roles.abilities.background.spells;
     case AbilityType.Ability:
       return AppStyle.roles.abilities.background.ability;
+    case AbilityType.BattleTrait:
+      return AppStyle.roles.abilities.background.battleTrait;
     default:
       return AppStyle.roles.abilities.background.other;
   }
 }
-
-const TextWrapper = styled.div`
-  margin: ${AppStyle.spacing.small};
-`;
-
-const HeaderRow = styled.div`
-  display: flex;
-`;
 
 /**
  * Primary UI component for user interaction
@@ -66,7 +75,9 @@ export const AbilityPanel = ({ ability, ...props }: AbilityPanelProps) => {
             {badgeComponent}
             <HeadingStyle>{ability?.name}</HeadingStyle>
           </HeaderRow>
-          <ReactMarkdownStyle>{ability?.description}</ReactMarkdownStyle>
+          <DescriptionWrapper>
+            <ReactMarkdownStyle>{ability?.description}</ReactMarkdownStyle>
+          </DescriptionWrapper>
         </TextWrapper>
       </Container>
     </AbilityItem>
