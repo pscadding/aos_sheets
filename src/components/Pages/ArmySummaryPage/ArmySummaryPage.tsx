@@ -25,7 +25,7 @@ export const ArmySummaryPage = ({ units, ...props }: ArmySummaryPageProps) => {
     </UnitWrapper>
   ));
   return (
-    <Container direction={direction.vertical} spacing={AppStyle.spacing.large}>
+    <Container direction={direction.vertical} spacing="10em">
       <PhaseUnitTable units={units}></PhaseUnitTable>
       <Container columns={2} direction={direction.vertical}>
         {unitComponents}

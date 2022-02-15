@@ -5,6 +5,7 @@ import { getEnumKeys } from '../../utils/enum';
 import { Unit } from '../../models/Unit';
 import { getPhaseColor } from '../../utils/phase';
 import { Container, direction } from '../Container/Container';
+import { hexToRGB } from '../../utils/color';
 
 interface PhaseUnitTableProps {
   units: Unit[];
@@ -15,8 +16,8 @@ const Header = styled.th`
   padding-right: ${AppStyle.spacing.small};
   background-color: ${(props: { phase: Phase }) => getPhaseColor(props.phase)};
   filter: brightness(85%);
-  border-top-left-radius: ${AppStyle.sizes.xSmall};
-  border-top-right-radius: ${AppStyle.sizes.xSmall};
+  border-top-left-radius: ${AppStyle.sizes.xxSmall};
+  border-top-right-radius: ${AppStyle.sizes.xxSmall};
   font-size: 150%;
 `;
 
@@ -33,7 +34,11 @@ const UnitName = styled.p`
 
 const Column = styled.td`
   vertical-align: top;
-  background-color: ${(props: { phase: Phase }) => getPhaseColor(props.phase)};
+  background: linear-gradient(
+    180deg,
+    ${(props: { phase: Phase }) => hexToRGB(getPhaseColor(props.phase))} 0%,
+    ${(props: { phase: Phase }) => hexToRGB(getPhaseColor(props.phase), 0.3)} 100%
+  );
 `;
 
 type PhaseStrings = keyof typeof Phase;
