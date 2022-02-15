@@ -4,6 +4,7 @@ import { Container } from '../../Container/Container';
 import { Ability, AbilityType } from '../../../models/Ability';
 import ReactMarkdown from 'react-markdown';
 import { PhaseColorStack } from '../../PhaseColorStack/PhaseColorStack';
+import { Badge } from '../../Badge/Badge';
 
 interface AbilityPanelProps {
   ability: Ability;
@@ -23,34 +24,50 @@ const HeadingStyle = styled.h4`
 const AbilityItem = styled.div`
   break-inside: avoid-column;
   margin-top: ${AppStyle.spacing.xSmall};
-  padding: ${AppStyle.spacing.xSmall};
-  padding-left: ${AppStyle.spacing.small};
-  padding-right: ${AppStyle.spacing.small};
   border-radius: 0.3em;
-  background-color: ${(props: { type: AbilityType }) => {
-    switch (props.type) {
-      case AbilityType.Spell:
-        return AppStyle.roles.abilities.background.spells;
-      case AbilityType.Ability:
-        return AppStyle.roles.abilities.background.ability;
-      default:
-        return AppStyle.roles.abilities.background.other;
-    }
-  }};
+`;
+
+function colorByAbilityType(type: AbilityType): string {
+  switch (type) {
+    case AbilityType.Spell:
+      return AppStyle.roles.abilities.background.spells;
+    case AbilityType.Ability:
+      return AppStyle.roles.abilities.background.ability;
+    default:
+      return AppStyle.roles.abilities.background.other;
+  }
+}
+
+const TextWrapper = styled.div`
+  margin: ${AppStyle.spacing.small};
+`;
+
+const HeaderRow = styled.div`
+  display: flex;
 `;
 
 /**
  * Primary UI component for user interaction
  */
 export const AbilityPanel = ({ ability, ...props }: AbilityPanelProps) => {
+  const badgeComponent =
+    ability.type !== AbilityType.Standard ? (
+      <Badge label={ability.type} color={colorByAbilityType(ability.type)}></Badge>
+    ) : (
+      <div />
+    );
+
   return (
-    <AbilityItem type={ability?.type}>
+    <AbilityItem>
       <Container>
-        <PhaseColorStack phases={ability?.phases ? ability.phases : []} width={'0px'} />
-        <div>
-          <HeadingStyle>{ability?.name}</HeadingStyle>
+        <PhaseColorStack width={AppStyle.sizes.small} phases={ability.phases} />
+        <TextWrapper>
+          <HeaderRow>
+            {badgeComponent}
+            <HeadingStyle>{ability?.name}</HeadingStyle>
+          </HeaderRow>
           <ReactMarkdownStyle>{ability?.description}</ReactMarkdownStyle>
-        </div>
+        </TextWrapper>
       </Container>
     </AbilityItem>
   );

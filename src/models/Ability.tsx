@@ -1,10 +1,10 @@
 import { Phase } from './Phase';
 
 export enum AbilityType {
-  CommandAbility,
-  Ability,
-  Spell,
-  Standard
+  CommandAbility = 'Command Ability',
+  Ability = 'Ability',
+  Spell = 'Spell',
+  Standard = 'Standard'
 }
 
 export interface Ability {

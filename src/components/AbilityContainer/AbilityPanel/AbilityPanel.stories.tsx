@@ -1,6 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { AbilityPanel } from './AbilityPanel';
-import { Unit } from '../../../models/Unit';
 import { mockUnits } from '../../../mock_data/mock_units';
 import { Ability } from '../../../models/Ability';
 

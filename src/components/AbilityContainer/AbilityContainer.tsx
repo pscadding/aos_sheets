@@ -4,6 +4,7 @@ import { Container, direction } from '../Container/Container';
 import { Ability, AbilityType } from '../../models/Ability';
 import ReactMarkdown from 'react-markdown';
 import { PhaseColorStack } from '../PhaseColorStack/PhaseColorStack';
+import { AbilityPanel } from './AbilityPanel/AbilityPanel';
 
 interface AbilityContainerProps {
   abilities: Ability[];
@@ -50,19 +51,9 @@ const AbilityItem = styled.div`
 export const AbilityContainer = ({ abilities, ...props }: AbilityContainerProps) => {
   let abilityComponents;
   if (abilities) {
-    abilityComponents = abilities.map((ability, index) => {
-      return (
-        <AbilityItem key={index} type={ability.type}>
-          <Container>
-            <PhaseColorStack phases={ability.phases} />
-            <div>
-              <HeadingStyle>{ability.name}</HeadingStyle>
-              <ReactMarkdownStyle>{ability.description}</ReactMarkdownStyle>
-            </div>
-          </Container>
-        </AbilityItem>
-      );
-    });
+    abilityComponents = abilities.map((ability, index) => (
+      <AbilityPanel key={index} ability={ability} />
+    ));
   }
   return <ContainerStyle>{abilityComponents}</ContainerStyle>;
 };

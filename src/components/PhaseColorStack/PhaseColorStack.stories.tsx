@@ -24,5 +24,6 @@ const Template: ComponentStory<typeof PhaseColorStack> = (args) => <PhaseColorSt
 export const Primary = Template.bind({});
 
 Primary.args = {
-  phases: [Phase.Combat, Phase.Hero, Phase.Movement]
+  phases: [Phase.Combat, Phase.Hero, Phase.Movement],
+  width: '20px'
 };
