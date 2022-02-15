@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { AppStyle } from '../../styles/style';
-import { Phase } from '../../models/Phase';
+import { Phase, PhaseStrings } from '../../models/Phase';
 import { getEnumKeys } from '../../utils/enum';
 import { Unit } from '../../models/Unit';
 import { getPhaseColor } from '../../utils/phase';
@@ -11,25 +11,35 @@ interface PhaseUnitTableProps {
   units: Unit[];
 }
 
-const Header = styled.th`
+const HeaderBackground = styled.th`
   padding-left: ${AppStyle.spacing.small};
   padding-right: ${AppStyle.spacing.small};
-  background-color: ${(props: { phase: Phase }) => getPhaseColor(props.phase)};
-  filter: brightness(85%);
-  border-top-left-radius: ${AppStyle.sizes.xxSmall};
-  border-top-right-radius: ${AppStyle.sizes.xxSmall};
-  font-size: 150%;
+  background: ${(props: { phase: Phase }) => {
+    const color = hexToRGB(getPhaseColor(props.phase), 0.5);
+    return `linear-gradient(${color}, ${color}),
+    linear-gradient(black, black);`;
+  }};
+  // border-top-left-radius: ${AppStyle.sizes.xxSmall};
+  // border-top-right-radius: ${AppStyle.sizes.xxSmall};
+  color: ${AppStyle.roles.table.dark.color};
+  font-size: 160%;
 `;
 
 const Table = styled.table`
-  border-spacing: ${AppStyle.spacing.medium} 0px;
+  border-top-right-radius: ${AppStyle.sizes.small};
+  border-top-left-radius: ${AppStyle.sizes.small};
+  border-top: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.table.border};
+  border-left: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.table.border};
+  border-right: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.table.border};
+  border-spacing: 0px 0px;
   table-layout: fixed;
   width: 100%;
 `;
 
 const UnitName = styled.p`
-  padding: ${AppStyle.spacing.small};
+  padding-left: ${AppStyle.spacing.small};
   margin: 0px;
+  font-size: 120%;
 `;
 
 const Column = styled.td`
@@ -41,17 +51,15 @@ const Column = styled.td`
   );
 `;
 
-type PhaseStrings = keyof typeof Phase;
-
 export const PhaseUnitTable = ({ units, ...props }: PhaseUnitTableProps) => {
   const phases = getEnumKeys(Phase);
   const phaseComponents = phases
     .filter((phase) => phase !== 'Any')
     .map((phase, index) => {
       return (
-        <Header key={index} phase={Phase[phase as PhaseStrings]}>
+        <HeaderBackground key={index} phase={Phase[phase as PhaseStrings]}>
           {phase}
-        </Header>
+        </HeaderBackground>
       );
     });
 
@@ -72,7 +80,7 @@ export const PhaseUnitTable = ({ units, ...props }: PhaseUnitTableProps) => {
         ));
       return (
         <Column key={phaseIndex} phase={Phase[phase as PhaseStrings]}>
-          <Container direction={direction.vertical} spacing={AppStyle.spacing.xsmall}>
+          <Container direction={direction.vertical} spacing={AppStyle.spacing.xSmall}>
             {unitNames}
           </Container>
         </Column>

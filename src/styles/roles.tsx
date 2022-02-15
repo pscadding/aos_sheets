@@ -3,7 +3,7 @@ import { colors } from './colors';
 export const roleColor = {
   table: {
     dark: {
-      color: colors.darkSky
+      color: colors.boneWhite
     },
     headerBackground: colors.overcastSky,
     border: colors.darkSky

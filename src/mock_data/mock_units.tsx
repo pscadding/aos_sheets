@@ -50,7 +50,8 @@ export const mockUnits: Unit[] = [
       {
         name: 'Companion',
         type: AbilityType.Standard,
-        description: 'Pot-grot must stay within 1" of Shaman. Treated as a single model.'
+        description: 'Pot-grot must stay within 1" of Shaman. Treated as a single model.',
+        phases: []
       },
       {
         name: 'Wizard',

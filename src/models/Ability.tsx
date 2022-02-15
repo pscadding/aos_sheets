@@ -11,5 +11,5 @@ export interface Ability {
   name: string;
   type: AbilityType;
   description: string;
-  phases?: Phase[];
+  phases: Phase[];
 }

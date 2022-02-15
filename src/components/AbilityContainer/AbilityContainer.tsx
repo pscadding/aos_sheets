@@ -3,6 +3,7 @@ import { AppStyle } from '../../styles/style';
 import { Container, direction } from '../Container/Container';
 import { Ability, AbilityType } from '../../models/Ability';
 import ReactMarkdown from 'react-markdown';
+import { PhaseColorStack } from '../PhaseColorStack/PhaseColorStack';
 
 interface AbilityContainerProps {
   abilities: Ability[];
@@ -16,7 +17,7 @@ const ReactMarkdownStyle = styled(ReactMarkdown)`
 
 const HeadingStyle = styled.h4`
   margin-top: 0px;
-  margin-bottom: ${AppStyle.spacing.xsmall};
+  margin-bottom: ${AppStyle.spacing.xSmall};
 `;
 
 const ContainerStyle = styled.div`
@@ -26,8 +27,8 @@ const ContainerStyle = styled.div`
 
 const AbilityItem = styled.div`
   break-inside: avoid-column;
-  margin-top: ${AppStyle.spacing.xsmall};
-  padding: ${AppStyle.spacing.xsmall};
+  margin-top: ${AppStyle.spacing.xSmall};
+  padding: ${AppStyle.spacing.xSmall};
   padding-left: ${AppStyle.spacing.small};
   padding-left: ${AppStyle.spacing.small};
   border-radius: 0.3em;
@@ -52,8 +53,13 @@ export const AbilityContainer = ({ abilities, ...props }: AbilityContainerProps)
     abilityComponents = abilities.map((ability, index) => {
       return (
         <AbilityItem key={index} type={ability.type}>
-          <HeadingStyle>{ability.name}</HeadingStyle>
-          <ReactMarkdownStyle>{ability.description}</ReactMarkdownStyle>
+          <Container>
+            <PhaseColorStack phases={ability.phases} />
+            <div>
+              <HeadingStyle>{ability.name}</HeadingStyle>
+              <ReactMarkdownStyle>{ability.description}</ReactMarkdownStyle>
+            </div>
+          </Container>
         </AbilityItem>
       );
     });

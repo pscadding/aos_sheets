@@ -11,6 +11,7 @@ interface ContainerStyleProps {
   direction?: direction;
   spacing?: string;
   columns?: number;
+  columnGap?: string;
 }
 
 interface ContainerProps extends ContainerStyleProps {
@@ -49,6 +50,9 @@ const ContainerStyle = styled.div`
 
     if (props.columns !== null) {
       layout = `column-count: ${props.columns};`;
+      if (props.columnGap !== null) {
+        layout += `column-gap: ${props.columnGap};`;
+      }
     }
 
     return css`
@@ -61,9 +65,14 @@ const ContainerStyle = styled.div`
 /**
  * Primary UI component for user interaction
  */
-export const Container = ({ spacing, direction, columns, ...props }: ContainerProps) => {
+export const Container = ({ spacing, direction, columns, columnGap, ...props }: ContainerProps) => {
   return (
-    <ContainerStyle className="Container" spacing={spacing} direction={direction} columns={columns}>
+    <ContainerStyle
+      className="Container"
+      spacing={spacing}
+      direction={direction}
+      columns={columns}
+      columnGap={columnGap}>
       {props.children}
     </ContainerStyle>
   );
@@ -72,5 +81,6 @@ export const Container = ({ spacing, direction, columns, ...props }: ContainerPr
 Container.defaultProps = {
   direction: direction.horizontal,
   spacing: '0px',
-  columns: null
+  columns: null,
+  columnGap: null
 };

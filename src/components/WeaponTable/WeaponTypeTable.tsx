@@ -8,8 +8,8 @@ interface WeaponTypeTableProps {
 }
 
 const TableHeader = styled.th`
-  padding-top: ${AppStyle.spacing.xsmall};
-  padding-bottom: ${AppStyle.spacing.xsmall};
+  padding-top: ${AppStyle.spacing.xSmall};
+  padding-bottom: ${AppStyle.spacing.xSmall};
   padding-left: ${AppStyle.spacing.medium};
   padding-right: ${AppStyle.spacing.medium};
   white-space: nowrap;

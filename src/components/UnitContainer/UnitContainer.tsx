@@ -7,6 +7,8 @@ import { AppStyle } from '../../styles/style';
 import { Keywords } from '../Keywords/Keywords';
 import { Container, direction } from '../Container/Container';
 import { AbilityContainer } from '../AbilityContainer/AbilityContainer';
+import { PhaseColorStack } from '../PhaseColorStack/PhaseColorStack';
+import { getPhasesFromAbilities } from '../../utils/phase';
 
 interface UnitContainerProps {
   unit: Unit;
@@ -37,6 +39,8 @@ const LowerContainer = styled.div`
  * Primary UI component for user interaction
  */
 export const UnitContainer = ({ unit, ...props }: UnitContainerProps) => {
+  const unitPhases = getPhasesFromAbilities(unit?.abilities);
+
   return (
     <OuterWrapper>
       <Container direction={direction.vertical}>
@@ -47,6 +51,7 @@ export const UnitContainer = ({ unit, ...props }: UnitContainerProps) => {
               <Container direction={direction.vertical}>
                 <Container spacing="0px">
                   <UnitName name={unit?.name} subName={unit?.subName} />
+                  <PhaseColorStack phases={unitPhases} width={AppStyle.sizes.large} />
                   <Keywords keywords={unit?.keywords} />
                 </Container>
                 <WeaponsTable weapons={unit?.weapons} />

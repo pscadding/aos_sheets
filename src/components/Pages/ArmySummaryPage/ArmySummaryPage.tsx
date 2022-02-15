@@ -9,10 +9,14 @@ interface ArmySummaryPageProps {
   units: Unit[];
 }
 
+const PageWrapper = styled.div`
+  margin: 3em;
+`;
+
 const UnitWrapper = styled.div`
   margin-top: ${AppStyle.spacing.large};
   break-inside: avoid-column;
-  width: 90%;
+  width: 100%;
 `;
 
 /**
@@ -25,11 +29,13 @@ export const ArmySummaryPage = ({ units, ...props }: ArmySummaryPageProps) => {
     </UnitWrapper>
   ));
   return (
-    <Container direction={direction.vertical} spacing="10em">
-      <PhaseUnitTable units={units}></PhaseUnitTable>
-      <Container columns={2} direction={direction.vertical}>
-        {unitComponents}
+    <PageWrapper>
+      <Container direction={direction.vertical} spacing="10em">
+        <PhaseUnitTable units={units}></PhaseUnitTable>
+        <Container columns={2} direction={direction.vertical} columnGap={AppStyle.spacing.large}>
+          {unitComponents}
+        </Container>
       </Container>
-    </Container>
+    </PageWrapper>
   );
 };

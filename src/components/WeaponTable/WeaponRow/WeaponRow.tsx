@@ -7,7 +7,7 @@ interface WeaponRowProps {
 }
 
 const Cell = styled.td`
-  padding: ${AppStyle.spacing.xxsmall};
+  padding: ${AppStyle.spacing.xxSmall};
   text-align: center;
 `;
 

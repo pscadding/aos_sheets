@@ -7,3 +7,5 @@ export enum Phase {
   Battleshock,
   Any
 }
+
+export type PhaseStrings = keyof typeof Phase;

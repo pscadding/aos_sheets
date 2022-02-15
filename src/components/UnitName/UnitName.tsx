@@ -14,13 +14,13 @@ const Container = styled.div`
 `;
 
 const Name = styled.h1`
-  margin: ${AppStyle.spacing.xsmall};
+  margin: ${AppStyle.spacing.xSmall};
   white-space: nowrap;
   font-size: 130%;
 `;
 
 const SubName = styled.h6`
-  margin: ${AppStyle.spacing.xsmall};
+  margin: ${AppStyle.spacing.xSmall};
   white-space: nowrap;
   font-size: 80%;
 `;

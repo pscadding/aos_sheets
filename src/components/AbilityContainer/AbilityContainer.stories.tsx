@@ -10,7 +10,7 @@ mockUnits.forEach((unit) => {
 });
 
 export default {
-  title: 'Components/AbilityContainer',
+  title: 'Components/Abilities/AbilityContainer',
   component: AbilityContainer,
   argTypes: {
     backgroundColor: { control: 'color' },
