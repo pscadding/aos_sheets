@@ -1,12 +1,14 @@
 import { colors } from './colors';
 
 export const roleColor = {
+  general: {
+    border: colors.darkSky
+  },
   table: {
     dark: {
       color: colors.boneWhite
     },
-    headerBackground: colors.overcastSky,
-    border: colors.darkSky
+    headerBackground: colors.overcastSky
   },
   panel: {
     dark: {

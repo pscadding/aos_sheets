@@ -28,9 +28,9 @@ const HeaderBackground = styled.th`
 const Table = styled.table`
   border-top-right-radius: ${AppStyle.sizes.small};
   border-top-left-radius: ${AppStyle.sizes.small};
-  border-top: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.table.border};
-  border-left: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.table.border};
-  border-right: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.table.border};
+  border-top: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.general.border};
+  border-left: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.general.border};
+  border-right: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.general.border};
   border-spacing: 0px 0px;
   table-layout: fixed;
   width: 100%;

@@ -16,7 +16,7 @@ interface UnitContainerProps {
 
 const OuterWrapper = styled.div`
   padding: ${AppStyle.sizes.xSmall};
-  border-bottom: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.table.border};
+  border-bottom: ${AppStyle.sizes.xSmall} solid ${AppStyle.roles.general.border};
   border-bottom-right-radius: ${AppStyle.sizes.xSmall};
   border-bottom-left-radius: ${AppStyle.sizes.xSmall};
 `;
@@ -24,7 +24,7 @@ const OuterWrapper = styled.div`
 const TopWrapper = styled.div`
   border-top-right-radius: ${AppStyle.sizes.xSmall};
   border-top-left-radius: ${AppStyle.sizes.xSmall};
-  box-shadow: 0px 0px 0px ${AppStyle.sizes.xSmall} ${AppStyle.roles.table.border};
+  box-shadow: 0px 0px 0px ${AppStyle.sizes.xSmall} ${AppStyle.roles.general.border};
 `;
 
 const RightWrapper = styled.div`

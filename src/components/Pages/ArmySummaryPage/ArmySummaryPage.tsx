@@ -24,7 +24,7 @@ const UnitWrapper = styled.div`
 
 const Title = styled.h1`
   font-size: 200%;
-  border-bottom: 0.08em solid ${AppStyle.roles.table.border};
+  border-bottom: 0.08em solid ${AppStyle.roles.general.border};
 `;
 
 /**
