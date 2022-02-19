@@ -7,10 +7,10 @@ export default {
   name: 'Skink Starpriest',
   type: UnitType.Leader,
   stats: {
-    move: '5"',
+    move: '8"',
     save: '5+',
-    wounds: '6',
-    bravery: '5'
+    wounds: '5',
+    bravery: '6'
   },
   weapons: [
     {

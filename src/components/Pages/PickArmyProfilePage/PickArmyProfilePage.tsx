@@ -2,11 +2,13 @@ import styled from 'styled-components';
 import { AppStyle } from '../../../styles/style';
 import { Container, direction } from '../../Container/Container';
 import { ProfilePicker } from '../../ProfilePicker/ProfilePicker';
-import { useNavigate } from 'react-router-dom';
+
 import { useEffect, useState } from 'react';
 import { loadProfiles } from '../../../utils/DataLoader';
 
-interface PickArmyProfilePageProps {}
+interface PickArmyProfilePageProps {
+  onLoadProfile: (profileName: string) => void;
+}
 
 const PageWrapper = styled.main`
   display: flex;
@@ -26,9 +28,7 @@ const FormWrapper = styled.div`
 /**
  * Primary UI component for user interaction
  */
-export const PickArmyProfilePage = ({ ...props }: PickArmyProfilePageProps) => {
-  let navigate = useNavigate();
-
+export const PickArmyProfilePage = ({ onLoadProfile, ...props }: PickArmyProfilePageProps) => {
   const [profileNames, setProfileNames] = useState<string[]>([]);
   const [selectedProfile, setSelectedProfile] = useState<string>('');
 
@@ -53,7 +53,7 @@ export const PickArmyProfilePage = ({ ...props }: PickArmyProfilePageProps) => {
           <ProfilePicker armyProfileNames={profileNames} onArmySelected={onSelectedArmyChange} />
           <button
             onClick={() => {
-              navigate(`/summary/${selectedProfile}`);
+              if (onLoadProfile) onLoadProfile(selectedProfile);
             }}>
             Load Profile
           </button>

@@ -1,4 +1,4 @@
-import { Ability } from './Ability';
+import { Ability, AbilityDamageTable } from './Ability';
 import { UnitStats } from './UnitStats';
 import { Weapon } from './Weapon';
 
@@ -18,5 +18,5 @@ export interface Unit {
   stats: UnitStats;
   weapons: Weapon[];
   keywords: string[];
-  abilities: Ability[];
+  abilities: (Ability | AbilityDamageTable)[];
 }

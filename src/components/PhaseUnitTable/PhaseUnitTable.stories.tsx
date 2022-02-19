@@ -2,6 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { PhaseUnitTable } from './PhaseUnitTable';
 import { Unit } from '../../models/Unit';
 import { mockUnits } from '../../mock_data/mock_units';
+import { mockArmyAbilities } from '../../mock_data/mock_army_abilities';
 
 let mockUnitsMap: { [key: string]: Unit } = {};
 
@@ -22,5 +23,6 @@ const Template: ComponentStory<typeof PhaseUnitTable> = (args) => <PhaseUnitTabl
 export const Primary = Template.bind({});
 
 Primary.args = {
-  units: mockUnits
+  units: mockUnits,
+  abilities: mockArmyAbilities
 };

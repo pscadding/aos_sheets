@@ -30,6 +30,12 @@ export const ProfilePicker = ({
     <OptionWrapper key={index}>{profileName}</OptionWrapper>
   ));
 
+  useEffect(() => {
+    if (onArmySelected != null) {
+      onArmySelected(armyProfileNames[0]);
+    }
+  }, [armyProfileNames]);
+
   return (
     <SelectBox
       id="profiles"

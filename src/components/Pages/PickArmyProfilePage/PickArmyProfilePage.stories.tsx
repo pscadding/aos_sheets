@@ -16,7 +16,3 @@ const Template: ComponentStory<typeof PickArmyProfilePage> = (args) => (
 );
 
 export const Primary = Template.bind({});
-
-Primary.args = {
-  armyProfileNames: ['Seraphon 2000pt', 'Slaves to Darkness 1000pt', 'Orruk Big Yellers 1000pt']
-};

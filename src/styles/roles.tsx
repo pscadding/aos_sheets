@@ -35,7 +35,9 @@ export const roleColor = {
       shooting: colors.maximumBlue,
       charge: colors.shadowBlue,
       combat: colors.blueBell,
-      battleshock: colors.kobi
+      battleshock: colors.kobi,
+      na: colors.transparent,
+      any: colors.transparent
     }
   }
 };

@@ -1,15 +1,9 @@
 import { Weapon } from '../../../models/Weapon';
-import styled from 'styled-components';
-import { AppStyle } from '../../../styles/style';
+import { TableBodyCell } from '../../Table/Table';
 
 interface WeaponRowProps {
   weapon: Weapon;
 }
-
-const Cell = styled.td`
-  padding: ${AppStyle.spacing.xxSmall};
-  text-align: center;
-`;
 
 /**
  * Primary UI component for user interaction
@@ -17,13 +11,13 @@ const Cell = styled.td`
 export const WeaponRow = ({ weapon }: WeaponRowProps) => {
   return (
     <tr className="WeaponTable" id={weapon.name}>
-      <Cell>{weapon.name}</Cell>
-      <Cell>{weapon.range}</Cell>
-      <Cell>{weapon.attacks}</Cell>
-      <Cell>{weapon.toHit}</Cell>
-      <Cell>{weapon.toWound}</Cell>
-      <Cell>{weapon.rend ? weapon.rend : '-'}</Cell>
-      <Cell>{weapon.damage}</Cell>
+      <TableBodyCell>{weapon.name}</TableBodyCell>
+      <TableBodyCell>{weapon.range}</TableBodyCell>
+      <TableBodyCell>{weapon.attacks}</TableBodyCell>
+      <TableBodyCell>{weapon.toHit}</TableBodyCell>
+      <TableBodyCell>{weapon.toWound}</TableBodyCell>
+      <TableBodyCell>{weapon.rend ? weapon.rend : '-'}</TableBodyCell>
+      <TableBodyCell>{weapon.damage}</TableBodyCell>
     </tr>
   );
 };

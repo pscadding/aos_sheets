@@ -5,7 +5,8 @@ export enum AbilityType {
   CommandAbility = 'Command Ability',
   Ability = 'Ability',
   Spell = 'Spell',
-  Standard = 'Standard'
+  Standard = 'Standard',
+  DamageTable = 'Damage Table'
 }
 
 export interface Ability {
@@ -13,4 +14,13 @@ export interface Ability {
   type: AbilityType;
   description: string;
   phases: Phase[];
+}
+
+export interface BattleTraits {
+  [key: string]: Ability[];
+}
+
+export interface AbilityDamageTable extends Ability {
+  columns: string[];
+  rows: string[][];
 }

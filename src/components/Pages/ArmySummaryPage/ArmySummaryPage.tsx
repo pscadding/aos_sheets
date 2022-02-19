@@ -7,7 +7,7 @@ import { PhaseUnitTable } from '../../PhaseUnitTable/PhaseUnitTable';
 import { Ability } from '../../../models/Ability';
 import { AbilityContainer } from '../../AbilityContainer/AbilityContainer';
 import { useEffect, useState } from 'react';
-import { loadProfile, loadUnits } from '../../../utils/DataLoader';
+import { loadArmyAbilities, loadProfile, loadUnits } from '../../../utils/DataLoader';
 import { Profile } from '../../../models/Profile';
 
 interface ArmySummaryPageProps {
@@ -38,16 +38,16 @@ export const ArmySummaryPage = ({ profileName, ...props }: ArmySummaryPageProps)
 
   useEffect(() => {
     // Load the profile, then load the units for the profile, and store them in state.
-    loadProfile(profileName)
-      .then((profile: Profile) => {
-        if (profile) {
-          return loadUnits(profile);
-        }
-        return [];
-      })
-      .then((units: Unit[]) => {
-        setUnits(units);
-      });
+    loadProfile(profileName).then((profile: Profile) => {
+      if (profile) {
+        loadUnits(profile).then((units: Unit[]) => {
+          setUnits(units);
+        });
+        loadArmyAbilities(profile).then((abilities: Ability[]) => {
+          setArmyAbilities(abilities);
+        });
+      }
+    });
   }, [profileName]);
 
   const unitComponents = units.map((unit, index) => (
@@ -60,7 +60,7 @@ export const ArmySummaryPage = ({ profileName, ...props }: ArmySummaryPageProps)
     <PageWrapper>
       <Container direction={direction.vertical} spacing="1em">
         <Title>Units With Abilities By Phases</Title>
-        <PhaseUnitTable units={units}></PhaseUnitTable>
+        <PhaseUnitTable units={units} abilities={armyAbilities}></PhaseUnitTable>
         <Title>Army Abilities</Title>
         <AbilityContainer abilities={armyAbilities} />
         <Title>Units</Title>

@@ -1,10 +1,11 @@
 import styled, { css } from 'styled-components';
 import { AppStyle } from '../../styles/style';
 import { Container, direction } from '../Container/Container';
-import { Ability, AbilityType } from '../../models/Ability';
+import { Ability, AbilityType, AbilityDamageTable } from '../../models/Ability';
 import ReactMarkdown from 'react-markdown';
 import { PhaseColorStack } from '../PhaseColorStack/PhaseColorStack';
 import { AbilityPanel } from './AbilityPanel/AbilityPanel';
+import { AbilityDamageTablePanel } from './AbilityDamageTable/AbilityDamageTable';
 
 interface AbilityContainerProps {
   abilities: Ability[];
@@ -51,9 +52,13 @@ const AbilityItem = styled.div`
 export const AbilityContainer = ({ abilities, ...props }: AbilityContainerProps) => {
   let abilityComponents;
   if (abilities) {
-    abilityComponents = abilities.map((ability, index) => (
-      <AbilityPanel key={index} ability={ability} />
-    ));
+    abilityComponents = abilities.map((ability, index) => {
+      if (ability.type === AbilityType.DamageTable) {
+        return <AbilityDamageTablePanel key={index} ability={ability as AbilityDamageTable} />;
+      } else {
+        return <AbilityPanel key={index} ability={ability} />;
+      }
+    });
   }
   return <ContainerStyle>{abilityComponents}</ContainerStyle>;
 };
