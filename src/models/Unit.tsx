@@ -3,12 +3,12 @@ import { UnitStats } from './UnitStats';
 import { Weapon } from './Weapon';
 
 export enum UnitType {
-  Leader,
-  Artillery,
-  Behemoth,
-  EndlessSpells,
-  Battleline,
-  Other
+  Leader = 'Leader',
+  Artillery = 'Artillery',
+  Behemoth = 'Behemoth',
+  EndlessSpells = 'Endless Spells',
+  Battleline = 'Battleline',
+  Other = 'Other'
 }
 
 export interface Unit {

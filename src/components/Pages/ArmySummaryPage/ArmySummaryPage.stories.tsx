@@ -27,6 +27,5 @@ const Template: ComponentStory<typeof ArmySummaryPage> = (args) => (
 export const Primary = Template.bind({});
 
 Primary.args = {
-  units: mockUnits,
-  armyAbilities: mockArmyAbilities
+  profileName: 'Seraphon'
 };

@@ -1,11 +1,11 @@
 export enum Phase {
-  Hero,
-  Movement,
-  Shooting,
-  Charge,
-  Combat,
-  Battleshock,
-  Any
+  Hero = 'Hero',
+  Movement = 'Movement',
+  Shooting = 'Shooting',
+  Charge = 'Charge',
+  Combat = 'Combat',
+  Battleshock = 'Battleshock',
+  Any = 'Any'
 }
 
 export type PhaseStrings = keyof typeof Phase;

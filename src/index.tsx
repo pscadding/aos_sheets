@@ -11,7 +11,9 @@ ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
-        <Route path="summary" element={<ArmyProfileSummary />} />
+        <Route path="summary" element={<ArmyProfileSummary />}>
+          <Route path=":armyId" element={<ArmyProfileSummary />} />
+        </Route>
         <Route
           path="*"
           element={

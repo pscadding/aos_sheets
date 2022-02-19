@@ -2,22 +2,16 @@ import styled from 'styled-components';
 import { AppStyle } from '../../../styles/style';
 import { Container, direction } from '../../Container/Container';
 import { ProfilePicker } from '../../ProfilePicker/ProfilePicker';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { loadProfiles } from '../../../utils/DataLoader';
 
-interface PickArmyProfilePageProps {
-  armyProfileNames: string[];
-}
+interface PickArmyProfilePageProps {}
 
 const PageWrapper = styled.main`
   display: flex;
   justify-content: center;
   margin: 3em;
-`;
-
-const UnitWrapper = styled.div`
-  margin-top: ${AppStyle.spacing.large};
-  break-inside: avoid-column;
-  width: 100%;
 `;
 
 const Title = styled.h1`
@@ -32,12 +26,23 @@ const FormWrapper = styled.div`
 /**
  * Primary UI component for user interaction
  */
-export const PickArmyProfilePage = ({ armyProfileNames, ...props }: PickArmyProfilePageProps) => {
+export const PickArmyProfilePage = ({ ...props }: PickArmyProfilePageProps) => {
   let navigate = useNavigate();
-  let selectedArmy: string = '';
 
-  const getSelectedArmy = (armyId: string): void => {
-    selectedArmy = armyId;
+  const [profileNames, setProfileNames] = useState<string[]>([]);
+  const [selectedProfile, setSelectedProfile] = useState<string>('');
+
+  useEffect(() => {
+    loadProfiles().then((data) => {
+      console.log('loaded profiles:', data);
+      const pNames = Object.keys(data);
+      setProfileNames(pNames);
+      setSelectedProfile(pNames[0]);
+    });
+  }, []);
+
+  const onSelectedArmyChange = (armyName: string): void => {
+    setSelectedProfile(armyName);
   };
 
   return (
@@ -45,10 +50,10 @@ export const PickArmyProfilePage = ({ armyProfileNames, ...props }: PickArmyProf
       <FormWrapper>
         <Container direction={direction.vertical} spacing="1em">
           <Title>Choose Army Profile</Title>
-          <ProfilePicker armyProfileNames={armyProfileNames} onArmySelected={getSelectedArmy} />
+          <ProfilePicker armyProfileNames={profileNames} onArmySelected={onSelectedArmyChange} />
           <button
             onClick={() => {
-              navigate(`/summary/${selectedArmy}`);
+              navigate(`/summary/${selectedProfile}`);
             }}>
             Load Profile
           </button>

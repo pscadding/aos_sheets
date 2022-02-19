@@ -1,8 +1,10 @@
-[
-  {
-    "name": "Seraphon"
+{
+  "Seraphon": {
+    "unitNames": ["Skink Starpriest"],
+    "armyAbilityNames": []
   },
-  {
-    "name": "Orruk"
+  "Orruk": {
+    "unitNames": ["Swampcalla Shaman", "Gutrippaz"],
+    "armyAbilityNames": []
   }
-]
+}

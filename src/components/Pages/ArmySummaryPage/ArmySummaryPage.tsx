@@ -6,10 +6,12 @@ import { UnitContainer } from '../../UnitContainer/UnitContainer';
 import { PhaseUnitTable } from '../../PhaseUnitTable/PhaseUnitTable';
 import { Ability } from '../../../models/Ability';
 import { AbilityContainer } from '../../AbilityContainer/AbilityContainer';
+import { useEffect, useState } from 'react';
+import { loadProfile, loadUnits } from '../../../utils/DataLoader';
+import { Profile } from '../../../models/Profile';
 
 interface ArmySummaryPageProps {
-  units: Unit[];
-  armyAbilities: Ability[];
+  profileName: string;
 }
 
 const PageWrapper = styled.div`
@@ -30,7 +32,24 @@ const Title = styled.h1`
 /**
  * Primary UI component for user interaction
  */
-export const ArmySummaryPage = ({ units, armyAbilities, ...props }: ArmySummaryPageProps) => {
+export const ArmySummaryPage = ({ profileName, ...props }: ArmySummaryPageProps) => {
+  const [units, setUnits] = useState<Unit[]>([]);
+  const [armyAbilities, setArmyAbilities] = useState<Ability[]>([]);
+
+  useEffect(() => {
+    // Load the profile, then load the units for the profile, and store them in state.
+    loadProfile(profileName)
+      .then((profile: Profile) => {
+        if (profile) {
+          return loadUnits(profile);
+        }
+        return [];
+      })
+      .then((units: Unit[]) => {
+        setUnits(units);
+      });
+  }, [profileName]);
+
   const unitComponents = units.map((unit, index) => (
     <UnitWrapper key={index}>
       <UnitContainer unit={unit} />

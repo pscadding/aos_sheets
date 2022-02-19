@@ -1,6 +1,6 @@
 export enum WeaponType {
-  Missile,
-  Melee
+  Missile = 'Missile',
+  Melee = 'Melee'
 }
 
 export interface Weapon {

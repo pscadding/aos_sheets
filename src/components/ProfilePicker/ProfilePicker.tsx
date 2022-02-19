@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import { AppStyle } from '../../styles/style';
 
@@ -28,7 +29,6 @@ export const ProfilePicker = ({
   const armyProfileComponents = armyProfileNames.map((profileName: string, index) => (
     <OptionWrapper key={index}>{profileName}</OptionWrapper>
   ));
-  if (onArmySelected) onArmySelected(armyProfileNames[0]);
 
   return (
     <SelectBox
