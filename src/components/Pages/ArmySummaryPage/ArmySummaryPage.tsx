@@ -7,8 +7,14 @@ import { PhaseUnitTable } from '../../PhaseUnitTable/PhaseUnitTable';
 import { Ability } from '../../../models/Ability';
 import { AbilityContainer } from '../../AbilityContainer/AbilityContainer';
 import { useEffect, useState } from 'react';
-import { loadArmyAbilities, loadProfile, loadUnits } from '../../../utils/DataLoader';
+import {
+  loadBattleTraits,
+  loadEnhancements,
+  loadProfile,
+  loadUnits
+} from '../../../utils/DataLoader';
 import { Profile } from '../../../models/Profile';
+import { attachByKeyword } from '../../../utils/AbilityUtils';
 
 interface ArmySummaryPageProps {
   profileName: string;
@@ -29,6 +35,27 @@ const Title = styled.h1`
   border-bottom: 0.08em solid ${AppStyle.roles.general.border};
 `;
 
+function loadData(
+  profileName: string,
+  setUnits: (u: Unit[]) => void,
+  setArmyAbilities: (a: Ability[]) => void
+) {
+  loadProfile(profileName).then((profile: Profile) => {
+    if (profile) {
+      loadUnits(profile).then((units: Unit[]) => {
+        loadEnhancements().then((abilities: Ability[]) => {
+          units.forEach((unit) => attachByKeyword('wizard', unit, abilities));
+          setUnits(units);
+        });
+
+        loadBattleTraits(profile).then((abilities: Ability[]) => {
+          setArmyAbilities(abilities);
+        });
+      });
+    }
+  });
+}
+
 /**
  * Primary UI component for user interaction
  */
@@ -38,16 +65,7 @@ export const ArmySummaryPage = ({ profileName, ...props }: ArmySummaryPageProps)
 
   useEffect(() => {
     // Load the profile, then load the units for the profile, and store them in state.
-    loadProfile(profileName).then((profile: Profile) => {
-      if (profile) {
-        loadUnits(profile).then((units: Unit[]) => {
-          setUnits(units);
-        });
-        loadArmyAbilities(profile).then((abilities: Ability[]) => {
-          setArmyAbilities(abilities);
-        });
-      }
-    });
+    loadData(profileName, setUnits, setArmyAbilities);
   }, [profileName]);
 
   const unitComponents = units.map((unit, index) => (

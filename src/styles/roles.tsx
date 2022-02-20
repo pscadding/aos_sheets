@@ -22,9 +22,10 @@ export const roleColor = {
   },
   abilities: {
     background: {
-      spells: colors.lavender,
+      spells: colors.boneWhite,
       ability: colors.boneWhite,
-      battleTrait: colors.apricot,
+      battleTrait: colors.boneWhite,
+      commandAbility: colors.boneWhite,
       other: colors.transparent
     }
   },

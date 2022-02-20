@@ -14,6 +14,7 @@ export interface Ability {
   type: AbilityType;
   description: string;
   phases: Phase[];
+  attachKeyword?: string;
 }
 
 export interface BattleTraits {

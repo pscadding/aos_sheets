@@ -1,6 +1,6 @@
 import { Profile } from '../models/Profile';
 import { units } from '../data/units/units';
-import { abilities } from '../data/abilities/abilities';
+import { battleTraits, enhancements } from '../data/abilities/abilities';
 import { Unit } from '../models/Unit';
 import { Ability } from '../models/Ability';
 
@@ -11,12 +11,18 @@ export function loadUnits(profile: Profile): Promise<Unit[]> {
   });
 }
 
-export function loadArmyAbilities(profile: Profile): Promise<Ability[]> {
+export function loadBattleTraits(profile: Profile): Promise<Ability[]> {
   return new Promise((resolve) => {
     const profileAbilities = profile.battleTraitTypes
-      .map((battleTraitType) => abilities[battleTraitType])
+      .map((battleTraitType) => battleTraits[battleTraitType])
       .flat(1);
     resolve(profileAbilities);
+  });
+}
+
+export function loadEnhancements(): Promise<Ability[]> {
+  return new Promise((resolve) => {
+    resolve(enhancements);
   });
 }
 

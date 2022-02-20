@@ -50,6 +50,8 @@ function colorByAbilityType(type: AbilityType): string {
       return AppStyle.roles.abilities.background.ability;
     case AbilityType.BattleTrait:
       return AppStyle.roles.abilities.background.battleTrait;
+    case AbilityType.CommandAbility:
+      return AppStyle.roles.abilities.background.battleTrait;
     default:
       return AppStyle.roles.abilities.background.other;
   }
