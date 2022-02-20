@@ -15,6 +15,7 @@ Stuff to do:
 - Add spell lores and general spells
 - Add number of abilities (eg x3) on phase unit table
 - Command ability table?
+- add ability phase used in, effect in.
 
 ## Available Scripts
 

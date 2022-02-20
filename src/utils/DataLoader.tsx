@@ -6,7 +6,7 @@ import { Ability } from '../models/Ability';
 
 export function loadUnits(profile: Profile): Promise<Unit[]> {
   return new Promise((resolve) => {
-    const profileUnits = units.filter((unit) => profile.unitNames.includes(unit.name));
+    const profileUnits = units.filter((unit) => Object.keys(profile.unitNames).includes(unit.name));
     resolve(profileUnits);
   });
 }

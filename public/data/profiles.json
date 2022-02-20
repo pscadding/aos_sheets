@@ -1,17 +1,19 @@
 {
   "Seraphon": {
-    "unitNames": [
-      "Skink Starpriest",
-      "Skinks",
-      "Saurus Guard",
-      "Saurus Warriors",
-      "Terradon Riders",
-      "Saurus Oldblood on Carnosaur"
-    ],
-    "battleTraitTypes": ["Seraphon", "Coalesced"]
+    "unitNames": {
+      "Skink Starpriest": { "abilityNames": ["Master of magic", "Flaming Weapon"] },
+      "Skinks": {},
+      "Saurus Guard": {},
+      "Saurus Warriors": {},
+      "Terradon Riders": {},
+      "Saurus Oldblood on Carnosaur": { "abilityNames": ["Arcane Tome"] }
+    },
+    "battleTraitTypes": ["Seraphon", "Coalesced"],
+    "armyAbilities": ["Bloodthirsty"]
   },
   "Orruk": {
-    "unitNames": ["Swampcalla Shaman", "Gutrippaz"],
-    "battleTraitTypes": []
+    "unitNames": { "Swampcalla Shaman": {}, "Gutrippaz": {} },
+    "battleTraitTypes": [],
+    "armyAbilities": []
   }
 }

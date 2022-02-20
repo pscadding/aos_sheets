@@ -26,6 +26,7 @@ export const roleColor = {
       ability: colors.boneWhite,
       battleTrait: colors.boneWhite,
       commandAbility: colors.boneWhite,
+      triumph: colors.boneWhite,
       other: colors.transparent
     }
   },

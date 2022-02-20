@@ -14,7 +14,12 @@ import {
   loadUnits
 } from '../../../utils/DataLoader';
 import { Profile } from '../../../models/Profile';
-import { attachByKeyword, filterAbilitiesByUnitKeyword } from '../../../utils/AbilityUtils';
+import {
+  attachByKeyword,
+  attachByProfileUnit,
+  filterAbilitiesByNames,
+  filterAbilitiesByUnitKeyword
+} from '../../../utils/AbilityUtils';
 
 interface ArmySummaryPageProps {
   profileName: string;
@@ -43,17 +48,26 @@ function loadData(
   loadProfile(profileName).then((profile: Profile) => {
     if (profile) {
       loadUnits(profile).then((units: Unit[]) => {
-        loadEnhancements().then((abilities: Ability[]) => {
-          units.forEach((unit) => attachByKeyword('wizard', unit, abilities));
+        loadEnhancements().then((enhancements: Ability[]) => {
+          // Attach any enhancement abilities to the units if defined in the profile
+          attachByProfileUnit(profile, units, enhancements);
+
+          const armyEnhancements = filterAbilitiesByNames(enhancements, profile.armyAbilities);
+
           units.forEach((unit) => {
+            // Add common spells to all wizards
+            attachByKeyword('wizard', unit, enhancements);
+            // Filter out any unit abilities that affect units that aren't in the army
             unit.abilities = filterAbilitiesByUnitKeyword(unit.abilities, units);
           });
-          setUnits(units);
-        });
 
-        loadBattleTraits(profile).then((abilities: Ability[]) => {
-          abilities = filterAbilitiesByUnitKeyword(abilities, units);
-          setArmyAbilities(abilities);
+          loadBattleTraits(profile).then((battleTraits: Ability[]) => {
+            // Filter out any abilities that affect units that aren't in the army
+            battleTraits = filterAbilitiesByUnitKeyword(battleTraits, units);
+
+            setArmyAbilities([...armyEnhancements, ...battleTraits]);
+          });
+          setUnits(units);
         });
       });
     }
@@ -68,6 +82,8 @@ export const ArmySummaryPage = ({ profileName, ...props }: ArmySummaryPageProps)
   const [armyAbilities, setArmyAbilities] = useState<Ability[]>([]);
 
   useEffect(() => {
+    setUnits([]);
+    setArmyAbilities([]);
     // Load the profile, then load the units for the profile, and store them in state.
     loadData(profileName, setUnits, setArmyAbilities);
   }, [profileName]);

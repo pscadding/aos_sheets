@@ -1,4 +1,5 @@
 export interface Profile {
-  unitNames: string[];
+  unitNames: { [key: string]: { abilityNames?: string[] } };
   battleTraitTypes: string[];
+  armyAbilities: string[];
 }

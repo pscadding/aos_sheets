@@ -1,4 +1,5 @@
 import { Ability } from '../models/Ability';
+import { Profile } from '../models/Profile';
 import { Unit } from '../models/Unit';
 
 /**
@@ -19,9 +20,43 @@ export const attachByKeyword = (keyword: string, unit: Unit, abilities: Ability[
   );
 
   // Only add the abilities if they haven't already been added.
-  unit.abilities = unit.abilities.concat(
-    filteredAbilities.filter((item) => unit.abilities.indexOf(item) < 0)
-  );
+  addAbilitiesToUnit(unit, filteredAbilities);
+};
+
+/**
+ * Attach abilities listed in the profile against each unit to the respective unit.
+ * @param profile
+ * @param units
+ * @param abilities
+ */
+export const attachByProfileUnit = (
+  profile: Profile,
+  units: Unit[],
+  abilities: Ability[]
+): void => {
+  Object.keys(profile.unitNames).forEach((profileUnitName) => {
+    const profileUnitAbilities = profile.unitNames[profileUnitName].abilityNames;
+    if (profileUnitAbilities != null && profileUnitAbilities.length) {
+      const unit = units.find((unit) => unit.name.toLowerCase() === profileUnitName.toLowerCase());
+
+      if (unit != null) {
+        const abilitiesToAdd = profileUnitAbilities
+          .map((abilityName) => {
+            return abilities.find(
+              (ability) => ability.name.toLowerCase() === abilityName.toLowerCase()
+            );
+          })
+          .filter((ability) => ability != null) as Ability[];
+
+        addAbilitiesToUnit(unit, abilitiesToAdd);
+      }
+    }
+  });
+};
+
+export const filterAbilitiesByNames = (abilities: Ability[], abilityNames: string[]): Ability[] => {
+  const lowerAbilityNames = lowerCaseArray(abilityNames);
+  return abilities.filter((ability) => lowerAbilityNames.includes(ability.name.toLowerCase()));
 };
 
 /**
@@ -63,4 +98,9 @@ function unitsHaveKeyword(keyword: string, units: Unit[]): boolean {
 
 function lowerCaseArray(items: string[]): string[] {
   return items.map((item) => item.toLowerCase());
+}
+
+function addAbilitiesToUnit(unit: Unit, abilities: Ability[]): void {
+  const filteredAbs = abilities.filter((item) => unit.abilities.indexOf(item) < 0);
+  unit.abilities = unit.abilities.concat(filteredAbs);
 }
