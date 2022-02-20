@@ -114,6 +114,7 @@ export default {
     {
       name: 'Wrath of the Seraphon',
       type: AbilityType.CommandAbility,
+      filterUnitKeywords: ['Saurus'],
       description:
         'Can use this command ability in combat phase. If you do, **pick 1** Saurus unit wholly **within 18"** of this model. ' +
         "Until end of that phase **add 1 to hit rolls** for attacks made by that unit. A unit can't benefit from this command ability more than once per phase.",

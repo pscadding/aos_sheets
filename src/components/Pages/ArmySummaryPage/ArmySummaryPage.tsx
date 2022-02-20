@@ -14,7 +14,7 @@ import {
   loadUnits
 } from '../../../utils/DataLoader';
 import { Profile } from '../../../models/Profile';
-import { attachByKeyword } from '../../../utils/AbilityUtils';
+import { attachByKeyword, filterAbilitiesByUnitKeyword } from '../../../utils/AbilityUtils';
 
 interface ArmySummaryPageProps {
   profileName: string;
@@ -45,10 +45,14 @@ function loadData(
       loadUnits(profile).then((units: Unit[]) => {
         loadEnhancements().then((abilities: Ability[]) => {
           units.forEach((unit) => attachByKeyword('wizard', unit, abilities));
+          units.forEach((unit) => {
+            unit.abilities = filterAbilitiesByUnitKeyword(unit.abilities, units);
+          });
           setUnits(units);
         });
 
         loadBattleTraits(profile).then((abilities: Ability[]) => {
+          abilities = filterAbilitiesByUnitKeyword(abilities, units);
           setArmyAbilities(abilities);
         });
       });
@@ -79,7 +83,7 @@ export const ArmySummaryPage = ({ profileName, ...props }: ArmySummaryPageProps)
       <Container direction={direction.vertical} spacing="1em">
         <Title>Units With Abilities By Phases</Title>
         <PhaseUnitTable units={units} abilities={armyAbilities}></PhaseUnitTable>
-        <Title>Army Abilities</Title>
+        <Title>Battle Traits</Title>
         <AbilityContainer abilities={armyAbilities} />
         <Title>Units</Title>
         <Container columns={2} direction={direction.vertical} columnGap={'5em'}>

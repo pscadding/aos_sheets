@@ -15,6 +15,7 @@ export interface Ability {
   description: string;
   phases: Phase[];
   attachKeyword?: string;
+  filterUnitKeywords?: string[];
 }
 
 export interface BattleTraits {

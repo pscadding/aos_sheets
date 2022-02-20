@@ -7,6 +7,7 @@ export default {
       name: 'Contemplations of the Ancient Ones',
       type: AbilityType.BattleTrait,
       phases: [Phase.Hero],
+      filterUnitKeywords: ['Slann'],
       description:
         'At end of your Hero phase, pick **1** friendly **Slann** replace the spell they know from the **Lore of Celestial Domination** table. Choose or roll for the new spell, rolling again if you generate the previous spell.'
     },

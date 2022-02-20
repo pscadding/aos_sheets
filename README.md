@@ -4,7 +4,6 @@ This web app will load army profiles, and display them on a page.
 
 Stuff to do:
 
-- Add filtering for abilities that don't apply if it applies to another unit that isn't in the army.
 - Abilities phase should indicate whether it works in your turn only or both friendly and enemy turns.
 - Ability colours could be clearer.
 - filter weapons per profile.
@@ -16,7 +15,6 @@ Stuff to do:
 - Add spell lores and general spells
 - Add number of abilities (eg x3) on phase unit table
 - Command ability table?
-- Ability tags should all be same colour
 
 ## Available Scripts
 

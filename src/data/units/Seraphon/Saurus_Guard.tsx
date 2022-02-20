@@ -59,6 +59,7 @@ export default {
     {
       name: 'Selfless Protectors',
       type: AbilityType.Ability,
+      filterUnitKeywords: ['Slann'], // Only shows this ability if there is a unit in the army with the Slann keyword
       description:
         'Roll a dice before allocating wound | mortal wound to a friendly **Slann** while within **3"** of any units with this ability. ' +
         'On **2+** you must allocate that wound | mortal wound to a friendly unit with this ability within **3"** of that **Slann**.',
