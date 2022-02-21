@@ -43,12 +43,6 @@ export default {
       phases: [Phase.Shooting]
     },
     {
-      name: 'Mount',
-      type: AbilityType.Standard,
-      description: "Unit's Terradons attack with thier Razor-sharp jaws.",
-      phases: [Phase.Combat]
-    },
-    {
       name: 'Fly',
       type: AbilityType.Standard,
       description: 'Can fly.',

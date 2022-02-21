@@ -18,7 +18,8 @@ import {
   attachByKeyword,
   attachByProfileUnit,
   filterAbilitiesByNames,
-  filterAbilitiesByUnitKeyword
+  filterAbilitiesByUnitKeyword,
+  sortAbilities
 } from '../../../utils/AbilityUtils';
 
 interface ArmySummaryPageProps {
@@ -58,14 +59,18 @@ function loadData(
             // Add common spells to all wizards
             attachByKeyword('wizard', unit, enhancements);
             // Filter out any unit abilities that affect units that aren't in the army
-            unit.abilities = filterAbilitiesByUnitKeyword(unit.abilities, units);
+            const unitAbilities = filterAbilitiesByUnitKeyword(unit.abilities, units);
+            sortAbilities(unitAbilities);
+            unit.abilities = unitAbilities;
           });
 
           loadBattleTraits(profile).then((battleTraits: Ability[]) => {
             // Filter out any abilities that affect units that aren't in the army
             battleTraits = filterAbilitiesByUnitKeyword(battleTraits, units);
 
-            setArmyAbilities([...armyEnhancements, ...battleTraits]);
+            const armyAbilities = [...armyEnhancements, ...battleTraits];
+            sortAbilities(armyAbilities);
+            setArmyAbilities(armyAbilities);
           });
           setUnits(units);
         });

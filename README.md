@@ -10,12 +10,10 @@ Stuff to do:
 - sorting of units by type.
 - Battalions.
 - add icons for phases
-- add Command traits
-- add Artefacts of power
-- Add spell lores and general spells
 - Add number of abilities (eg x3) on phase unit table
 - Command ability table?
 - add ability phase used in, effect in.
+- add warning when units or abilities aren't found
 
 ## Available Scripts
 

@@ -57,12 +57,6 @@ export default {
   keywords: ['Order', 'Seraphon', 'Saurus', 'Carnosaur', 'Monster', 'Hero', 'Oldblood'],
   abilities: [
     {
-      name: 'Mount',
-      type: AbilityType.Standard,
-      description: "Model's Carnosaur attack with **Clawed Forelimbs** and **Massive Jaws**.",
-      phases: [Phase.Combat]
-    },
-    {
       name: 'Damage Table',
       type: AbilityType.DamageTable,
       description: 'TODO',

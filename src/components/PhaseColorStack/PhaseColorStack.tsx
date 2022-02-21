@@ -32,7 +32,9 @@ const StackItemAny = styled(StackItem)`
  */
 export const PhaseColorStack = ({ phases, width, ...props }: PhaseColorStackProps) => {
   const phaseStackComponents = phases.map((phase, index) => {
-    if (phase === Phase.Any) {
+    if (phase === Phase.NA) {
+      return;
+    } else if (phase === Phase.Any) {
       return <StackItemAny key={index} phase={phase} width={width} />;
     } else {
       return <StackItem key={index} phase={phase} width={width} />;

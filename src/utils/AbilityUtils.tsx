@@ -81,6 +81,10 @@ export const filterAbilitiesByUnitKeyword = (abilities: Ability[], units: Unit[]
   });
 };
 
+export function sortAbilities(abilities: Ability[]): void {
+  abilities.sort((a, b) => (a.type < b.type ? 1 : a.name === b.name ? 1 : -1));
+}
+
 /**
  * If the passed keyword is not found in the list of units it will return false otherwise true
  * @param keyword
