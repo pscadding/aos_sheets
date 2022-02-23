@@ -13,7 +13,6 @@ interface KeywordsProps {
 const Container = styled.div`
   display: flex;
   width: 100%;
-  height: 3em;
   flex-direction: ${(props: { vertical?: boolean }) => (props.vertical ? 'column' : 'row')};
 `;
 

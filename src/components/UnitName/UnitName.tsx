@@ -10,7 +10,6 @@ const Container = styled.div`
   padding-left: ${AppStyle.spacing.small};
   padding-right: ${AppStyle.spacing.small};
   background-color: ${AppStyle.roles.panel.light.background};
-  height: 3em;
 `;
 
 const Name = styled.h1`
