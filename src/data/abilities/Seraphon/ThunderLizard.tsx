@@ -6,7 +6,7 @@ export const thunderLizardAbilities: Ability[] = [
     name: 'Fusil of Conflagration',
     type: AbilityType.Ability,
     phases: [Phase.Shooting],
-    tags: ['Thunder Lizard'],
+    tags: ['Artefact of Power', 'Thunder Lizard'],
     description:
       'In your shooting phase, you can **pick 1 enemy unit** within **12"** of the bearer and visible to them and roll a dice. On a **1**, this artefact cannot be used again fro the rest of the battle. ' +
       'On a **2-3**, nothing happens. On a **4-5** that enemy suffers **D3 mortal wounds**. On a **6**, that enemy unit suffers **D6 mortal wounds**.'

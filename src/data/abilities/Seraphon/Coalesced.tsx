@@ -1,7 +1,7 @@
-import { AbilityType, BattleTraits } from '../../../models/Ability';
+import { Ability, AbilityType, BattleTraits } from '../../../models/Ability';
 import { Phase } from '../../../models/Phase';
 
-export default {
+export const coalescedBattleTraits: BattleTraits = {
   Coalesced: [
     {
       name: 'Cold-blooded',
@@ -35,4 +35,16 @@ export default {
         '**Subtract 1** from dmg from each successful attack on Coalesced unit (to min of 1).'
     }
   ]
-} as BattleTraits;
+};
+
+export const coalescedAbilities: Ability[] = [
+  {
+    name: 'Beastmaster',
+    type: AbilityType.Ability,
+    phases: [Phase.Hero, Phase.Combat, Phase.Movement, Phase.Charge, Phase.Shooting],
+    tags: ['Mount trait', 'Coalesced', 'White Dwarf'],
+    description:
+      'Once per battle in hero phase, you can declare this mount will be either **swift** or **savage**. For **swift** until next hero phase can run and still shoot and/or charge in same turn. ' +
+      'For **savage** until next hero phase, **add 1** to attacks characteristic of melee weapons used by mount.'
+  }
+];

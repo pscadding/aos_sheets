@@ -5,13 +5,15 @@
       "Saurus Oldblood on Carnosaur": {
         "abilityNames": ["Prime Warbeast", "Fusil of Conflagration"]
       },
-      "Stegadon with Skink Chief": { "abilityNames": ["Incandescent Rectrices"] },
+      "Stegadon with Skink Chief": { "abilityNames": ["Incandescent Rectrices", "Beastmaster"] },
       "Terradon Chief": {},
       "Skinks": {},
       "Saurus Guard": {},
       "Saurus Warriors": {},
       "Terradon Riders": {},
-      "Bastiladon": {}
+      "Bastiladon": {},
+      "Astreia Solbright": {},
+      "Castigators": {}
     },
     "battleTraitTypes": ["Seraphon", "Coalesced", "Thunder Lizard"],
     "armyAbilities": ["Inspired"]
