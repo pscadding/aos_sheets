@@ -30,7 +30,9 @@ const Wrapper = styled.div`
  */
 export const AbilityDamageTablePanel = ({ ability, ...props }: AbilityDamageTableProps) => {
   const headers = ability.columns.map((columnName, index) => (
-    <TableHeaderCell key={index}>{columnName}</TableHeaderCell>
+    <TableHeaderCell compact={true} key={index}>
+      {columnName}
+    </TableHeaderCell>
   ));
   const rows = ability.rows.map((row, rowIndex) => {
     const rowElements = row.map((cell, cellIndex) => (

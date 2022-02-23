@@ -4,8 +4,10 @@ import styled from 'styled-components';
 export const TableHeaderCell = styled.th`
   padding-top: ${AppStyle.spacing.xSmall};
   padding-bottom: ${AppStyle.spacing.xSmall};
-  padding-left: ${AppStyle.spacing.small};
-  padding-right: ${AppStyle.spacing.small};
+  padding-left: ${(props: { compact?: boolean }) =>
+    props.compact ? AppStyle.spacing.xSmall : AppStyle.spacing.medium};
+  padding-right: ${(props: { compact?: boolean }) =>
+    props.compact ? AppStyle.spacing.xSmall : AppStyle.spacing.medium};
   white-space: nowrap;
 
   &.name {

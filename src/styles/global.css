@@ -2,3 +2,8 @@
   font-family: Garamond, serif;
   font-size: 10px;
 }
+
+@page {
+  /* this affects the margin in the printer settings */
+  margin: 5mm 5mm 5mm 5mm;
+}

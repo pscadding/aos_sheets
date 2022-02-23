@@ -1,3 +1,5 @@
+import { useEffect, useState, useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
 import { Unit } from '../../../models/Unit';
 import styled from 'styled-components';
 import { AppStyle } from '../../../styles/style';
@@ -6,7 +8,6 @@ import { UnitContainer } from '../../UnitContainer/UnitContainer';
 import { PhaseUnitTable } from '../../PhaseUnitTable/PhaseUnitTable';
 import { Ability } from '../../../models/Ability';
 import { AbilityContainer } from '../../AbilityContainer/AbilityContainer';
-import { useEffect, useState } from 'react';
 import {
   loadBattleTraits,
   loadEnhancements,
@@ -26,14 +27,20 @@ interface ArmySummaryPageProps {
   profileName: string;
 }
 
+const Button = styled.button`
+  max-width: 10em;
+`;
+
 const PageWrapper = styled.div`
-  margin: 3em;
+  '@media print': {
+    display: block;
+  }
 `;
 
 const UnitWrapper = styled.div`
   margin-top: ${AppStyle.spacing.large};
-  break-inside: avoid-column;
   width: 100%;
+  break-inside: avoid;
 `;
 
 const Title = styled.h1`
@@ -85,6 +92,11 @@ function loadData(
 export const ArmySummaryPage = ({ profileName, ...props }: ArmySummaryPageProps) => {
   const [units, setUnits] = useState<Unit[]>([]);
   const [armyAbilities, setArmyAbilities] = useState<Ability[]>([]);
+  const componentRef = useRef(null);
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current
+  });
 
   useEffect(() => {
     setUnits([]);
@@ -100,17 +112,24 @@ export const ArmySummaryPage = ({ profileName, ...props }: ArmySummaryPageProps)
   ));
 
   return (
-    <PageWrapper>
-      <Container direction={direction.vertical} spacing="1em">
-        <Title>Units With Abilities By Phases</Title>
-        <PhaseUnitTable units={units} abilities={armyAbilities}></PhaseUnitTable>
-        <Title>Battle Traits</Title>
-        <AbilityContainer abilities={armyAbilities} />
-        <Title>Units</Title>
-        <Container columns={2} direction={direction.vertical} columnGap={'5em'}>
-          {unitComponents}
-        </Container>
-      </Container>
-    </PageWrapper>
+    <Container direction={direction.vertical} spacing="1em">
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Button onClick={handlePrint}>Print this out!</Button>
+      </div>
+      <div style={{ margin: '3em' }}>
+        <div ref={componentRef}>
+          <PageWrapper>
+            <Title>Units With Abilities By Phases</Title>
+            <PhaseUnitTable units={units} abilities={armyAbilities}></PhaseUnitTable>
+            <Title>Battle Traits</Title>
+            <AbilityContainer abilities={armyAbilities} />
+            <Title>Units</Title>
+            <Container columns={2} direction={direction.vertical} columnGap={'3em'}>
+              {unitComponents}{' '}
+            </Container>
+          </PageWrapper>
+        </div>
+      </div>
+    </Container>
   );
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { AppStyle } from '../../styles/style';
 
 export enum direction {
   vertical,
