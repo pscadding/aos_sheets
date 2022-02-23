@@ -10,3 +10,19 @@ export enum Phase {
 }
 
 export type PhaseStrings = keyof typeof Phase;
+
+export enum PhaseType {
+  Affects,
+  UsedIn
+}
+
+export enum Turn {
+  Yours,
+  Opponents
+}
+
+export interface PhaseRule {
+  type: PhaseType;
+  turns: Turn[];
+  phases: Phase[];
+}
