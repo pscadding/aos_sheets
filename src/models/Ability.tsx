@@ -13,6 +13,7 @@ export enum AbilityType {
 export interface Ability {
   name: string;
   type: AbilityType;
+  tags?: string[];
   description: string;
   phases: Phase[];
   attachKeyword?: string;

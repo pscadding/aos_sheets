@@ -77,7 +77,10 @@ export const AbilityPanel = ({ ability, ...props }: AbilityPanelProps) => {
         <TextWrapper>
           <HeaderRow>
             {badgeComponent}
-            <HeadingStyle>{ability?.name}</HeadingStyle>
+            <HeadingStyle>
+              {ability?.name}
+              {ability.tags ? ` - ${ability.tags.join(', ')}` : ''}
+            </HeadingStyle>
           </HeaderRow>
           <DescriptionWrapper>
             <ReactMarkdownStyle>{ability?.description}</ReactMarkdownStyle>

@@ -1,11 +1,11 @@
 {
-  "Seraphon": {
+  "Seraphon Thunder Lizard 2000pts": {
     "unitNames": {
-      "Skink Starpriest": { "abilityNames": ["Master of magic", "Flaming Weapon"] },
+      "Skink Starpriest": { "abilityNames": ["Tide of Serpents"] },
       "Saurus Oldblood on Carnosaur": {
-        "abilityNames": ["Arcane Tome", "Prime Warbeast", "Fusil of Conflagration"]
+        "abilityNames": ["Prime Warbeast", "Fusil of Conflagration"]
       },
-      "Stegadon with Skink Chief": {},
+      "Stegadon with Skink Chief": { "abilityNames": ["Incandescent Rectrices"] },
       "Terradon Chief": {},
       "Skinks": {},
       "Saurus Guard": {},
@@ -14,7 +14,7 @@
       "Bastiladon": {}
     },
     "battleTraitTypes": ["Seraphon", "Coalesced", "Thunder Lizard"],
-    "armyAbilities": ["Bloodthirsty", "Mighty Beasts of War", "Trove of Old One Technology"]
+    "armyAbilities": ["Inspired"]
   },
   "Orruk": {
     "unitNames": { "Swampcalla Shaman": {}, "Gutrippaz": {} },

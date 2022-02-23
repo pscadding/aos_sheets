@@ -1,5 +1,5 @@
 import { Unit } from '../../models/Unit';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { WeaponsTable } from '../WeaponTable/WeaponsTable';
 import { UnitName } from '../UnitName/UnitName';
 import { UnitStatTable } from '../UnitStatTable/UnitStatTable';

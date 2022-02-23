@@ -6,6 +6,7 @@ export const thunderLizardAbilities: Ability[] = [
     name: 'Fusil of Conflagration',
     type: AbilityType.Ability,
     phases: [Phase.Shooting],
+    tags: ['Thunder Lizard'],
     description:
       'In your shooting phase, you can **pick 1 enemy unit** within **12"** of the bearer and visible to them and roll a dice. On a **1**, this artefact cannot be used again fro the rest of the battle. ' +
       'On a **2-3**, nothing happens. On a **4-5** that enemy suffers **D3 mortal wounds**. On a **6**, that enemy unit suffers **D6 mortal wounds**.'
@@ -14,6 +15,7 @@ export const thunderLizardAbilities: Ability[] = [
     name: 'Prime Warbeast',
     type: AbilityType.Ability,
     phases: [Phase.Combat],
+    tags: ['Thunder Lizard'],
     description:
       "**Add 1** to the attacks characteristic of the weapons used by this general's mount."
   }
@@ -23,14 +25,16 @@ export const thunderLizardBattleTraits = {
   'Thunder Lizard': [
     {
       name: 'Mighty Beasts of War',
-      type: AbilityType.BattleTrait,
+      type: AbilityType.Ability,
       phases: [Phase.NA],
+      tags: ['Thunder Lizard'],
       description: '**Add 2** to the wounds characteristic of the **Thunder Lizard** Monsters'
     },
     {
       name: 'Trove of Old One Technology',
-      type: AbilityType.BattleTrait,
+      type: AbilityType.CommandAbility,
       phases: [Phase.Shooting],
+      tags: ['Thunder Lizard'],
       description:
         'You can use this command ability at the end of your shooting phase. If you do so, **pick 1** friendly **Thunder Lizard Bastiladon**, ' +
         'or **Thunder Lizard Engine of the Gods**, wholly within **18"** of **Thunder Lizard Hero**. If that unit is a Bastiladon, it can shoot with its **Solar Engine** ' +

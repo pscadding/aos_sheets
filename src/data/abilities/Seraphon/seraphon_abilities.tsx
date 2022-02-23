@@ -1,12 +1,15 @@
 import { Ability, BattleTraits } from '../../../models/Ability';
 import Coelesced from './Coalesced';
-import Seraphon from './Seraphon';
+import { seraphonGeneralBattleTraits, seraphonGeneralAbilities } from './Seraphon';
 import { thunderLizardAbilities, thunderLizardBattleTraits } from './ThunderLizard';
 
 export const seraphonBattleTraits = {
   ...Coelesced,
-  ...Seraphon,
+  ...seraphonGeneralBattleTraits,
   ...thunderLizardBattleTraits
 } as BattleTraits;
 
-export const seraphonAbilities: Ability[] = [...thunderLizardAbilities];
+export const seraphonAbilities: Ability[] = [
+  ...thunderLizardAbilities,
+  ...seraphonGeneralAbilities
+];

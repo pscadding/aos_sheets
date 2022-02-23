@@ -28,7 +28,7 @@ interface ArmySummaryPageProps {
 }
 
 const Button = styled.button`
-  max-width: 10em;
+  max-width: 20em;
 `;
 
 const PageWrapper = styled.div`
@@ -114,7 +114,7 @@ export const ArmySummaryPage = ({ profileName, ...props }: ArmySummaryPageProps)
   return (
     <Container direction={direction.vertical} spacing="1em">
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Button onClick={handlePrint}>Print this out!</Button>
+        <Button onClick={handlePrint}>Print</Button>
       </div>
       <div style={{ margin: '3em' }}>
         <div ref={componentRef}>
