@@ -65,7 +65,7 @@ export default {
       description:
         'At start of your **hero phase**, if this unit is more than **3"** from all enemy units, instead of casting or dispelling a spell, it can say it is brewing either a poison or an elixir. ' +
         'If you do, pick **1 friendly Kruleboyz Orruk** unit wholly within **12"**, more than **3"** from enemy and with at least one model within **3"**, to be given poison or elixar. ' +
-        'One poison or elixir per unit in same hero phase. Effects last until until next hero phase. If given poison, when using **"Venom-encrusted Weapons"** battle trait, mortal wounds are caused on unmodified hit roll of **+5** instead of 6. ' +
+        'One poison or elixir per unit in same hero phase. Effects last until until your next hero phase. If given poison, when using **"Venom-encrusted Weapons"** battle trait, mortal wounds are caused on unmodified hit roll of **+5** instead of 6. ' +
         'If given elixir, **add 1** to save rolls for attacks that target that unit.'
     },
     {

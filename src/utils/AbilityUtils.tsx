@@ -1,6 +1,8 @@
 import { Ability } from '../models/Ability';
+import { Phase, PhaseType } from '../models/Phase';
 import { Profile } from '../models/Profile';
 import { Unit } from '../models/Unit';
+import { unitsHaveKeyword } from './UnitUtils';
 
 /**
  * Attaches abilities with the passed keyword to the unit if it has the keyword
@@ -86,21 +88,26 @@ export function sortAbilities(abilities: Ability[]): void {
 }
 
 /**
- * If the passed keyword is not found in the list of units it will return false otherwise true
- * @param keyword
- * @param abilities
- * @param units
+ * Loops through all the Abilities phase rules and checks to see if there is a phase rule that includes the passed phase.
+ * Providing a type means it also checks that the phase exists in the desired phase type.
+ * @param ability
+ * @param phase
+ * @param phaseType
+ * @returns
  */
-function unitsHaveKeyword(keyword: string, units: Unit[]): boolean {
+export function abilityHasPhase(ability: Ability, phase: Phase, phaseType?: PhaseType): boolean {
   return (
-    units.filter((unit) => {
-      const unitKeywords = lowerCaseArray(unit.keywords);
-      return unitKeywords.includes(keyword);
+    ability.phaseRules.filter((phaseRule) => {
+      const phaseTypeCheck = phaseType !== null ? phaseRule.type === phaseType : true;
+      return (
+        (phaseTypeCheck && phaseRule.phases.includes(phase)) ||
+        (phaseTypeCheck && phaseRule.phases.includes(Phase.Any))
+      );
     }).length > 0
   );
 }
 
-function lowerCaseArray(items: string[]): string[] {
+export function lowerCaseArray(items: string[]): string[] {
   return items.map((item) => item.toLowerCase());
 }
 

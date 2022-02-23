@@ -1,6 +1,6 @@
 import { Unit, UnitType } from '../models/Unit';
 import { AbilityType } from '../models/Ability';
-import { Phase } from '../models/Phase';
+import { Phase, PhaseType, Turn } from '../models/Phase';
 import { WeaponType } from '../models/Weapon';
 
 export const mockUnits: Unit[] = [
@@ -51,28 +51,36 @@ export const mockUnits: Unit[] = [
         name: 'Companion',
         type: AbilityType.Standard,
         description: 'Pot-grot must stay within 1" of Shaman. Treated as a single model.',
-        phases: []
+        phaseRules: []
       },
       {
         name: 'Wizard',
         type: AbilityType.Standard,
         description: 'Cast 1 spell, unbind 1 spell',
-        phases: [Phase.Hero]
+        phaseRules: [
+          { type: PhaseType.UsedIn, turns: [Turn.Opponents, Turn.Yours], phases: [Phase.Hero] }
+        ]
       },
       {
         name: 'Poisons and Elixars',
         type: AbilityType.Ability,
-        phases: [Phase.Hero],
+        phaseRules: [
+          { type: PhaseType.UsedIn, turns: [Turn.Yours], phases: [Phase.Hero] },
+          { type: PhaseType.Affects, turns: [Turn.Yours, Turn.Opponents], phases: [Phase.Any] }
+        ],
         description:
           'At start of your **hero phase**, if this unit is more than **3"** from all enemy units, instead of casting or dispelling a spell, it can say it is brewing either a poison or an elixir. ' +
           'If you do, pick **1 friendly Kruleboyz Orruk** unit wholly within **12"**, more than **3"** from enemy and with at least one model within **3"**, to be given poison or elixar. ' +
-          'One poison or elixir per unit in same hero phase. Effects last until until next hero phase. If given poison, when using **"Venom-encrusted Weapons"** battle trait, mortal wounds are caused on unmodified hit roll of **+5** instead of 6. ' +
+          'One poison or elixir per unit in same hero phase. Effects last until until your next hero phase. If given poison, when using **"Venom-encrusted Weapons"** battle trait, mortal wounds are caused on unmodified hit roll of **+5** instead of 6. ' +
           'If given elixir, **add 1** to save rolls for attacks that target that unit.'
       },
       {
         name: 'Summon Boggy Mist',
         type: AbilityType.Spell,
-        phases: [Phase.Hero],
+        phaseRules: [
+          { type: PhaseType.UsedIn, turns: [Turn.Yours], phases: [Phase.Hero] },
+          { type: PhaseType.Affects, turns: [Turn.Yours, Turn.Opponents], phases: [Phase.Charge] }
+        ],
         description:
           'Casting value **7**. On success until next hero phase, **add 1 to charge rolls** for friendly **Kruleboyz Orruk** units, and **subtract 1 from charge rolls** for other units.'
       }
@@ -114,19 +122,30 @@ export const mockUnits: Unit[] = [
       {
         name: 'Champion',
         type: AbilityType.Standard,
-        phases: [Phase.Combat],
+        phaseRules: [
+          { type: PhaseType.Affects, turns: [Turn.Yours, Turn.Opponents], phases: [Phase.Combat] }
+        ],
         description: "1 model can be Champion. **Add 1 to Attacks** of model's melee weapon."
       },
       {
         name: 'Standard Bearer',
         type: AbilityType.Standard,
-        phases: [Phase.Battleshock],
+        phaseRules: [
+          {
+            type: PhaseType.Affects,
+            turns: [Turn.Yours, Turn.Opponents],
+            phases: [Phase.Battleshock]
+          }
+        ],
         description: '1 in every 10 can be a Banner Bearer. **Add 1 to Bravery**.'
       },
       {
         name: 'Scare Taktikz',
         type: AbilityType.Ability,
-        phases: [Phase.Charge, Phase.Combat],
+        phaseRules: [
+          { type: PhaseType.UsedIn, turns: [Turn.Yours, Turn.Opponents], phases: [Phase.Charge] },
+          { type: PhaseType.Affects, turns: [Turn.Yours, Turn.Opponents], phases: [Phase.Combat] }
+        ],
         description:
           'At start of charge phase, if unit more than 3" from enemy, **pick 1 enemy within 12"** that not Hero or Monster, roll **2D6**. **Add 1** to the roll for every 5 models in this unit. ' +
           'If roll is equal to or greater than Bravery of enemy, **subtract 1 from hit rolls for enemy unit** attacks against this unit, until end of turn.'
@@ -179,21 +198,23 @@ export const mockUnits: Unit[] = [
       {
         name: 'Mount',
         type: AbilityType.Standard,
-        phases: [],
+        phaseRules: [],
         description: 'Mount has **Iron-bound Clubs**'
       },
       {
         name: 'Breaka-harness',
         type: AbilityType.Ability,
-        phases: [Phase.Combat],
+        phaseRules: [
+          { type: PhaseType.UsedIn, turns: [Turn.Yours, Turn.Opponents], phases: [Phase.Combat] }
+        ],
         description:
           'At start of combat phase, can declare yanking on harness. If you do so, this unit suffers D3 mortal wounds. For each wound add 2 attacks to clubs.'
       },
       {
         name: 'Regeneration',
         type: AbilityType.Ability,
-        phases: [Phase.Hero],
-        description: 'In hero phase, roll a dice, **on 4+** heal **D3** wounds'
+        phaseRules: [{ type: PhaseType.UsedIn, turns: [Turn.Yours], phases: [Phase.Hero] }],
+        description: 'In your hero phase, roll a dice, **on 4+** heal **D3** wounds'
       }
     ]
   },
@@ -233,26 +254,47 @@ export const mockUnits: Unit[] = [
       {
         name: 'Champion',
         type: AbilityType.Standard,
-        phases: [Phase.Combat],
+        phaseRules: [
+          { type: PhaseType.Affects, turns: [Turn.Yours, Turn.Opponents], phases: [Phase.Combat] }
+        ],
         description: 'One model can be a Boss. **Add 1 to knives attacks** for model.'
       },
       {
         name: 'Standard Bearer',
         type: AbilityType.Standard,
-        phases: [Phase.Battleshock],
+        phaseRules: [
+          {
+            type: PhaseType.Affects,
+            turns: [Turn.Yours, Turn.Opponents],
+            phases: [Phase.Battleshock]
+          }
+        ],
         description:
           '1 in 10 can be Totem Bearer. **Re-roll battleshock tests** for unit if has bearer.'
       },
       {
         name: 'Musician',
         type: AbilityType.Standard,
-        phases: [Phase.Movement, Phase.Shooting],
+        phaseRules: [
+          {
+            type: PhaseType.UsedIn,
+            turns: [Turn.Yours],
+            phases: [Phase.Movement]
+          },
+          {
+            type: PhaseType.Affects,
+            turns: [Turn.Yours],
+            phases: [Phase.Shooting]
+          }
+        ],
         description: '1 in 10 can be Noise-maker. **Can run and shoot** if has noise maker.'
       },
       {
         name: "Stab 'Em Good!",
         type: AbilityType.Ability,
-        phases: [Phase.Combat],
+        phaseRules: [
+          { type: PhaseType.Affects, turns: [Turn.Yours, Turn.Opponents], phases: [Phase.Combat] }
+        ],
         description: 'If unmodified hit roll with knives is **6**, scores **2 hits** instead of 1.'
       }
     ]
@@ -313,8 +355,10 @@ export const mockUnits: Unit[] = [
       {
         name: 'Mount',
         type: AbilityType.Standard,
-        description: "Model's Carnosaur attack with **Clawed Forelimbs** and **Massive Jaws**.",
-        phases: [Phase.Combat]
+        phaseRules: [
+          { type: PhaseType.Affects, turns: [Turn.Yours, Turn.Opponents], phases: [Phase.Combat] }
+        ],
+        description: "Model's Carnosaur attack with **Clawed Forelimbs** and **Massive Jaws**."
       },
       {
         name: 'Damage Table',
@@ -325,50 +369,75 @@ export const mockUnits: Unit[] = [
           ['0-2', '10"', '3+', '5'],
           ['3-4', '9"', '4+', '4']
         ],
-        phases: [Phase.NA]
+        phaseRules: []
       },
       {
         name: 'Blazing Sunbolts',
         type: AbilityType.Ability,
+        phaseRules: [
+          { type: PhaseType.Affects, turns: [Turn.Yours, Turn.Opponents], phases: [Phase.Shooting] }
+        ],
         description:
-          '**Add 1** to wound rolls for attacks made with **Sunbolt Gauntlet** if target is **Chaos Daemon** unit.',
-        phases: [Phase.Shooting]
+          '**Add 1** to wound rolls for attacks made with **Sunbolt Gauntlet** if target is **Chaos Daemon** unit.'
       },
       {
         name: 'Blood Frenzy',
         type: AbilityType.Ability,
+        phaseRules: [
+          {
+            type: PhaseType.UsedIn,
+            turns: [Turn.Yours, Turn.Opponents],
+            phases: [Phase.Shooting, Phase.Combat]
+          },
+          {
+            type: PhaseType.Affects,
+            turns: [Turn.Yours, Turn.Opponents],
+            phases: [Phase.Shooting, Phase.Combat]
+          }
+        ],
         description:
-          'If any enemy models are slain by wounds inflicted by this models attacks, for the rest of the battle this model can run and still charge in the same turn.',
-        phases: [Phase.Combat, Phase.Shooting, Phase.Movement, Phase.Charge]
+          'If any enemy models are slain by wounds inflicted by this models attacks, for the rest of the battle this model can run and still charge in the same turn.'
       },
       {
         name: 'Cold Ferocity',
         type: AbilityType.Ability,
+        phaseRules: [
+          { type: PhaseType.UsedIn, turns: [Turn.Yours, Turn.Opponents], phases: [Phase.Combat] }
+        ],
         description:
-          'If unmodified hit roll for an attack made with **Celestite** weapon by this model is **6**, that attack scores **2 hits** on target instead of **1**.',
-        phases: [Phase.Combat]
+          'If unmodified hit roll for an attack made with **Celestite** weapon by this model is **6**, that attack scores **2 hits** on target instead of **1**.'
       },
       {
         name: 'Pinned Down',
         type: AbilityType.Ability,
+        phaseRules: [
+          { type: PhaseType.UsedIn, turns: [Turn.Yours, Turn.Opponents], phases: [Phase.Combat] }
+        ],
         description:
-          '**Add 1** to hit rolls for attacks made with *Massive Jaws** if the target has Wounds characteristic of **7 or less**',
-        phases: [Phase.Combat]
+          '**Add 1** to hit rolls for attacks made with *Massive Jaws** if the target has Wounds characteristic of **7 or less**'
       },
       {
         name: 'Terror',
         type: AbilityType.Ability,
+        phaseRules: [
+          {
+            type: PhaseType.UsedIn,
+            turns: [Turn.Yours, Turn.Opponents],
+            phases: [Phase.Battleshock]
+          }
+        ],
         description:
-          '**Subtract 1** from bravery of enemy units while they are within **3"** of friendly units with this ability.',
-        phases: [Phase.Battleshock]
+          '**Subtract 1** from bravery of enemy units while they are within **3"** of friendly units with this ability.'
       },
       {
         name: 'Wrath of the Seraphon',
         type: AbilityType.CommandAbility,
+        phaseRules: [
+          { type: PhaseType.UsedIn, turns: [Turn.Yours, Turn.Opponents], phases: [Phase.Combat] }
+        ],
         description:
           'Can use this command ability in combat phase. If you do, **pick 1** Saurus unit wholly **within 18"** of this model. ' +
-          "Until end of that phase **add 1 to hit rolls** for attacks made by that unit. A unit can't benefit from this command ability more than once per phase.",
-        phases: [Phase.Combat]
+          "Until end of that phase **add 1 to hit rolls** for attacks made by that unit. A unit can't benefit from this command ability more than once per phase."
       }
     ]
   }
