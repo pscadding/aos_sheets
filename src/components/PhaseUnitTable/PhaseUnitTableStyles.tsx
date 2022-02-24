@@ -32,7 +32,6 @@ export const Table = styled.table`
   width: 100%;
 `;
 export const UnitName = styled.p`
-  padding-left: ${AppStyle.spacing.small};
   margin: 0px;
   font-weight: bold;
   font-size: 120%;

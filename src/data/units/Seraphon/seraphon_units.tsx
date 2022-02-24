@@ -1,21 +1,21 @@
 import { bastildonSolar } from './Bastiladon';
 import { saurusGuard } from './Saurus_Guard';
-import Saurus_Oldblood_On_Carnosaur from './Saurus_Oldblood_On_Carnosaur';
-import Saurus_Warriors from './Saurus_Warriors';
-import Skinks from './Skinks';
-import Skink_Starpriest from './Skink_Starpriest';
+import { saurusOldbloodOnCarnosaur } from './Saurus_Oldblood_On_Carnosaur';
+import { saurusWariors } from './Saurus_Warriors';
+import { skinks } from './Skinks';
+import { skinkStarpriest } from './Skink_Starpriest';
 import { stegadon, stegadonWithSkinkChief } from './Stegadon';
-import Terradon_Chief from './Terradon_Chief';
-import Terradon_Riders from './Terradon_Riders';
+import { terradonChief } from './Terradon_Chief';
+import { terradonRiders } from './Terradon_Riders';
 
 export default [
-  Skink_Starpriest,
-  Skinks,
+  skinkStarpriest,
+  skinks,
   saurusGuard,
-  Saurus_Warriors,
-  Terradon_Riders,
-  Terradon_Chief,
-  Saurus_Oldblood_On_Carnosaur,
+  saurusWariors,
+  terradonRiders,
+  terradonChief,
+  saurusOldbloodOnCarnosaur,
   stegadon,
   stegadonWithSkinkChief,
   bastildonSolar

@@ -1,9 +1,9 @@
 import { AbilityType } from '../../../models/Ability';
-import { Phase } from '../../../models/Phase';
-import { UnitType } from '../../../models/Unit';
+import { Phase, PhaseType, Turn } from '../../../models/Phase';
+import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
-export default {
+export const saurusWariors: Unit = {
   name: 'Saurus Warriors',
   type: UnitType.Battleline,
   stats: {
@@ -49,28 +49,38 @@ export default {
     {
       name: 'Saurus Warrior Alpha',
       type: AbilityType.Standard,
-      description: 'Add **1** to attacks of Alphas Celestite Club | Spear.',
-      phases: [Phase.Combat]
+      phaseRules: [
+        { type: PhaseType.Affects, phases: [Phase.Combat], turns: [Turn.Yours, Turn.Opponents] }
+      ],
+      description: 'Add **1** to attacks of Alphas Celestite Club | Spear.'
     },
     {
       name: 'Stardrake Icon Bearer',
       type: AbilityType.Standard,
+      phaseRules: [
+        {
+          type: PhaseType.Affects,
+          phases: [Phase.Battleshock],
+          turns: [Turn.Yours, Turn.Opponents]
+        }
+      ],
       description:
-        '**1** in every **5** models in unit can be Stardrake Icon Bearer. Subtract **1** from the bravery of enemy units within **6"** of the bearers',
-      phases: [Phase.Battleshock]
+        '**1** in every **5** models in unit can be Stardrake Icon Bearer. Subtract **1** from the bravery of enemy units within **6"** of the bearers'
     },
     {
       name: 'Wardrummer',
       type: AbilityType.Standard,
+      phaseRules: [{ type: PhaseType.Affects, phases: [Phase.Charge], turns: [Turn.Yours] }],
       description:
-        '**1** in every **5** models in unit can be Wardrummer. Reroll charge roles for unit.',
-      phases: [Phase.Charge]
+        '**1** in every **5** models in unit can be Wardrummer. Reroll charge roles for unit.'
     },
     {
       name: 'Ordered Coholt',
       type: AbilityType.Ability,
-      description: 'Add **1** to attacks of weapons used by unit while has 15 or more model',
-      phases: [Phase.Combat]
+      phaseRules: [
+        { type: PhaseType.Affects, phases: [Phase.Combat], turns: [Turn.Yours, Turn.Opponents] }
+      ],
+      description: 'Add **1** to attacks of weapons used by unit while has 15 or more model'
     }
   ]
 };

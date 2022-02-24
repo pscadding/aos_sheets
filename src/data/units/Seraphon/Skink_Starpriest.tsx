@@ -1,9 +1,9 @@
 import { AbilityType } from '../../../models/Ability';
 import { Phase, PhaseType, Turn } from '../../../models/Phase';
-import { UnitType } from '../../../models/Unit';
+import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
-export default {
+export const skinkStarpriest: Unit = {
   name: 'Skink Starpriest',
   type: UnitType.Leader,
   stats: {

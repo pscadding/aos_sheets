@@ -48,6 +48,10 @@ const Title = styled.h1`
   border-bottom: 0.08em solid ${AppStyle.roles.general.border};
 `;
 
+const ArmyName = styled(Title)`
+  border-bottom: 0;
+`;
+
 function loadData(
   profileName: string,
   setUnits: (u: Unit[]) => void,
@@ -119,6 +123,7 @@ export const ArmySummaryPage = ({ profileName, ...props }: ArmySummaryPageProps)
       <div style={{ margin: '3em' }}>
         <div ref={componentRef}>
           <PageWrapper>
+            <ArmyName>{profileName}</ArmyName>
             <Title>Units With Abilities By Phases</Title>
             <PhaseUnitTable units={units} abilities={armyAbilities}></PhaseUnitTable>
             <Title>Battle Traits</Title>

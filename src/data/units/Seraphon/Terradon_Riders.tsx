@@ -1,9 +1,9 @@
 import { AbilityType } from '../../../models/Ability';
-import { Phase } from '../../../models/Phase';
-import { UnitType } from '../../../models/Unit';
+import { Phase, PhaseType, Turn } from '../../../models/Phase';
+import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
-export default {
+export const terradonRiders: Unit = {
   name: 'Terradon Riders',
   type: UnitType.Other,
   stats: {
@@ -39,21 +39,21 @@ export default {
     {
       name: 'Terradon Rider Alpha',
       type: AbilityType.Standard,
-      description: "Add **1** to attacks alpha's **missile** weapons.",
-      phases: [Phase.Shooting]
+      phaseRules: [{ type: PhaseType.UsedIn, phases: [Phase.Shooting], turns: [Turn.Yours] }],
+      description: "Add **1** to attacks alpha's **missile** weapons."
     },
     {
       name: 'Fly',
       type: AbilityType.Standard,
-      description: 'Can fly.',
-      phases: [Phase.Any]
+      phaseRules: [],
+      description: 'Can fly.'
     },
     {
       name: 'Deadly Cargo',
       type: AbilityType.Ability,
+      phaseRules: [{ type: PhaseType.UsedIn, phases: [Phase.Movement], turns: [Turn.Yours] }],
       description:
-        'Once per battle, after finishing moving, **pick 1** enemy unity and **roll 1** dice for each model in this unit that passed across any models from that enemy unit. For each **4+** that enemy unit suffers **D3 mortal wounds**.',
-      phases: [Phase.Movement]
+        'Once per battle, after finishing moving, **pick 1** enemy unity and **roll 1** dice for each model in this unit that passed across any models from that enemy unit. For each **4+** that enemy unit suffers **D3 mortal wounds**.'
     }
   ]
 };

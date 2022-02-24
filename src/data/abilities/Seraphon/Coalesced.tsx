@@ -6,7 +6,13 @@ export const coalescedBattleTraits: BattleTraits = {
     {
       name: 'Cold-blooded',
       type: AbilityType.BattleTrait,
-      phases: [Phase.Battleshock],
+      phaseRules: [
+        {
+          type: PhaseType.Affects,
+          phases: [Phase.Battleshock],
+          turns: [Turn.Yours, Turn.Opponents]
+        }
+      ],
       tags: ['Coalesced'],
       description: 'Ignore modifiers (pos or neg) to bravery of Coalesced units.'
     },

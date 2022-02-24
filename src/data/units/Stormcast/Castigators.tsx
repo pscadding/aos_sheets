@@ -1,5 +1,5 @@
 import { AbilityType } from '../../../models/Ability';
-import { Phase } from '../../../models/Phase';
+import { Phase, PhaseType, Turn } from '../../../models/Phase';
 import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
@@ -39,14 +39,14 @@ export const castigators: Unit = {
     {
       name: 'Champion',
       type: AbilityType.Standard,
-      phases: [Phase.Shooting],
+      phaseRules: [{ type: PhaseType.Affects, phases: [Phase.Shooting], turns: [Turn.Yours] }],
       description:
         '1 model in this unit can be Castigator-Prime. **Add 1** to the Attacks that model’s **Thunderhead Greatbow**.'
     },
     {
       name: 'Castigator Aetheric Channelling',
       type: AbilityType.Ability,
-      phases: [Phase.Shooting],
+      phaseRules: [{ type: PhaseType.UsedIn, phases: [Phase.Shooting], turns: [Turn.Yours] }],
       description:
         'At the start of the shooting phase, you must say whether this unit will increase either the accuracy or the power of its Thunderhead Greatbows. ' +
         'If you pick accuracy, until the end of that phase, **add 1** to hit rolls for attacks made with this unit’s Thunderhead Greatbows. ' +
@@ -55,7 +55,7 @@ export const castigators: Unit = {
     {
       name: 'Burst of Celestial Energy',
       type: AbilityType.Ability,
-      phases: [Phase.Shooting],
+      phaseRules: [{ type: PhaseType.UsedIn, phases: [Phase.Shooting], turns: [Turn.Yours] }],
       description:
         'If the unmodified hit roll for an attack made with a Thunderhead Greatbow that targets a **MALIGNANT** or **DAEMON** unit is **6**, that attack scores **2** hits on the target instead of **1**. Make a wound and save roll for each hit.'
     }

@@ -1,9 +1,9 @@
 import { AbilityType } from '../../../models/Ability';
-import { Phase } from '../../../models/Phase';
-import { UnitType } from '../../../models/Unit';
+import { Phase, PhaseType, Turn } from '../../../models/Phase';
+import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
-export const stegadon = {
+export const stegadon: Unit = {
   name: 'Stegadon',
   type: UnitType.Behemoth,
   stats: {
@@ -69,6 +69,7 @@ export const stegadon = {
     {
       name: 'Damage Table',
       type: AbilityType.DamageTable,
+      phaseRules: [],
       description: '',
       columns: ['Wounds Suffered', 'Move', 'Massive Horns', 'Crushing Stomps'],
       rows: [
@@ -77,21 +78,22 @@ export const stegadon = {
         ['5-6', '6"', '2', '3'],
         ['7-8', '5"', '2', '2'],
         ['9+', '4"', '1', '1']
-      ],
-      phases: [Phase.NA]
+      ]
     },
     {
       name: 'Armoured Crest',
       type: AbilityType.Ability,
-      phases: [Phase.Combat],
+      phaseRules: [
+        { type: PhaseType.UsedIn, phases: [Phase.Combat], turns: [Turn.Yours, Turn.Opponents] }
+      ],
       description:
         'At the start of the combat phase, you can **pick 1 enemy unit** within **3"** of this model and that has **up to 5 models**. ' +
         'If you do so, until the end of that phase, **add 1** to save rolls for attacks made by that unit that target this model.'
     },
     {
       name: 'Gout of Sunfire',
-      type: AbilityType.Ability,
-      phases: [Phase.Shooting],
+      type: AbilityType.Standard,
+      phaseRules: [{ type: PhaseType.UsedIn, phases: [Phase.Shooting], turns: [Turn.Yours] }],
       description:
         'Do not use attack sequence for Sunfire Throwers. Instead, roll a number of dice equal to the number of models from the target unit within **8"** of the attacking model.' +
         'For each **5+**, the target unit suffers **1 mortal wound**.'
@@ -99,7 +101,9 @@ export const stegadon = {
     {
       name: 'Steadfast Majesty',
       type: AbilityType.Ability,
-      phases: [Phase.Battleshock],
+      phaseRules: [
+        { type: PhaseType.UsedIn, phases: [Phase.Battleshock], turns: [Turn.Yours, Turn.Opponents] }
+      ],
       filterUnitKeywords: ['Skink', 'Skinks'],
       description:
         'You can re-roll battleshot tests for friendly **Skink** units while they are wholly within **18"** of any friendly Stegadons.'
@@ -107,14 +111,16 @@ export const stegadon = {
     {
       name: 'Unstoppable Stampede',
       type: AbilityType.Ability,
-      phases: [Phase.Charge],
+      phaseRules: [
+        { type: PhaseType.UsedIn, phases: [Phase.Charge], turns: [Turn.Yours, Turn.Opponents] }
+      ],
       description:
         '**Roll 1 dice** for each enemy unit that is withing **1"** of this model when this model finishes a charge move. On a **3+**, that enemy unit suffers **D3 mortal wounds**.'
     }
   ]
 };
 
-export const stegadonWithSkinkChief = {
+export const stegadonWithSkinkChief: Unit = {
   ...stegadon,
   name: 'Stegadon with Skink Chief',
   type: UnitType.Leader,
@@ -137,7 +143,9 @@ export const stegadonWithSkinkChief = {
     {
       name: 'Coordinated Strike',
       type: AbilityType.CommandAbility,
-      phases: [Phase.Charge],
+      phaseRules: [
+        { type: PhaseType.UsedIn, phases: [Phase.Combat], turns: [Turn.Yours, Turn.Opponents] }
+      ],
       filterUnitKeywords: ['Skink', 'Skinks'],
       description:
         'You can use this command ability at the start of the combat phase. If you do so, **pick 1** friendly **Skink** unit wholly within **24"** of a friendly Stegadon Hero with this ability. ' +

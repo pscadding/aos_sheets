@@ -1,8 +1,10 @@
 import { Ability } from '../../models/Ability';
 import { Phase, PhaseType } from '../../models/Phase';
+import { AppStyle } from '../../styles/style';
 import { abilityHasPhase } from '../../utils/AbilityUtils';
+import { PhaseUnitTableAbilityLine } from './PhaseUnitTableAbilityLine';
 import { PhaseUnitTableColumnCellWrapper } from './PhaseUnitTableColumnCellWrapper';
-import { UnitName } from './PhaseUnitTableStyles';
+import { UnitNameAbility } from './PhaseUnitTableStyles';
 
 interface PhaseUnitTableAbilityRowProps {
   phases: Phase[];
@@ -18,7 +20,11 @@ export function PhaseUnitTableAbilityRow({
   const components = phases.map((phase, phaseIndex) => {
     const abilityNames = abilities
       .filter((ability) => abilityHasPhase(ability, phase, phaseType))
-      .map((ability, abilityIndex) => <UnitName key={abilityIndex}>{ability.name}</UnitName>);
+      .map((ability, abilityIndex) => (
+        <div key={abilityIndex} style={{ marginLeft: AppStyle.spacing.small }}>
+          <PhaseUnitTableAbilityLine ability={ability} phaseType={phaseType} />
+        </div>
+      ));
     return (
       <PhaseUnitTableColumnCellWrapper phase={phase} key={phaseIndex}>
         {abilityNames}
