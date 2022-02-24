@@ -33,7 +33,7 @@ export function PhaseUnitTableUnitRow({
             <UnitNameAbility key={abilityIndex}>- {ability.name}</UnitNameAbility>
           ));
         return (
-          <div key={unitIndex + 'r'} style={{ marginTop: AppStyle.spacing.medium }}>
+          <div key={unitIndex + 'r'}>
             <UnitName key={unitIndex}>
               {unit.name}
               {unit.subName ? ` ${unit.subName}` : ''}

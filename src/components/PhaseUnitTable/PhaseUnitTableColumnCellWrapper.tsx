@@ -16,7 +16,7 @@ export function PhaseUnitTableColumnCellWrapper({
 }: PhaseUnitTableColumnCellWrapperProps) {
   return (
     <Column phase={phase}>
-      <Container direction={direction.vertical} spacing={AppStyle.spacing.xSmall}>
+      <Container direction={direction.vertical} spacing={AppStyle.spacing.small}>
         {children}
       </Container>
     </Column>

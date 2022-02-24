@@ -5,19 +5,16 @@ import { Ability } from '../../models/Ability';
 import { HeaderBackground, Table, SubHeader } from './PhaseUnitTableStyles';
 import { PhaseUnitTableUnitRow } from './PhaseUnitTableUnitRow';
 import { PhaseUnitTableAbilityRow } from './PhaseUnitTableAbilityRow';
+import { getPhasesArray } from '../../utils/phase';
 
 interface PhaseUnitTableProps {
   units: Unit[];
   abilities: Ability[];
 }
 
-const filterNonShownPhases = (phase: Phase) => phase !== Phase.Any && phase !== Phase.NA;
-
 export const PhaseUnitTable = ({ units, abilities, ...props }: PhaseUnitTableProps) => {
   // Get all the phases minus the All and the NA
-  const phases = getEnumKeys(Phase)
-    .map((phaseKey) => Phase[phaseKey as PhaseStrings])
-    .filter((phase) => filterNonShownPhases(phase));
+  const phases = getPhasesArray([Phase.Any, Phase.NA]);
 
   // The header elements are named after the phases
   const phaseComponents = phases.map((phase, index) => {

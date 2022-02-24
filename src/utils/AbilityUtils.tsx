@@ -96,15 +96,13 @@ export function sortAbilities(abilities: Ability[]): void {
  * @returns
  */
 export function abilityHasPhase(ability: Ability, phase: Phase, phaseType?: PhaseType): boolean {
-  return (
-    ability.phaseRules.filter((phaseRule) => {
-      const phaseTypeCheck = phaseType !== null ? phaseRule.type === phaseType : true;
-      return (
-        (phaseTypeCheck && phaseRule.phases.includes(phase)) ||
-        (phaseTypeCheck && phaseRule.phases.includes(Phase.Any))
-      );
-    }).length > 0
-  );
+  return ability.phaseRules.some((phaseRule) => {
+    const phaseTypeCheck = phaseType !== null ? phaseRule.type === phaseType : true;
+    return (
+      (phaseTypeCheck && phaseRule.phases.includes(phase)) ||
+      (phaseTypeCheck && phaseRule.phases.includes(Phase.Any))
+    );
+  });
 }
 
 export function lowerCaseArray(items: string[]): string[] {
