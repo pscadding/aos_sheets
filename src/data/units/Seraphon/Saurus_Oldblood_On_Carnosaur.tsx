@@ -1,9 +1,9 @@
 import { AbilityType } from '../../../models/Ability';
-import { Phase } from '../../../models/Phase';
-import { UnitType } from '../../../models/Unit';
+import { Phase, PhaseType, Turn } from '../../../models/Phase';
+import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
-export default {
+export const saurusOldbloodOnCarnosaur: Unit = {
   name: 'Saurus Oldblood on Carnosaur',
   type: UnitType.Leader,
   stats: {
@@ -68,51 +68,70 @@ export default {
         ['8-9', '7"', '5+', '2'],
         ['10+', '6"', '5+', '1']
       ],
-      phases: [Phase.NA]
+      phaseRules: []
     },
     {
       name: 'Blazing Sunbolts',
       type: AbilityType.Ability,
+      phaseRules: [{ type: PhaseType.UsedIn, phases: [Phase.Shooting], turns: [Turn.Yours] }],
       description:
-        '**Add 1** to wound rolls for attacks made with **Sunbolt Gauntlet** if target is **Chaos Daemon** unit.',
-      phases: [Phase.Shooting]
+        '**Add 1** to wound rolls for attacks made with **Sunbolt Gauntlet** if target is **Chaos Daemon** unit.'
     },
     {
       name: 'Blood Frenzy',
       type: AbilityType.Ability,
+      phaseRules: [
+        {
+          type: PhaseType.UsedIn,
+          phases: [Phase.Shooting, Phase.Combat],
+          turns: [Turn.Yours, Turn.Opponents]
+        },
+        { type: PhaseType.Affects, phases: [Phase.Movement, Phase.Charge], turns: [Turn.Yours] }
+      ],
       description:
-        'If any enemy models are slain by wounds inflicted by this models attacks, for the rest of the battle this model can run and still charge in the same turn.',
-      phases: [Phase.Combat, Phase.Shooting, Phase.Movement, Phase.Charge]
+        'If any enemy models are slain by wounds inflicted by this models attacks, for the rest of the battle this model can run and still charge in the same turn.'
     },
     {
       name: 'Cold Ferocity',
       type: AbilityType.Ability,
+      phaseRules: [
+        { type: PhaseType.UsedIn, phases: [Phase.Combat], turns: [Turn.Yours, Turn.Opponents] }
+      ],
       description:
-        'If unmodified hit roll for an attack made with **Celestite** weapon by this model is **6**, that attack scores **2 hits** on target instead of **1**.',
-      phases: [Phase.Combat]
+        'If unmodified hit roll for an attack made with **Celestite** weapon by this model is **6**, that attack scores **2 hits** on target instead of **1**.'
     },
     {
       name: 'Pinned Down',
       type: AbilityType.Ability,
+      phaseRules: [
+        { type: PhaseType.Affects, phases: [Phase.Combat], turns: [Turn.Yours, Turn.Opponents] }
+      ],
       description:
-        '**Add 1** to hit rolls for attacks made with *Massive Jaws** if the target has Wounds characteristic of **7 or less**',
-      phases: [Phase.Combat]
+        '**Add 1** to hit rolls for attacks made with *Massive Jaws** if the target has Wounds characteristic of **7 or less**'
     },
     {
       name: 'Terror',
       type: AbilityType.Ability,
+      phaseRules: [
+        {
+          type: PhaseType.Affects,
+          phases: [Phase.Battleshock],
+          turns: [Turn.Yours, Turn.Opponents]
+        }
+      ],
       description:
-        '**Subtract 1** from bravery of enemy units while they are within **3"** of friendly units with this ability.',
-      phases: [Phase.Battleshock]
+        '**Subtract 1** from bravery of enemy units while they are within **3"** of friendly units with this ability.'
     },
     {
       name: 'Wrath of the Seraphon',
       type: AbilityType.CommandAbility,
       filterUnitKeywords: ['Saurus'],
+      phaseRules: [
+        { type: PhaseType.UsedIn, phases: [Phase.Combat], turns: [Turn.Yours, Turn.Opponents] }
+      ],
       description:
         'Can use this command ability in combat phase. If you do, **pick 1** Saurus unit wholly **within 18"** of this model. ' +
-        "Until end of that phase **add 1 to hit rolls** for attacks made by that unit. A unit can't benefit from this command ability more than once per phase.",
-      phases: [Phase.Combat]
+        "Until end of that phase **add 1 to hit rolls** for attacks made by that unit. A unit can't benefit from this command ability more than once per phase."
     }
   ]
 };

@@ -1,5 +1,5 @@
 import { Ability } from '../models/Ability';
-import { Phase, PhaseStrings } from '../models/Phase';
+import { Phase, PhaseStrings, PhaseRule, Turn, PhaseType } from '../models/Phase';
 import { AppStyle } from '../styles/style';
 import { getEnumKeys } from './enum';
 
@@ -9,12 +9,27 @@ export function getPhaseColor(phase: Phase): string {
 }
 
 export function getPhasesFromAbilities(abilities: Ability[]): Phase[] {
+  return getPhasesArray().filter((phase) =>
+    abilities.some((ability) =>
+      ability.phaseRules.some((phaseRule) => phaseRule.phases.includes(phase))
+    )
+  );
+}
+
+function filterOutPhases(phase: Phase, filters: Phase[]): boolean {
+  if (!filters.length) return true;
+  return !filters.includes(phase);
+}
+
+export function getPhasesArray(phasesFilters = [] as Phase[]): Phase[] {
   return getEnumKeys(Phase)
-    .filter((phase) => {
-      const phaseAbilities = abilities.filter((ability) =>
-        ability.phases?.includes(Phase[phase as PhaseStrings])
-      );
-      return !!phaseAbilities.length;
-    })
-    .map((phase) => Phase[phase as PhaseStrings]);
+    .map((phaseKey) => Phase[phaseKey as PhaseStrings])
+    .filter((phase) => filterOutPhases(phase, phasesFilters));
+}
+
+export function getPhaseRuleTurns(phaseRules: PhaseRule[], phaseType: PhaseType): Turn[] {
+  return phaseRules
+    .filter((phaseRule) => phaseRule.type === phaseType)
+    .map((phaseRules) => phaseRules.turns)
+    .flat();
 }

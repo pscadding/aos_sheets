@@ -1,9 +1,9 @@
 import { AbilityType } from '../../../models/Ability';
-import { Phase } from '../../../models/Phase';
-import { UnitType } from '../../../models/Unit';
+import { Phase, PhaseType, Turn } from '../../../models/Phase';
+import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
-export default {
+export const skinks: Unit = {
   name: 'Skinks',
   type: UnitType.Battleline,
   stats: {
@@ -59,20 +59,34 @@ export default {
     {
       name: 'Skink Alpha',
       type: AbilityType.Standard,
-      description: "Add **1** to attacks alpha's melee weapons.",
-      phases: [Phase.Combat]
+      phaseRules: [
+        { type: PhaseType.Affects, phases: [Phase.Combat], turns: [Turn.Yours, Turn.Opponents] }
+      ],
+      description: "Add **1** to attacks alpha's melee weapons."
     },
     {
       name: 'Swarming Cohort',
       type: AbilityType.Ability,
-      description: 'Add **1** to attacks of weapons used by unit while has 15 or more models',
-      phases: [Phase.Shooting, Phase.Combat]
+      phaseRules: [
+        {
+          type: PhaseType.Affects,
+          phases: [Phase.Combat, Phase.Shooting],
+          turns: [Turn.Yours, Turn.Opponents]
+        }
+      ],
+      description: 'Add **1** to attacks of weapons used by unit while has 15 or more models'
     },
     {
       name: 'Star-buckler',
       type: AbilityType.Ability,
-      description: 'Add **1** to save rolls if has Star-bucklers.',
-      phases: [Phase.Hero, Phase.Movement, Phase.Shooting, Phase.Combat, Phase.Charge]
+      phaseRules: [
+        {
+          type: PhaseType.Affects,
+          phases: [Phase.Hero, Phase.Movement, Phase.Shooting, Phase.Combat, Phase.Charge],
+          turns: [Turn.Yours, Turn.Opponents]
+        }
+      ],
+      description: 'Add **1** to save rolls if has Star-bucklers.'
     }
   ]
 };

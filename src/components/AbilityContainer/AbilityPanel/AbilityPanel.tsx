@@ -5,6 +5,7 @@ import { Ability, AbilityType } from '../../../models/Ability';
 import ReactMarkdown from 'react-markdown';
 import { PhaseColorStack } from '../../PhaseColorStack/PhaseColorStack';
 import { Badge } from '../Badge/Badge';
+import { getPhasesFromAbilities } from '../../../utils/phase';
 
 interface AbilityPanelProps {
   ability: Ability;
@@ -70,10 +71,12 @@ export const AbilityPanel = ({ ability, ...props }: AbilityPanelProps) => {
       <div />
     );
 
+  const abilityPhases = getPhasesFromAbilities([ability]);
+
   return (
     <AbilityItem>
       <Container>
-        <PhaseColorStack width={AppStyle.sizes.small} phases={ability.phases} />
+        <PhaseColorStack width={AppStyle.sizes.small} phases={abilityPhases} />
         <TextWrapper>
           <HeaderRow>
             {badgeComponent}

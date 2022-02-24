@@ -1,9 +1,9 @@
 import { AbilityType } from '../../../models/Ability';
-import { Phase } from '../../../models/Phase';
-import { UnitType } from '../../../models/Unit';
+import { Phase, PhaseType, Turn } from '../../../models/Phase';
+import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
-export const bastildonSolar = {
+export const bastildonSolar: Unit = {
   name: 'Bastiladon',
   subName: 'with Solar Engine',
   type: UnitType.Behemoth,
@@ -69,12 +69,12 @@ export const bastildonSolar = {
         ['7-8', '4+', '6'],
         ['9+', '4+', '5']
       ],
-      phases: [Phase.NA]
+      phaseRules: []
     },
     {
       name: 'Light of the Heavens',
       type: AbilityType.Ability,
-      phases: [Phase.Shooting],
+      phaseRules: [{ type: PhaseType.UsedIn, phases: [Phase.Shooting], turns: [Turn.Yours] }],
       description:
         '**Add 1** to the dmg inflicted made by Solar Engine, that targets **Chaos Daemon** unit.'
     }

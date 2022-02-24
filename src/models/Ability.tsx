@@ -1,4 +1,4 @@
-import { Phase } from './Phase';
+import { PhaseRule } from './Phase';
 
 export enum AbilityType {
   BattleTrait = 'Battle Trait',
@@ -15,7 +15,7 @@ export interface Ability {
   type: AbilityType;
   tags?: string[];
   description: string;
-  phases: Phase[];
+  phaseRules: PhaseRule[];
   attachKeyword?: string;
   filterUnitKeywords?: string[];
 }
