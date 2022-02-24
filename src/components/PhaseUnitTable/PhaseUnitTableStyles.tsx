@@ -41,6 +41,10 @@ export const UnitNameAbility = styled(UnitName)`
 `;
 export const Column = styled.td`
   vertical-align: top;
-  background-color: ${(props: { phase: Phase }) => getPhaseColor(props.phase)};
+  background: ${(props: { phase: Phase }) => {
+    const color = hexToRGB(getPhaseColor(props.phase), 0.4);
+    return `linear-gradient(${color}, ${color}),
+    linear-gradient(white, white);`;
+  }};
   border-top: ${AppStyle.sizes.xxSmall} solid ${AppStyle.roles.general.border};
 `;
