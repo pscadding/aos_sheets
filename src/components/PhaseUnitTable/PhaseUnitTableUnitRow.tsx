@@ -48,11 +48,11 @@ export function PhaseUnitTableUnitRow({
           </div>
         );
       });
-    return unitNames.length ? (
+    return (
       <PhaseUnitTableColumnCellWrapper phase={phase} key={phaseIndex}>
         {unitNames}
       </PhaseUnitTableColumnCellWrapper>
-    ) : null;
+    );
   });
   return <tr>{components}</tr>;
 }
