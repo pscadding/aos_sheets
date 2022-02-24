@@ -1,5 +1,5 @@
 import { bastildonSolar } from './Bastiladon';
-import Saurus_Guard from './Saurus_Guard';
+import { saurusGuard } from './Saurus_Guard';
 import Saurus_Oldblood_On_Carnosaur from './Saurus_Oldblood_On_Carnosaur';
 import Saurus_Warriors from './Saurus_Warriors';
 import Skinks from './Skinks';
@@ -11,7 +11,7 @@ import Terradon_Riders from './Terradon_Riders';
 export default [
   Skink_Starpriest,
   Skinks,
-  Saurus_Guard,
+  saurusGuard,
   Saurus_Warriors,
   Terradon_Riders,
   Terradon_Chief,

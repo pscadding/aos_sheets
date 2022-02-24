@@ -1,11 +1,11 @@
 import { Ability, AbilityType, BattleTraits } from '../../../models/Ability';
-import { Phase } from '../../../models/Phase';
+import { Phase, PhaseType, Turn } from '../../../models/Phase';
 
 export const thunderLizardAbilities: Ability[] = [
   {
     name: 'Fusil of Conflagration',
     type: AbilityType.Ability,
-    phases: [Phase.Shooting],
+    phaseRules: [{ type: PhaseType.UsedIn, phases: [Phase.Shooting], turns: [Turn.Yours] }],
     tags: ['Artefact of Power', 'Thunder Lizard'],
     description:
       'In your shooting phase, you can **pick 1 enemy unit** within **12"** of the bearer and visible to them and roll a dice. On a **1**, this artefact cannot be used again fro the rest of the battle. ' +
@@ -14,7 +14,9 @@ export const thunderLizardAbilities: Ability[] = [
   {
     name: 'Prime Warbeast',
     type: AbilityType.Ability,
-    phases: [Phase.Combat],
+    phaseRules: [
+      { type: PhaseType.Affects, phases: [Phase.Combat], turns: [Turn.Yours, Turn.Opponents] }
+    ],
     tags: ['Thunder Lizard'],
     description:
       "**Add 1** to the attacks characteristic of the weapons used by this general's mount."
@@ -26,13 +28,16 @@ export const thunderLizardBattleTraits = {
     {
       name: 'Mighty Beasts of War',
       type: AbilityType.Ability,
-      phases: [Phase.NA],
+      phaseRules: [
+        { type: PhaseType.Affects, phases: [Phase.NA], turns: [Turn.Yours, Turn.Opponents] }
+      ],
       tags: ['Thunder Lizard'],
       description: '**Add 2** to the wounds characteristic of the **Thunder Lizard** Monsters'
     },
     {
       name: 'Trove of Old One Technology',
       type: AbilityType.CommandAbility,
+      phaseRules: [{ type: PhaseType.UsedIn, phases: [Phase.Shooting], turns: [Turn.Yours] }],
       phases: [Phase.Shooting],
       tags: ['Thunder Lizard'],
       description:

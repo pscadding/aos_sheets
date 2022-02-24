@@ -1,4 +1,4 @@
-import Gutrippaz from './Gutrippaz';
-import Swampcalla_Shaman from './Swampcalla_Shaman';
+import { gutrippaz } from './Gutrippaz';
+import { swampcallaShaman } from './Swampcalla_Shaman';
 
-export default [Swampcalla_Shaman, Gutrippaz];
+export default [swampcallaShaman, gutrippaz];

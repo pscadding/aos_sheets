@@ -1,5 +1,5 @@
 import { AbilityType } from '../../../models/Ability';
-import { Phase } from '../../../models/Phase';
+import { Phase, PhaseType, Turn } from '../../../models/Phase';
 import { UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
@@ -39,28 +39,40 @@ export default {
     {
       name: 'Wizard',
       type: AbilityType.Standard,
-      description: 'Cast 1 spell, unbind 1 spell',
-      phases: [Phase.Hero]
+      phaseRules: [
+        { type: PhaseType.UsedIn, phases: [Phase.Hero], turns: [Turn.Yours, Turn.Opponents] }
+      ],
+      description: 'Cast 1 spell, unbind 1 spell'
     },
     {
       name: 'Astral Herald',
       type: AbilityType.Ability,
+      phaseRules: [{ type: PhaseType.UsedIn, phases: [Phase.Hero], turns: [Turn.Yours] }],
       description:
-        'At start of your hero phase, roll a dice. On **5+** you receive **1** command point.',
-      phases: [Phase.Hero]
+        'At start of your hero phase, roll a dice. On **5+** you receive **1** command point.'
     },
     {
       name: 'Serpent Staff',
       type: AbilityType.Ability,
-      phases: [Phase.Hero, Phase.Combat, Phase.Shooting],
+      phaseRules: [
+        { type: PhaseType.UsedIn, phases: [Phase.Hero], turns: [Turn.Yours] },
+        {
+          type: PhaseType.Affects,
+          phases: [Phase.Shooting, Phase.Combat],
+          turns: [Turn.Yours, Turn.Opponents]
+        }
+      ],
       description:
-        'In hero phase, you can pick **1** Seraphon unit within **12"** of this model. Until your next hero phase, if unmodified wound roll for an attack made by that ' +
+        'In your hero phase, you can pick **1** Seraphon unit within **12"** of this model. Until your next hero phase, if unmodified wound roll for an attack made by that ' +
         'unit is **6**, that attack inflicts **1** mortal wound on target in addition to normal damage. Unit cannot benefit from this ability more than once per phase.'
     },
     {
       name: 'Blazing Starlight',
       type: AbilityType.Spell,
-      phases: [Phase.Hero],
+      phaseRules: [
+        { type: PhaseType.UsedIn, phases: [Phase.Hero], turns: [Turn.Yours] },
+        { type: PhaseType.Affects, phases: [Phase.Any], turns: [Turn.Yours, Turn.Opponents] }
+      ],
       description:
         'Casting value of **6**. If success, pick **1** enemy unit with **18"** of caster and visible. Until your next hero phase, subtract **1** from hit rolls for attacks made by that unit.'
     }
