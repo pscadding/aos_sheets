@@ -22,5 +22,14 @@
     "unitNames": { "Swampcalla Shaman": {}, "Gutrippaz": {} },
     "battleTraitTypes": [],
     "armyAbilities": []
+  },
+  "Slaves To Darkness": {
+    "unitNames": {
+      "Chaos Sorcerer Lord": {},
+      "Exhalted Hero of Chaos": {},
+      "Chaos Knights": {}
+    },
+    "battleTraitTypes": [],
+    "armyAbilities": []
   }
 }

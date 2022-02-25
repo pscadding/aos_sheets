@@ -6,7 +6,9 @@ import { Ability } from '../models/Ability';
 
 export function loadUnits(profile: Profile): Promise<Unit[]> {
   return new Promise((resolve) => {
-    const profileUnits = units.filter((unit) => Object.keys(profile.unitNames).includes(unit.name));
+    const profileUnits = units.filter((unit) =>
+      lowerCaseArray(Object.keys(profile.unitNames)).includes(unit.name.toLowerCase())
+    );
     resolve(profileUnits);
   });
 }
@@ -40,4 +42,8 @@ export function loadProfile(profileName: string): Promise<Profile> {
     .then((data: { [key: string]: Profile }) => {
       return data[profileName];
     });
+}
+
+export function lowerCaseArray(items: string[]): string[] {
+  return items.map((item) => item.toLowerCase());
 }
