@@ -34,7 +34,7 @@ export const saurusOldbloodOnCarnosaur: Unit = {
       damage: '3'
     },
     {
-      name: 'Clawed Forelimbs',
+      name: 'Clawed Forelimbs (Mount)',
       type: WeaponType.Melee,
       range: '2"',
       attacks: '2',
@@ -44,7 +44,7 @@ export const saurusOldbloodOnCarnosaur: Unit = {
       damage: '2'
     },
     {
-      name: 'Massive Jaws',
+      name: 'Massive Jaws (Mount)',
       type: WeaponType.Melee,
       range: '2"',
       attacks: '3',

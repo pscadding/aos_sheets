@@ -10,5 +10,11 @@ export const colors = {
   blueBell: '#918BC7',
   kobi: '#CC97B1',
   apricot: '#FDC7AA',
-  transparent: 'rgba(0, 0, 0, 0)'
+  transparent: 'rgba(0, 0, 0, 0)',
+  melon: '#FFC3B5',
+  mindaro: '#E4FC9D',
+  middleBlueGreen: '#aaddd5',
+  maximumBluePurple: '#95abfc',
+  mauve: '#c6a7f8',
+  pinkLavendar: '#f1b8e7'
 };
