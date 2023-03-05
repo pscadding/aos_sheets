@@ -18,9 +18,56 @@
     "battleTraitTypes": ["Seraphon", "Coalesced", "Thunder Lizard"],
     "armyAbilities": ["Inspired"]
   },
+  "Seraphon Thunder Lizard 1500pts": {
+    "unitNames": {
+      "Skink Starpriest": { "abilityNames": ["Tide of Serpents"] },
+      "Saurus Oldblood on Carnosaur": {
+        "abilityNames": ["Prime Warbeast", "Fusil of Conflagration"]
+      },
+      "Stegadon with Skink Chief": { "abilityNames": ["Incandescent Rectrices", "Beastmaster"] },
+      "Terradon Chief": {},
+      "Saurus Guard": {},
+      "Saurus Warriors": {},
+      "Terradon Riders": {},
+      "Bastiladon": {}
+    },
+    "battleTraitTypes": ["Seraphon", "Coalesced", "Thunder Lizard"],
+    "armyAbilities": ["Inspired"]
+  },
   "Orruk": {
-    "unitNames": { "Swampcalla Shaman": {}, "Gutrippaz": {} },
+    "unitNames": {
+      "Gutrippaz": {},
+      "Breaka-boss on Mirebrute Troggoth": {},
+      "Killaboss on Great Gnashtoof": { "abilityNames": ["Eye-biter Ash"] },
+      "Swampboss Skumdrekk": {},
+      "Man-skewer Boltboyz": {},
+      "Hobgrot Slittaz": {}
+    },
+    "battleTraitTypes": ["Kruleboyz", "Big_Yellers"],
+    "armyAbilities": []
+  },
+  "Slaves To Darkness": {
+    "unitNames": {
+      "Chaos Sorcerer Lord": {},
+      "Exhalted Hero of Chaos": {},
+      "Chaos Knights": {},
+      "Chaos Warriors": {}
+    },
     "battleTraitTypes": [],
     "armyAbilities": []
+  },
+  "Skaven": {
+    "unitNames": {
+      "Warlock Bombardier": {},
+      "Grey Seer on Screaming Bell": {},
+      "Warpgnaw Verminlord": {},
+      "Stormvermin": {},
+      "Clanrats": {},
+      "Doomwheel": {},
+      "Plague Monks": {},
+      "PLague Claw": {}
+    },
+    "battleTraitTypes": [],
+    "armyAbilities": ["Inspired"]
   }
 }

@@ -24,7 +24,7 @@ export const terradonRiders: Unit = {
       damage: '1'
     },
     {
-      name: 'Razor-sharp Jaws',
+      name: 'Razor-sharp Jaws (Mount)',
       type: WeaponType.Melee,
       range: '1"',
       attacks: '4',

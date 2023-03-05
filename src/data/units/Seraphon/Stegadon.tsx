@@ -34,7 +34,7 @@ export const stegadon: Unit = {
       damage: '*'
     },
     {
-      name: 'Massive Horns',
+      name: 'Massive Horns (Mount)',
       type: WeaponType.Melee,
       range: '2"',
       attacks: '2',
@@ -44,7 +44,7 @@ export const stegadon: Unit = {
       damage: '*'
     },
     {
-      name: 'Grinding Jaws',
+      name: 'Grinding Jaws (Mount)',
       type: WeaponType.Melee,
       range: '1"',
       attacks: '2',
@@ -54,7 +54,7 @@ export const stegadon: Unit = {
       damage: '2'
     },
     {
-      name: 'Crushing Stomps',
+      name: 'Crushing Stomps (Mount)',
       type: WeaponType.Melee,
       range: '1"',
       attacks: '*',

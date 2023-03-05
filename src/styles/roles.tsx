@@ -33,12 +33,12 @@ export const roleColor = {
   },
   phases: {
     background: {
-      hero: colors.celadon,
-      movement: colors.middleBlue,
-      shooting: colors.maximumBlue,
-      charge: colors.shadowBlue,
-      combat: colors.blueBell,
-      battleshock: colors.kobi,
+      hero: colors.melon,
+      movement: colors.mindaro,
+      shooting: colors.middleBlueGreen,
+      charge: colors.maximumBluePurple,
+      combat: colors.mauve,
+      battleshock: colors.pinkLavendar,
       na: colors.transparent,
       any: colors.transparent
     }

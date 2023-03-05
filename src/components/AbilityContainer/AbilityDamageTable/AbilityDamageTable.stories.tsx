@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { AbilityDamageTablePanel } from './AbilityDamageTable';
+import AbilityDamageTablePanel from './AbilityDamageTable';
 import { mockUnits } from '../../../mock_data/mock_units';
 import { AbilityDamageTable, AbilityType } from '../../../models/Ability';
 

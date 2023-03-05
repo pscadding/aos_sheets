@@ -45,7 +45,7 @@ export const bastildonSolar: Unit = {
       damage: '1'
     },
     {
-      name: 'Bludgeoning Tail',
+      name: 'Bludgeoning Tail (Mount)',
       type: WeaponType.Melee,
       range: '2"',
       attacks: '3',

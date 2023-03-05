@@ -1,4 +1,5 @@
 import { AppStyle } from '../../../styles/style';
+import { memo } from 'react';
 import { AbilityDamageTable } from '../../../models/Ability';
 import { Table, TableBodyCell, TableHeaderRow, TableHeaderCell } from '../../Table/Table';
 import styled from 'styled-components';
@@ -15,7 +16,7 @@ const Wrapper = styled.div`
 /**
  * Primary UI component for user interaction
  */
-export const AbilityDamageTablePanel = ({ ability, ...props }: AbilityDamageTableProps) => {
+const AbilityDamageTablePanel = ({ ability }: AbilityDamageTableProps) => {
   const headers = ability.columns.map((columnName, index) => (
     <TableHeaderCell compact={true} key={index}>
       {columnName}
@@ -39,3 +40,5 @@ export const AbilityDamageTablePanel = ({ ability, ...props }: AbilityDamageTabl
     </Wrapper>
   );
 };
+
+export default memo(AbilityDamageTablePanel);

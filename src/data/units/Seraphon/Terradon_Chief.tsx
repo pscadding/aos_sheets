@@ -24,7 +24,7 @@ export const terradonChief: Unit = {
       damage: '1'
     },
     {
-      name: 'Razor-sharp Jaws',
+      name: 'Razor-sharp Jaws (Mount)',
       type: WeaponType.Melee,
       range: '1"',
       attacks: '4',
@@ -36,12 +36,6 @@ export const terradonChief: Unit = {
   ],
   keywords: ['Order', 'Seraphon', 'Skink', 'Terradon', 'Hero', 'Terradon Chief'],
   abilities: [
-    {
-      name: 'Mount',
-      type: AbilityType.Standard,
-      phaseRules: [],
-      description: "Unit's Terradons attack with their Razor-sharp jaws."
-    },
     {
       name: 'Fly',
       type: AbilityType.Standard,

@@ -1,4 +1,4 @@
-import { ArmySummaryPage } from '../components/Pages/ArmySummaryPage/ArmySummaryPage';
+import { ArmySummaryPageMemo } from '../components/Pages/ArmySummaryPage/ArmySummaryPage';
 import { useParams } from 'react-router-dom';
 
 export default function ArmyProfileSummary() {
@@ -9,7 +9,7 @@ export default function ArmyProfileSummary() {
 
   return (
     <main style={{ padding: '1rem 0' }}>
-      <ArmySummaryPage profileName={profileName} />
+      <ArmySummaryPageMemo profileName={profileName} />
     </main>
   );
 }

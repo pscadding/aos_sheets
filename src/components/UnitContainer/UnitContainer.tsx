@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Unit } from '../../models/Unit';
 import styled from 'styled-components';
 import { WeaponsTable } from '../WeaponTable/WeaponsTable';
@@ -6,7 +7,7 @@ import { UnitStatTable } from '../UnitStatTable/UnitStatTable';
 import { AppStyle } from '../../styles/style';
 import { Keywords } from '../Keywords/Keywords';
 import { Container, direction } from '../Container/Container';
-import { AbilityContainer } from '../AbilityContainer/AbilityContainer';
+import { AbilityContainerMemo } from '../AbilityContainer/AbilityContainer';
 import { PhaseColorStack } from '../PhaseColorStack/PhaseColorStack';
 import { getPhasesFromAbilities } from '../../utils/phase';
 
@@ -38,7 +39,7 @@ const LowerContainer = styled.div`
 /**
  * Primary UI component for user interaction
  */
-export const UnitContainer = ({ unit, ...props }: UnitContainerProps) => {
+export const UnitContainer = ({ unit }: UnitContainerProps) => {
   const unitPhases = getPhasesFromAbilities(unit?.abilities);
 
   return (
@@ -60,9 +61,11 @@ export const UnitContainer = ({ unit, ...props }: UnitContainerProps) => {
           </Container>
         </TopWrapper>
         <LowerContainer>
-          <AbilityContainer abilities={unit?.abilities} />
+          <AbilityContainerMemo abilities={unit?.abilities} />
         </LowerContainer>
       </Container>
     </OuterWrapper>
   );
 };
+
+export const UnitContainerMemo = memo(UnitContainer);

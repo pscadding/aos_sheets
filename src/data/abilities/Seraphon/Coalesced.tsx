@@ -40,7 +40,11 @@ export const coalescedBattleTraits: BattleTraits = {
       name: 'Scaly Skin',
       type: AbilityType.BattleTrait,
       phaseRules: [
-        { type: PhaseType.Affects, phases: [Phase.Any], turns: [Turn.Yours, Turn.Opponents] }
+        {
+          type: PhaseType.Affects,
+          phases: [Phase.Combat, Phase.Shooting, Phase.Charge],
+          turns: [Turn.Yours, Turn.Opponents]
+        }
       ],
       tags: ['Coalesced'],
       description:

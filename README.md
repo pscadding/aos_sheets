@@ -4,16 +4,14 @@ This web app will load army profiles, and display them on a page.
 
 Stuff to do:
 
-- Abilities phase should indicate whether it works in your turn only or both friendly and enemy turns.
 - Ability colours could be clearer.
 - filter weapons per profile.
 - sorting of units by type.
 - Battalions.
 - add icons for phases
-- Add number of abilities (eg x3) on phase unit table
 - Command ability table?
-- add ability phase used in, effect in.
 - add warning when units or abilities aren't found
+- Add additional phase table for non phase based abilities, like saving, on death.
 
 ## Available Scripts
 
