@@ -57,6 +57,7 @@ export const coalescedAbilities: Ability[] = [
   {
     name: 'Beastmaster',
     type: AbilityType.Ability,
+    enhancement: true,
     phaseRules: [
       { type: PhaseType.UsedIn, phases: [Phase.Hero], turns: [Turn.Yours] },
       {

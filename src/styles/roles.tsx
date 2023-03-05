@@ -40,7 +40,8 @@ export const roleColor = {
       combat: colors.mauve,
       battleshock: colors.pinkLavendar,
       na: colors.transparent,
-      any: colors.transparent
+      any: colors.transparent,
+      battlestart: colors.gunMetal
     }
   }
 };

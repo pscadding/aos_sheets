@@ -16,5 +16,6 @@ export const colors = {
   middleBlueGreen: '#aaddd5',
   maximumBluePurple: '#95abfc',
   mauve: '#c6a7f8',
-  pinkLavendar: '#f1b8e7'
+  pinkLavendar: '#f1b8e7',
+  gunMetal: '#272D2D'
 };

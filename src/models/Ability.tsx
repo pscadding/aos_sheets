@@ -13,6 +13,7 @@ export enum AbilityType {
 export interface Ability {
   name: string;
   type: AbilityType;
+  enhancement?: boolean;
   tags?: string[];
   description: string;
   phaseRules: PhaseRule[];

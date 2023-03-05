@@ -84,6 +84,7 @@ const AbilityPanel = ({ ability, ...props }: AbilityPanelProps) => {
             <HeadingStyle>
               {ability?.name}
               {ability.tags ? ` - ${ability.tags.join(', ')}` : ''}
+              {ability.enhancement ? ' - Enhancement' : ''}
             </HeadingStyle>
           </HeaderRow>
           <DescriptionWrapper>
