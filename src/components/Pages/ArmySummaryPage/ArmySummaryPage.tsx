@@ -77,7 +77,9 @@ function loadData(
 
           loadBattleTraits(profile).then((battleTraits: Ability[]) => {
             // Filter out any abilities that affect units that aren't in the army
+            console.log('battleTraits', battleTraits);
             battleTraits = filterAbilitiesByUnitKeyword(battleTraits, units);
+            console.log('battleTraits');
 
             const armyAbilities = [...armyEnhancements, ...battleTraits];
             sortAbilities(armyAbilities);
