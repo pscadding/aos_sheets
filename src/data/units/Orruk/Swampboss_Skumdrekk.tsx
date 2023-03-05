@@ -81,7 +81,7 @@ export const swampbossSkumdrekk: Unit = {
       type: AbilityType.DamageTable,
       phaseRules: [],
       description: '',
-      columns: ['Wounds Suffered', 'Grasping Talons', 'Noisome Bite', 'Thrashing Tail'],
+      columns: ['Wounds Suffered', 'G Talons', 'N Bite', 'T Tail'],
       rows: [
         ['0-5', '6', 'D3+4', '2+'],
         ['6-8', '5', 'D3+3', '3+'],
@@ -111,7 +111,11 @@ export const swampbossSkumdrekk: Unit = {
       name: 'Sludgeraker Venom',
       type: AbilityType.Ability,
       phaseRules: [
-        { type: PhaseType.UsedIn, phases: [Phase.Combat], turns: [Turn.Yours, Turn.Opponents] }
+        {
+          type: PhaseType.UsedIn,
+          phases: [Phase.Combat, Phase.Shooting],
+          turns: [Turn.Yours, Turn.Opponents]
+        }
       ],
       description:
         'Add **1** to the number of mortal wounds caused by the Venom-encrusted Weapons battle trait if the unmodified hit roll was **6** and the attacking unit is wholly within **12"** of any friendly units with this ability.'

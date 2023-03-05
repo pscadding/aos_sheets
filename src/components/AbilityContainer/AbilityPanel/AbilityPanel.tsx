@@ -6,6 +6,7 @@ import ReactMarkdown from 'react-markdown';
 import { PhaseColorStack } from '../../PhaseColorStack/PhaseColorStack';
 import { Badge } from '../Badge/Badge';
 import { getPhasesFromAbilities } from '../../../utils/phase';
+import { memo } from 'react';
 
 interface AbilityPanelProps {
   ability: Ability;
@@ -63,7 +64,7 @@ function colorByAbilityType(type: AbilityType): string {
 /**
  * Primary UI component for user interaction
  */
-export const AbilityPanel = ({ ability, ...props }: AbilityPanelProps) => {
+const AbilityPanel = ({ ability, ...props }: AbilityPanelProps) => {
   const badgeComponent =
     ability.type !== AbilityType.Standard ? (
       <Badge label={ability.type} color={colorByAbilityType(ability.type)}></Badge>
@@ -93,3 +94,5 @@ export const AbilityPanel = ({ ability, ...props }: AbilityPanelProps) => {
     </AbilityItem>
   );
 };
+
+export const AbilityPanelMemo = memo(AbilityPanel);

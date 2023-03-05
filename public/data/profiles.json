@@ -38,7 +38,7 @@
     "unitNames": {
       "Gutrippaz": {},
       "Breaka-boss on Mirebrute Troggoth": {},
-      "Killaboss on Great Gnashtoof": {},
+      "Killaboss on Great Gnashtoof": { "abilityNames": ["Eye-biter Ash"] },
       "Swampboss Skumdrekk": {},
       "Man-skewer Boltboyz": {},
       "Hobgrot Slittaz": {}

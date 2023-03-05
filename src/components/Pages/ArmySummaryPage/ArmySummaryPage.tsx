@@ -1,13 +1,13 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, memo } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { Unit } from '../../../models/Unit';
 import styled from 'styled-components';
 import { AppStyle } from '../../../styles/style';
 import { Container, direction } from '../../Container/Container';
-import { UnitContainer } from '../../UnitContainer/UnitContainer';
-import { PhaseUnitTable } from '../../PhaseUnitTable/PhaseUnitTable';
+import { UnitContainerMemo } from '../../UnitContainer/UnitContainer';
+import { PhaseUnitTableMemo } from '../../PhaseUnitTable/PhaseUnitTable';
 import { Ability } from '../../../models/Ability';
-import { AbilityContainer } from '../../AbilityContainer/AbilityContainer';
+import { AbilityContainerMemo } from '../../AbilityContainer/AbilityContainer';
 import {
   loadBattleTraits,
   loadEnhancements,
@@ -77,9 +77,7 @@ function loadData(
 
           loadBattleTraits(profile).then((battleTraits: Ability[]) => {
             // Filter out any abilities that affect units that aren't in the army
-            console.log('battleTraits', battleTraits);
             battleTraits = filterAbilitiesByUnitKeyword(battleTraits, units);
-            console.log('battleTraits');
 
             const armyAbilities = [...armyEnhancements, ...battleTraits];
             sortAbilities(armyAbilities);
@@ -113,7 +111,7 @@ export const ArmySummaryPage = ({ profileName, ...props }: ArmySummaryPageProps)
 
   const unitComponents = units.map((unit, index) => (
     <UnitWrapper key={index}>
-      <UnitContainer unit={unit} />
+      <UnitContainerMemo unit={unit} />
     </UnitWrapper>
   ));
 
@@ -127,9 +125,9 @@ export const ArmySummaryPage = ({ profileName, ...props }: ArmySummaryPageProps)
           <PageWrapper>
             <ArmyName>{profileName}</ArmyName>
             <Title>Units With Abilities By Phases</Title>
-            <PhaseUnitTable units={units} abilities={armyAbilities}></PhaseUnitTable>
+            <PhaseUnitTableMemo units={units} abilities={armyAbilities}></PhaseUnitTableMemo>
             <Title>Battle Traits</Title>
-            <AbilityContainer abilities={armyAbilities} />
+            <AbilityContainerMemo abilities={armyAbilities} />
             <Title>Units</Title>
             <Container columns={2} direction={direction.vertical} columnGap={'3em'}>
               {unitComponents}{' '}
@@ -140,3 +138,5 @@ export const ArmySummaryPage = ({ profileName, ...props }: ArmySummaryPageProps)
     </Container>
   );
 };
+
+export const ArmySummaryPageMemo = memo(ArmySummaryPage);

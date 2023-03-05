@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { AbilityPanel } from './AbilityPanel';
+import { AbilityPanelMemo } from './AbilityPanel';
 import { mockUnits } from '../../../mock_data/mock_units';
 import { Ability } from '../../../models/Ability';
 
@@ -11,7 +11,7 @@ mockUnits[0].abilities.forEach((ability: Ability) => {
 
 export default {
   title: 'Components/Abilities/AbilityPanel',
-  component: AbilityPanel,
+  component: AbilityPanelMemo,
   argTypes: {
     backgroundColor: { control: 'color' },
     ability: {
@@ -20,8 +20,8 @@ export default {
       defaultValue: mockUnits[0].abilities[0].name
     }
   }
-} as ComponentMeta<typeof AbilityPanel>;
+} as ComponentMeta<typeof AbilityPanelMemo>;
 
-const Template: ComponentStory<typeof AbilityPanel> = (args) => <AbilityPanel {...args} />;
+const Template: ComponentStory<typeof AbilityPanelMemo> = (args) => <AbilityPanelMemo {...args} />;
 
 export const Primary = Template.bind({});

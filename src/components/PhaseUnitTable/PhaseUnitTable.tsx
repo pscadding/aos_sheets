@@ -1,5 +1,5 @@
+import { memo } from 'react';
 import { Phase, PhaseStrings, PhaseType } from '../../models/Phase';
-import { getEnumKeys } from '../../utils/enum';
 import { Unit } from '../../models/Unit';
 import { Ability } from '../../models/Ability';
 import { HeaderBackground, Table, SubHeader } from './PhaseUnitTableStyles';
@@ -53,3 +53,5 @@ export const PhaseUnitTable = ({ units, abilities, ...props }: PhaseUnitTablePro
     </Table>
   );
 };
+
+export const PhaseUnitTableMemo = memo(PhaseUnitTable);

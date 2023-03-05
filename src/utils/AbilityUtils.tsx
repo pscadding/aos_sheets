@@ -4,6 +4,8 @@ import { Profile } from '../models/Profile';
 import { Unit } from '../models/Unit';
 import { unitsHaveKeyword } from './UnitUtils';
 
+const lowerCase = (str: string): string => str.toLowerCase();
+
 /**
  * Attaches abilities with the passed keyword to the unit if it has the keyword
  * @param keyword
@@ -11,14 +13,14 @@ import { unitsHaveKeyword } from './UnitUtils';
  * @param abilities
  */
 export const attachByKeyword = (keyword: string, unit: Unit, abilities: Ability[]): void => {
-  const lowerKeyword = keyword.toLowerCase();
-  const unitKeywords = lowerCaseArray(unit.keywords);
+  const lowerKeyword = lowerCase(keyword);
+  const unitKeywords = unit.keywords.map(lowerCase);
   // The unit doesn't have the keyword so don't bother checking the abilities.
   if (!unitKeywords.includes(lowerKeyword)) return;
 
   // Gather an array of abilities that attach with the passed keyword
   const filteredAbilities = abilities.filter(
-    (ability) => ability.attachKeyword && ability.attachKeyword.toLowerCase() === lowerKeyword
+    (ability) => ability.attachKeyword && lowerCase(ability.attachKeyword) === lowerKeyword
   );
 
   // Only add the abilities if they haven't already been added.
@@ -39,16 +41,14 @@ export const attachByProfileUnit = (
   Object.keys(profile.unitNames).forEach((profileUnitName) => {
     const profileUnitAbilities = profile.unitNames[profileUnitName].abilityNames;
     if (profileUnitAbilities != null && profileUnitAbilities.length) {
-      const unit = units.find((unit) => unit.name.toLowerCase() === profileUnitName.toLowerCase());
+      const unit = units.find((unit) => lowerCase(unit.name) === lowerCase(profileUnitName));
 
       if (unit != null) {
         const abilitiesToAdd = profileUnitAbilities
           .map((abilityName) => {
-            return abilities.find(
-              (ability) => ability.name.toLowerCase() === abilityName.toLowerCase()
-            );
+            return abilities.find((ability) => lowerCase(ability.name) === lowerCase(abilityName));
           })
-          .filter((ability) => ability != null) as Ability[];
+          .filter(Boolean) as Ability[];
 
         addAbilitiesToUnit(unit, abilitiesToAdd);
       }
@@ -110,6 +110,6 @@ export function lowerCaseArray(items: string[]): string[] {
 }
 
 function addAbilitiesToUnit(unit: Unit, abilities: Ability[]): void {
-  const filteredAbs = abilities.filter((item) => unit.abilities.indexOf(item) < 0);
+  const filteredAbs = abilities.filter((item) => !unit.abilities.includes(item));
   unit.abilities = unit.abilities.concat(filteredAbs);
 }
