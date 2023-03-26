@@ -1,4 +1,5 @@
 export enum Phase {
+  BattleStart = 'BattleStart',
   Hero = 'Hero',
   Movement = 'Movement',
   Shooting = 'Shooting',
@@ -6,8 +7,7 @@ export enum Phase {
   Combat = 'Combat',
   Battleshock = 'Battleshock',
   Any = 'Any',
-  NA = 'NA',
-  BattleStart = 'BattleStart'
+  NA = 'NA'
 }
 
 export type PhaseStrings = keyof typeof Phase;
