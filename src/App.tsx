@@ -1,6 +1,8 @@
 import { Outlet } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { PickArmyProfilePage } from './components/Pages/PickArmyProfilePage/PickArmyProfilePage';
+import { Header } from './app_components/pages/Header/HeaderPage';
+import { ThinBackend } from 'thin-backend-react';
+import { logout } from 'thin-backend';
 
 export default function App() {
   let navigate = useNavigate();
@@ -11,8 +13,12 @@ export default function App() {
 
   return (
     <div>
-      <PickArmyProfilePage onLoadProfile={onLoadProfile} />
-      <Outlet />
+      <ThinBackend requireLogin>
+        <Header onLoadProfile={onLoadProfile} onLogout={logout} />
+        <Outlet />
+      </ThinBackend>
     </div>
   );
 }
+
+// This needs to be run before any calls to `query`, `createRecord`, etc.

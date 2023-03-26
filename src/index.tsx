@@ -5,6 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ArmyProfileSummary from './routes/ArmyProfileSummary';
+import { initThinBackend } from 'thin-backend';
+
+initThinBackend({ host: 'https://aos.thinbackend.app' });
 
 ReactDOM.render(
   <BrowserRouter>

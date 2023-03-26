@@ -3,11 +3,11 @@ import { useReactToPrint } from 'react-to-print';
 import { Unit } from '../../../models/Unit';
 import styled from 'styled-components';
 import { AppStyle } from '../../../styles/style';
-import { Container, direction } from '../../Container/Container';
-import { UnitContainerMemo } from '../../UnitContainer/UnitContainer';
-import { PhaseUnitTableMemo } from '../../PhaseUnitTable/PhaseUnitTable';
+import { Container, direction } from '../../../components/Container/Container';
+import { UnitContainerMemo } from '../../../components/UnitContainer/UnitContainer';
+import { PhaseUnitTableMemo } from '../../../components/PhaseUnitTable/PhaseUnitTable';
 import { Ability } from '../../../models/Ability';
-import { AbilityContainerMemo } from '../../AbilityContainer/AbilityContainer';
+import { AbilityContainerMemo } from '../../../components/AbilityContainer/AbilityContainer';
 import {
   loadBattleTraits,
   loadEnhancements,

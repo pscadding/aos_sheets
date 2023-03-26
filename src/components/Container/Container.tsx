@@ -12,6 +12,7 @@ interface ContainerStyleProps {
   columns?: number;
   columnGap?: string;
   alignItems?: 'center' | 'stretch' | 'baseline';
+  justifyContent?: 'center' | 'space-between' | 'unset';
 }
 
 interface ContainerProps extends ContainerStyleProps {
@@ -24,6 +25,7 @@ const ContainerStyle = styled.div`
     display: flex;
     flex-direction: ${props.direction === direction.vertical ? 'column' : 'row'};
     align-items: ${props.alignItems ? props.alignItems : 'stretch'};
+    justify-content: ${props.justifyContent ? props.justifyContent : 'unset'};
     `;
 
     if (props.columns != null) {
@@ -54,6 +56,7 @@ export const Container = ({
   columns,
   columnGap,
   alignItems,
+  justifyContent,
   ...props
 }: ContainerProps) => {
   return (
@@ -63,7 +66,8 @@ export const Container = ({
       direction={direction}
       columns={columns}
       columnGap={columnGap}
-      alignItems={alignItems}>
+      alignItems={alignItems}
+      justifyContent={justifyContent}>
       {props.children}
     </ContainerStyle>
   );

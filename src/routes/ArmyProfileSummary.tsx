@@ -1,4 +1,4 @@
-import { ArmySummaryPageMemo } from '../components/Pages/ArmySummaryPage/ArmySummaryPage';
+import { ArmySummaryPageMemo } from '../app_components/pages/ArmySummaryPage/ArmySummaryPage';
 import { useParams } from 'react-router-dom';
 
 export default function ArmyProfileSummary() {
