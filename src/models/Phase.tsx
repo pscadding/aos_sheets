@@ -1,4 +1,5 @@
 export enum Phase {
+  BattleStart = 'BattleStart',
   Hero = 'Hero',
   Movement = 'Movement',
   Shooting = 'Shooting',

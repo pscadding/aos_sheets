@@ -57,6 +57,7 @@ export const seraphonGeneralAbilities: Ability[] = [
   {
     name: 'Incandescent Rectrices',
     type: AbilityType.Ability,
+    enhancement: true,
     phaseRules: [
       { type: PhaseType.UsedIn, phases: [Phase.Any], turns: [Turn.Yours, Turn.Opponents] }
     ],
@@ -67,6 +68,7 @@ export const seraphonGeneralAbilities: Ability[] = [
   {
     name: 'Tide of Serpents',
     type: AbilityType.Spell,
+    enhancement: true,
     phaseRules: [{ type: PhaseType.UsedIn, phases: [Phase.Hero], turns: [Turn.Yours] }],
     tags: ['Seraphon', 'Skink'],
     description:
