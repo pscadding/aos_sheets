@@ -32,7 +32,6 @@ export const ProfilePicker = ({
 
   useEffect(() => {
     if (onArmySelected != null) {
-      console.log('emitting name', armyProfileNames, armyProfileNames[0]);
       onArmySelected(armyProfileNames[0]);
     }
   }, [armyProfileNames, onArmySelected]);

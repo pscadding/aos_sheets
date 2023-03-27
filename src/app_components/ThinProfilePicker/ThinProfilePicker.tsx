@@ -8,19 +8,14 @@ import { ProfilePicker } from '../../components/ProfilePicker/ProfilePicker';
  */
 export const ThinProfilePicker = ({ ...props }) => {
   const [profileNames, setProfileNames] = useState<string[]>([]);
-
   const armyProfiles = useQuery(query('army_profiles').orderByDesc('createdAt'));
 
-  if (armyProfiles != null) {
-    const newValues = armyProfiles.map((p) => p.name);
-    setProfileNames((prevState) => {
-      if (newValues === prevState) {
-        return prevState;
-      } else {
-        return newValues;
-      }
-    });
-  }
+  useEffect(() => {
+    if (armyProfiles != null) {
+      const newValues = armyProfiles.map((p) => p.name);
+      setProfileNames(newValues);
+    }
+  }, [armyProfiles]);
 
   return <ProfilePicker armyProfileNames={profileNames} {...props} />;
 };
