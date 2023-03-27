@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
 import styled from 'styled-components';
 import { AppStyle } from '../../styles/style';
+import { useEffect } from 'react';
 
 interface ProfilePickerProps {
   armyProfileNames: string[];
@@ -32,13 +32,15 @@ export const ProfilePicker = ({
 
   useEffect(() => {
     if (onArmySelected != null) {
+      console.log('emitting name', armyProfileNames, armyProfileNames[0]);
       onArmySelected(armyProfileNames[0]);
     }
-  }, [armyProfileNames]);
+  }, [armyProfileNames, onArmySelected]);
 
   return (
     <SelectBox
       id="profiles"
+      defaultValue={armyProfileNames[0]}
       onChange={(event) => {
         onArmySelected ? onArmySelected(event.target.value) : null;
       }}>

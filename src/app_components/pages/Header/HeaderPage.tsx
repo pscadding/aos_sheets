@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { AppStyle } from '../../../styles/style';
+import { useState } from 'react';
 import { Container, direction } from '../../../components/Container/Container';
 import { ThinUserProfile } from '../../ThinUserProfile/ThinUserProfile';
 import { ThinProfilePicker } from '../../ThinProfilePicker/ThinProfilePicker';
@@ -25,7 +26,7 @@ const FormWrapper = styled.div`
 `;
 
 export const Header = ({ onLoadProfile, onLogout, ...props }: HeaderProps) => {
-  const selectedProfile = '';
+  const [selectedProfile, setSelectedProfile] = useState<string>('');
 
   return (
     <PageWrapper>
@@ -38,7 +39,7 @@ export const Header = ({ onLoadProfile, onLogout, ...props }: HeaderProps) => {
           <div />
           <Container direction={direction.horizontal} spacing="1em" alignItems={'center'}>
             <Title>Choose Army Profile</Title>
-            <ThinProfilePicker />
+            <ThinProfilePicker onArmySelected={setSelectedProfile} />
             <button
               onClick={() => {
                 if (onLoadProfile) onLoadProfile(selectedProfile);
