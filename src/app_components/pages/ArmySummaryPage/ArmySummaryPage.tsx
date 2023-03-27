@@ -22,9 +22,11 @@ import {
   filterAbilitiesByUnitKeyword,
   sortAbilities
 } from '../../../utils/AbilityUtils';
+import { useQuery, useQuerySingleResult } from 'thin-backend-react';
+import { ArmyProfile, query, UnitConfiguration } from 'thin-backend';
 
 interface ArmySummaryPageProps {
-  profileName: string;
+  profileId: string;
 }
 
 const Button = styled.button`
@@ -53,11 +55,37 @@ const ArmyName = styled(Title)`
 `;
 
 function loadData(
-  profileName: string,
+  profileId: string,
+  setProfile: (p: ArmyProfile) => void,
   setUnits: (u: Unit[]) => void,
   setArmyAbilities: (a: Ability[]) => void
 ) {
-  loadProfile(profileName).then((profile: Profile) => {
+  query('army_profiles')
+    .where('id', profileId)
+    .fetchOne()
+    .then((profile: ArmyProfile) => {
+      console.log(profile);
+    });
+
+  query('unit_configurations')
+    .where('armyProfileId', profileId)
+    .fetch()
+    .then((unitConfigs: UnitConfiguration[]) => {
+      const unitIds = unitConfigs.map((uConfig) => uConfig.unitId);
+      query('units')
+        .whereIn('id', unitIds)
+        .fetch()
+        .then((units) => {
+          console.log(units);
+        });
+    });
+
+  // console.log('profile', profile);
+  // const unitConfigurations = useQuery(
+  //   query('unit_configurations').filterWhere('armyProfileId', profileId).limit(1)
+  // );
+
+  loadProfile(profileId).then((profile: Profile) => {
     if (profile) {
       loadUnits(profile).then((units: Unit[]) => {
         loadEnhancements().then((enhancements: Ability[]) => {
@@ -93,7 +121,8 @@ function loadData(
 /**
  * Primary UI component for user interaction
  */
-export const ArmySummaryPage = ({ profileName, ...props }: ArmySummaryPageProps) => {
+export const ArmySummaryPage = ({ profileId, ...props }: ArmySummaryPageProps) => {
+  const [profile, setProfile] = useState<ArmyProfile>();
   const [units, setUnits] = useState<Unit[]>([]);
   const [armyAbilities, setArmyAbilities] = useState<Ability[]>([]);
   const componentRef = useRef(null);
@@ -106,8 +135,8 @@ export const ArmySummaryPage = ({ profileName, ...props }: ArmySummaryPageProps)
     setUnits([]);
     setArmyAbilities([]);
     // Load the profile, then load the units for the profile, and store them in state.
-    loadData(profileName, setUnits, setArmyAbilities);
-  }, [profileName]);
+    loadData(profileId, setProfile, setUnits, setArmyAbilities);
+  }, [profileId]);
 
   const unitComponents = units.map((unit, index) => (
     <UnitWrapper key={index}>
@@ -123,7 +152,7 @@ export const ArmySummaryPage = ({ profileName, ...props }: ArmySummaryPageProps)
       <div style={{ margin: '3em' }}>
         <div ref={componentRef}>
           <PageWrapper>
-            <ArmyName>{profileName}</ArmyName>
+            <ArmyName>{profile ? profile.name : ''}</ArmyName>
             <Title>Units With Abilities By Phases</Title>
             <PhaseUnitTableMemo units={units} abilities={armyAbilities}></PhaseUnitTableMemo>
             <Title>Battle Traits</Title>

@@ -18,5 +18,9 @@ const Template: ComponentStory<typeof ProfilePicker> = (args) => (
 export const Primary = Template.bind({});
 
 Primary.args = {
-  armyProfileNames: ['Seraphon 2000pt', 'Slaves to Darkness 1000pt', 'Orruk Big Yellers 1000pt']
+  armyProfiles: [
+    { name: 'Seraphon 2000pt', id: '1234', createdAt: 'blah' },
+    { name: 'Slaves to Darkness 1000pt', id: '12345', createdAt: 'blah' },
+    { name: 'Orruk Big Yellers 1000pt', id: '12345', createdAt: 'blah' }
+  ]
 };

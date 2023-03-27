@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, memo } from 'react';
-import { query } from 'thin-backend';
+import { ArmyProfile, query } from 'thin-backend';
 import { useQuery } from 'thin-backend-react';
 import { ProfilePicker } from '../../components/ProfilePicker/ProfilePicker';
 
@@ -7,15 +7,14 @@ import { ProfilePicker } from '../../components/ProfilePicker/ProfilePicker';
  * Army profiles selector populated by data from to the Thin backend
  */
 export const ThinProfilePicker = ({ ...props }) => {
-  const [profileNames, setProfileNames] = useState<string[]>([]);
+  const [profileNames, setProfileNames] = useState<ArmyProfile[]>([]);
   const armyProfiles = useQuery(query('army_profiles').orderByDesc('createdAt'));
 
   useEffect(() => {
     if (armyProfiles != null) {
-      const newValues = armyProfiles.map((p) => p.name);
-      setProfileNames(newValues);
+      setProfileNames(armyProfiles);
     }
   }, [armyProfiles]);
 
-  return <ProfilePicker armyProfileNames={profileNames} {...props} />;
+  return <ProfilePicker armyProfiles={profileNames} {...props} />;
 };
