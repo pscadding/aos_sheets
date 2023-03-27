@@ -11,6 +11,8 @@ export enum UnitType {
   Other = 'Other'
 }
 
+export type UnitTypeStrings = keyof typeof UnitType;
+
 export interface Unit {
   name: string;
   subName?: string;

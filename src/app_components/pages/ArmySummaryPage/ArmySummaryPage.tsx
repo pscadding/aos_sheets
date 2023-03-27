@@ -24,6 +24,7 @@ import {
 } from '../../../utils/AbilityUtils';
 import { useQuery, useQuerySingleResult } from 'thin-backend-react';
 import { ArmyProfile, query, UnitConfiguration } from 'thin-backend';
+import { unitParser } from '../../../parsers/UnitParser';
 
 interface ArmySummaryPageProps {
   profileId: string;
@@ -75,7 +76,8 @@ function loadData(
       query('units')
         .whereIn('id', unitIds)
         .fetch()
-        .then((units) => {
+        .then((thinUnits) => {
+          const units = thinUnits.map((unit) => unitParser(unit));
           console.log(units);
         });
     });
