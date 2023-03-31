@@ -3,8 +3,6 @@ import { units } from '../data/units/units';
 import { battleTraits, enhancements } from '../data/abilities/abilities';
 import { Unit } from '../models/Unit';
 import { Ability } from '../models/Ability';
-import { query } from 'thin-backend';
-import { profileParser } from '../parsers/ProfileParser';
 
 export function loadUnits(profile: Profile): Promise<Unit[]> {
   return new Promise((resolve) => {
@@ -32,12 +30,19 @@ export function loadEnhancements(): Promise<Ability[]> {
   });
 }
 
-export function loadProfiles() {
-  return query('army_profiles')
-    .orderByDesc('createdAt')
-    .fetch()
-    .then((profiles) => {
-      return profiles.map((profile) => profileParser(profile));
+export function loadProfiles(): Promise<{ [key: string]: Profile }> {
+  return fetch('/data/profiles.json')
+    .then((r) => r.json())
+    .then((data: { [key: string]: Profile }) => {
+      return data;
+    });
+}
+
+export function loadProfile(profileName: string): Promise<Profile> {
+  return fetch('/data/profiles.json')
+    .then((r) => r.json())
+    .then((data: { [key: string]: Profile }) => {
+      return data[profileName];
     });
 }
 

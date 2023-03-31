@@ -19,8 +19,20 @@ export const Primary = Template.bind({});
 
 Primary.args = {
   armyProfiles: [
-    { name: 'Seraphon 2000pt', id: '1234', createdAt: 'blah' },
-    { name: 'Slaves to Darkness 1000pt', id: '12345', createdAt: 'blah' },
-    { name: 'Orruk Big Yellers 1000pt', id: '12345', createdAt: 'blah' }
+    { name: 'Seraphon 2000pt', id: '1234', unitNames: {}, armyAbilities: [], battleTraitTypes: [] },
+    {
+      name: 'Slaves to Darkness 1000pt',
+      id: '12345',
+      unitNames: {},
+      armyAbilities: [],
+      battleTraitTypes: []
+    },
+    {
+      name: 'Orruk Big Yellers 1000pt',
+      id: '12345',
+      unitNames: {},
+      armyAbilities: [],
+      battleTraitTypes: []
+    }
   ]
 };

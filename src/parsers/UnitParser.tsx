@@ -1,15 +1,17 @@
 import { Unit } from '../models/Unit';
-import { Unit as thinUnit } from 'thin-backend';
+import { Unit as ThinUnit } from 'thin-backend';
 import { UnitType, UnitTypeStrings } from '../models/Unit';
-import { snakeToPascal } from '../utils/string_utils';
+import { removeQuotesArray, snakeToPascal } from '../utils/string_utils';
+import { Weapon } from '../models/Weapon';
+import { Ability } from '../models/Ability';
 
-export function unitParser(unit: thinUnit): Unit {
+export function unitParser(unit: ThinUnit, weapons: Weapon[], abilities: Ability[]): Unit {
   const unitTypeString = snakeToPascal(unit.uType) as UnitTypeStrings;
 
   return {
     name: unit.name,
     subName: unit.subName,
-    keywords: unit.keywords,
+    keywords: removeQuotesArray(unit.keywords),
     type: UnitType[unitTypeString],
     stats: {
       wounds: unit.wounds,
@@ -17,7 +19,7 @@ export function unitParser(unit: thinUnit): Unit {
       save: unit.save,
       move: unit.move
     },
-    weapons: [],
-    abilities: []
+    weapons: weapons,
+    abilities: abilities
   };
 }

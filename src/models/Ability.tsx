@@ -10,6 +10,8 @@ export enum AbilityType {
   DamageTable = 'Damage Table'
 }
 
+export type AbilityTypeStrings = keyof typeof AbilityType;
+
 export interface Ability {
   name: string;
   type: AbilityType;

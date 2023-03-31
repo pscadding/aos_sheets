@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import { AppStyle } from '../../../styles/style';
-import { useState } from 'react';
+import { useState, ChangeEvent, MouseEvent, useRef } from 'react';
 import { Container, direction } from '../../../components/Container/Container';
 import { ThinUserProfile } from '../../ThinUserProfile/ThinUserProfile';
-import { ThinProfilePicker } from '../../ThinProfilePicker/ThinProfilePicker';
+import { ConnectedProfilePicker } from '../../ConnectedProfilePicker/ConnectedProfilePicker';
+import { importJsonToThin } from '../../../utils/thin/thin_import';
 
 interface HeaderProps {
   onLoadProfile: (profileName: string) => void;
@@ -27,6 +28,31 @@ const FormWrapper = styled.div`
 
 export const Header = ({ onLoadProfile, onLogout, ...props }: HeaderProps) => {
   const [selectedProfile, setSelectedProfile] = useState<string>('');
+  const hiddenFileInput = useRef<HTMLInputElement>(null);
+
+  const handleClick = (_: MouseEvent<HTMLButtonElement>) => {
+    if (hiddenFileInput.current != null) {
+      hiddenFileInput.current.click();
+    }
+  };
+
+  const fileSelectedHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target == null || e.target.files == null) {
+      return;
+    }
+
+    var reader = new FileReader();
+
+    reader.onload = function (ev) {
+      var content = ev.target?.result;
+      const jsonData = JSON.parse(content as string);
+      importJsonToThin(jsonData);
+      e.target.value = '';
+    };
+
+    // TODO: loop over the files instead
+    reader.readAsText(e.target.files[0]);
+  };
 
   return (
     <PageWrapper>
@@ -36,10 +62,19 @@ export const Header = ({ onLoadProfile, onLogout, ...props }: HeaderProps) => {
           spacing="1em"
           justifyContent={'space-between'}
           alignItems={'center'}>
-          <div />
+          <button onClick={handleClick}>Import</button>
+          <input
+            id="filePicker"
+            style={{ visibility: 'hidden' }}
+            accept=".json"
+            ref={hiddenFileInput}
+            type="file"
+            onChange={fileSelectedHandler}
+          />
+
           <Container direction={direction.horizontal} spacing="1em" alignItems={'center'}>
             <Title>Choose Army Profile</Title>
-            <ThinProfilePicker onArmySelected={setSelectedProfile} />
+            <ConnectedProfilePicker onArmySelected={setSelectedProfile} />
             <button
               onClick={() => {
                 if (onLoadProfile) onLoadProfile(selectedProfile);

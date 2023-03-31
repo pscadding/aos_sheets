@@ -1,3 +1,5 @@
+import { WeaponType } from './Weapon';
+
 export enum Phase {
   BattleStart = 'BattleStart',
   Hero = 'Hero',
@@ -13,14 +15,17 @@ export enum Phase {
 export type PhaseStrings = keyof typeof Phase;
 
 export enum PhaseType {
-  Affects,
-  UsedIn
+  Affects = 'Affects',
+  UsedIn = 'Used In'
 }
+export type PhaseTypeStrings = keyof typeof PhaseType;
 
 export enum Turn {
-  Yours,
-  Opponents
+  Yours = 'Yours',
+  Opponents = 'Opponents'
 }
+
+export type TurnStrings = keyof typeof Turn;
 
 export interface PhaseRule {
   type: PhaseType;

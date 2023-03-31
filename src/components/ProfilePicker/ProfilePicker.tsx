@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { AppStyle } from '../../styles/style';
 import { useEffect } from 'react';
-import { ArmyProfile } from 'thin-backend';
+import { Profile } from '../../models/Profile';
 
 interface ProfilePickerProps {
-  armyProfiles: ArmyProfile[];
+  armyProfiles: Profile[];
   onArmySelected?: (armyId: string) => void;
 }
 
@@ -23,7 +23,7 @@ const OptionWrapper = styled.option`
  * Primary UI component for user interaction
  */
 export const ProfilePicker = ({ armyProfiles, onArmySelected, ...props }: ProfilePickerProps) => {
-  const armyProfileComponents = armyProfiles.map((profile: ArmyProfile, index) => (
+  const armyProfileComponents = armyProfiles.map((profile: Profile, index) => (
     <OptionWrapper key={index} value={profile.id}>
       {profile.name}
     </OptionWrapper>

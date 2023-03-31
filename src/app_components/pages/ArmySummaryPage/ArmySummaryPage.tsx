@@ -8,12 +8,7 @@ import { UnitContainerMemo } from '../../../components/UnitContainer/UnitContain
 import { PhaseUnitTableMemo } from '../../../components/PhaseUnitTable/PhaseUnitTable';
 import { Ability } from '../../../models/Ability';
 import { AbilityContainerMemo } from '../../../components/AbilityContainer/AbilityContainer';
-import {
-  loadBattleTraits,
-  loadEnhancements,
-  loadProfile,
-  loadUnits
-} from '../../../utils/DataLoader';
+import { loadProfile as thinLoadProfile, loadProfileUnits } from '../../../utils/thin/thin_load';
 import { Profile } from '../../../models/Profile';
 import {
   attachByKeyword,
@@ -61,63 +56,48 @@ function loadData(
   setUnits: (u: Unit[]) => void,
   setArmyAbilities: (a: Ability[]) => void
 ) {
-  query('army_profiles')
-    .where('id', profileId)
-    .fetchOne()
-    .then((profile: ArmyProfile) => {
-      console.log(profile);
-    });
-
-  query('unit_configurations')
-    .where('armyProfileId', profileId)
-    .fetch()
-    .then((unitConfigs: UnitConfiguration[]) => {
-      const unitIds = unitConfigs.map((uConfig) => uConfig.unitId);
-      query('units')
-        .whereIn('id', unitIds)
-        .fetch()
-        .then((thinUnits) => {
-          const units = thinUnits.map((unit) => unitParser(unit));
-          console.log(units);
-        });
-    });
-
+  // thinLoadProfile(profileId).then(() => {});
+  console.log('her');
+  loadProfileUnits(profileId).then((units: Unit[]) => {
+    console.log('units', units);
+    setUnits(units);
+  });
   // console.log('profile', profile);
   // const unitConfigurations = useQuery(
   //   query('unit_configurations').filterWhere('armyProfileId', profileId).limit(1)
   // );
 
-  loadProfile(profileId).then((profile: Profile) => {
-    if (profile) {
-      loadUnits(profile).then((units: Unit[]) => {
-        loadEnhancements().then((enhancements: Ability[]) => {
-          // Attach any enhancement abilities to the units if defined in the profile
-          attachByProfileUnit(profile, units, enhancements);
-
-          const armyEnhancements = filterAbilitiesByNames(enhancements, profile.armyAbilities);
-
-          units.forEach((unit) => {
-            // Add common spells to all wizards
-            attachByKeyword('wizard', unit, enhancements);
-            // Filter out any unit abilities that affect units that aren't in the army
-            const unitAbilities = filterAbilitiesByUnitKeyword(unit.abilities, units);
-            sortAbilities(unitAbilities);
-            unit.abilities = unitAbilities;
-          });
-
-          loadBattleTraits(profile).then((battleTraits: Ability[]) => {
-            // Filter out any abilities that affect units that aren't in the army
-            battleTraits = filterAbilitiesByUnitKeyword(battleTraits, units);
-
-            const armyAbilities = [...armyEnhancements, ...battleTraits];
-            sortAbilities(armyAbilities);
-            setArmyAbilities(armyAbilities);
-          });
-          setUnits(units);
-        });
-      });
-    }
-  });
+  // loadProfile('Orruk').then((profile: Profile) => {
+  //   if (profile) {
+  //     loadUnits(profile).then((units: Unit[]) => {
+  //       loadEnhancements().then((enhancements: Ability[]) => {
+  //         // Attach any enhancement abilities to the units if defined in the profile
+  //         attachByProfileUnit(profile, units, enhancements);
+  //
+  //         const armyEnhancements = filterAbilitiesByNames(enhancements, profile.armyAbilities);
+  //
+  //         units.forEach((unit) => {
+  //           // Add common spells to all wizards
+  //           attachByKeyword('wizard', unit, enhancements);
+  //           // Filter out any unit abilities that affect units that aren't in the army
+  //           const unitAbilities = filterAbilitiesByUnitKeyword(unit.abilities, units);
+  //           sortAbilities(unitAbilities);
+  //           unit.abilities = unitAbilities;
+  //         });
+  //
+  //         loadBattleTraits(profile).then((battleTraits: Ability[]) => {
+  //           // Filter out any abilities that affect units that aren't in the army
+  //           battleTraits = filterAbilitiesByUnitKeyword(battleTraits, units);
+  //
+  //           const armyAbilities = [...armyEnhancements, ...battleTraits];
+  //           sortAbilities(armyAbilities);
+  //           setArmyAbilities(armyAbilities);
+  //         });
+  //         setUnits(units);
+  //       });
+  //     });
+  //   }
+  // });
 }
 
 /**
