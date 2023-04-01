@@ -1,10 +1,10 @@
 import { Profile } from '../models/Profile';
 import { units } from '../data/units/units';
-import { battleTraits, enhancements } from '../data/abilities/abilities';
+import { enhancements } from '../data/abilities/abilities';
 import { Unit } from '../models/Unit';
 import { Ability } from '../models/Ability';
-import { query } from 'thin-backend';
-import { profileParser } from '../parsers/ProfileParser';
+import { ThinLoad } from './thin/thinLoad';
+import { lowerCaseArray } from './string_utils';
 
 export function loadUnits(profile: Profile): Promise<Unit[]> {
   return new Promise((resolve) => {
@@ -18,12 +18,7 @@ export function loadUnits(profile: Profile): Promise<Unit[]> {
 }
 
 export function loadBattleTraits(profile: Profile): Promise<Ability[]> {
-  return new Promise((resolve) => {
-    const profileAbilities = profile.battleTraitTypes
-      .map((battleTraitType) => battleTraits[battleTraitType])
-      .flat(1);
-    resolve(profileAbilities);
-  });
+  return ThinLoad.loadProfileBattleTraits(profile);
 }
 
 export function loadEnhancements(): Promise<Ability[]> {
@@ -33,14 +28,13 @@ export function loadEnhancements(): Promise<Ability[]> {
 }
 
 export function loadProfiles() {
-  return query('army_profiles')
-    .orderByDesc('createdAt')
-    .fetch()
-    .then((profiles) => {
-      return profiles.map((profile) => profileParser(profile));
-    });
+  return ThinLoad.loadProfiles();
 }
 
-export function lowerCaseArray(items: string[]): string[] {
-  return items.map((item) => item.toLowerCase());
+export function loadProfile(profileId: string) {
+  return ThinLoad.loadProfile(profileId);
+}
+
+export function loadProfileUnits(profileId: string) {
+  return ThinLoad.loadProfileUnits(profileId);
 }

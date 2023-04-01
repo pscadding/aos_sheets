@@ -8,7 +8,7 @@ import { UnitContainerMemo } from '../../../components/UnitContainer/UnitContain
 import { PhaseUnitTableMemo } from '../../../components/PhaseUnitTable/PhaseUnitTable';
 import { Ability } from '../../../models/Ability';
 import { AbilityContainerMemo } from '../../../components/AbilityContainer/AbilityContainer';
-import { loadProfile as thinLoadProfile, loadProfileUnits } from '../../../utils/thin/thin_load';
+import { loadBattleTraits, loadProfile, loadProfileUnits } from '../../../utils/DataLoader';
 import { Profile } from '../../../models/Profile';
 import {
   attachByKeyword,
@@ -56,12 +56,17 @@ function loadData(
   setUnits: (u: Unit[]) => void,
   setArmyAbilities: (a: Ability[]) => void
 ) {
-  // thinLoadProfile(profileId).then(() => {});
-  console.log('her');
   loadProfileUnits(profileId).then((units: Unit[]) => {
     console.log('units', units);
     setUnits(units);
   });
+
+  loadProfile(profileId).then((profile) => {
+    loadBattleTraits(profile).then((abilities) => {
+      setArmyAbilities(abilities);
+    });
+  });
+
   // console.log('profile', profile);
   // const unitConfigurations = useQuery(
   //   query('unit_configurations').filterWhere('armyProfileId', profileId).limit(1)

@@ -1,8 +1,8 @@
 import { Ability } from './Ability';
 
 export interface ImportData {
-  type: 'unit' | 'ability';
-  content: UnitData | AbilityData;
+  type: 'unit' | 'ability' | 'profile';
+  content: UnitData | AbilityData | ProfileData;
 }
 
 export interface WeaponData {
@@ -40,4 +40,15 @@ export interface UnitData {
   weapons: WeaponData[];
   keywords: string[];
   abilities: AbilityData[];
+}
+
+export interface ProfileData {
+  name: string;
+  unitNames: {
+    [key: string]: {
+      abilityNames: string[];
+    };
+  };
+  battleTraitTypes: string[];
+  armyAbilities: string[];
 }

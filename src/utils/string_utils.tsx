@@ -7,10 +7,21 @@ export function snakeToPascal(s: string) {
   return sections.map((sec) => _upperFirst(sec)).join('');
 }
 
+export function toSnakeCase(s: string) {
+  return s.toLowerCase().replace(' ', '_');
+}
+
 export function removeQuotes(s: string) {
   return s.replace(/['"]+/g, '');
 }
 
 export function removeQuotesArray(s: string[]) {
   return s.map((i) => removeQuotes(i));
+}
+
+export function lowerCaseArray(items: string[]): string[] {
+  return items.map((item) => item.toLowerCase());
+}
+export function removeQuotesFromArray(a: string[]): string[] {
+  return a.map((s) => removeQuotes(s));
 }

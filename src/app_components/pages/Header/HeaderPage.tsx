@@ -4,7 +4,9 @@ import { useState, ChangeEvent, MouseEvent, useRef } from 'react';
 import { Container, direction } from '../../../components/Container/Container';
 import { ThinUserProfile } from '../../ThinUserProfile/ThinUserProfile';
 import { ConnectedProfilePicker } from '../../ConnectedProfilePicker/ConnectedProfilePicker';
-import { importJsonToThin } from '../../../utils/thin/thin_import';
+import { importJson } from '../../../utils/DataImporter';
+import { battleTraits, enhancements } from '../../../data/abilities/abilities';
+import { units } from '../../../data/units/units';
 
 interface HeaderProps {
   onLoadProfile: (profileName: string) => void;
@@ -30,6 +32,8 @@ export const Header = ({ onLoadProfile, onLogout, ...props }: HeaderProps) => {
   const [selectedProfile, setSelectedProfile] = useState<string>('');
   const hiddenFileInput = useRef<HTMLInputElement>(null);
 
+  // console.log(JSON.stringify(battleTraits));
+
   const handleClick = (_: MouseEvent<HTMLButtonElement>) => {
     if (hiddenFileInput.current != null) {
       hiddenFileInput.current.click();
@@ -41,12 +45,12 @@ export const Header = ({ onLoadProfile, onLogout, ...props }: HeaderProps) => {
       return;
     }
 
-    var reader = new FileReader();
+    const reader = new FileReader();
 
     reader.onload = function (ev) {
-      var content = ev.target?.result;
+      const content = ev.target?.result;
       const jsonData = JSON.parse(content as string);
-      importJsonToThin(jsonData);
+      importJson(jsonData);
       e.target.value = '';
     };
 

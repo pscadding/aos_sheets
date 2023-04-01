@@ -1,5 +1,7 @@
 import { UnitData, WeaponData } from '../../models/JsonModels';
 import { createRecord, deleteRecord, query, Unit, UnitType, WeaponType } from 'thin-backend';
+import { Weapon } from '../../models/Weapon';
+import { weaponParser } from '../../parsers/WeaponParser';
 
 export namespace WeaponController {
   // Creates multiple weapons and attaches them to the unit
@@ -29,6 +31,15 @@ export namespace WeaponController {
       .fetch()
       .then((weapons) => {
         return Promise.all(weapons.map((weapon) => deleteRecord('weapons', weapon.id)));
+      });
+  }
+
+  export function load(unitId: string): Promise<Weapon[]> {
+    return query('weapons')
+      .where('unitId', unitId)
+      .fetch()
+      .then((thinWeapons) => {
+        return thinWeapons.map((thinWeapon) => weaponParser(thinWeapon));
       });
   }
 }
