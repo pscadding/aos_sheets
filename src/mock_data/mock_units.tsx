@@ -5,6 +5,7 @@ import { WeaponType } from '../models/Weapon';
 
 export const mockUnits: Unit[] = [
   {
+    id: '',
     name: 'Swampcalla Shaman',
     subName: 'And Pot-Grot',
     type: UnitType.Leader,
@@ -87,6 +88,7 @@ export const mockUnits: Unit[] = [
     ]
   },
   {
+    id: '',
     name: 'Gutrippaz',
     type: UnitType.Battleline,
     stats: {
@@ -153,6 +155,7 @@ export const mockUnits: Unit[] = [
     ]
   },
   {
+    id: '',
     name: 'Breaka-Boss',
     subName: 'On Mirebrute Troggoth',
     type: UnitType.Leader,
@@ -219,6 +222,7 @@ export const mockUnits: Unit[] = [
     ]
   },
   {
+    id: '',
     name: 'Hobgrot Slittaz',
     type: UnitType.Other,
     stats: {
@@ -300,6 +304,7 @@ export const mockUnits: Unit[] = [
     ]
   },
   {
+    id: '',
     name: 'Saurus Oldblood on Carnosaur',
     type: UnitType.Leader,
     stats: {

@@ -1,6 +1,6 @@
 import { useState, useEffect, memo } from 'react';
 import { ProfilePicker } from '../../components/ProfilePicker/ProfilePicker';
-import { loadProfiles } from '../../utils/DataLoader';
+import { loadProfiles } from '../../data/DataLoader';
 import { Profile } from '../../models/Profile';
 
 /**

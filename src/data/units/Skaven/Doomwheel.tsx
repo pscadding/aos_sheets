@@ -4,6 +4,7 @@ import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
 export const doomwheel: Unit = {
+  id: '',
   name: 'Doomwheel',
   type: UnitType.Behemoth,
   stats: {

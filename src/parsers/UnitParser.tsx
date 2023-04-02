@@ -9,6 +9,7 @@ export function unitParser(unit: ThinUnit, weapons: Weapon[], abilities: Ability
   const unitTypeString = snakeToPascal(unit.uType) as UnitTypeStrings;
 
   return {
+    id: unit.id,
     name: unit.name,
     subName: unit.subName,
     keywords: removeQuotesArray(unit.keywords),

@@ -4,6 +4,7 @@ import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
 export const manSkewerBoltboyz: Unit = {
+  id: '',
   name: 'Man-skewer Boltboyz',
   type: UnitType.Battleline,
   stats: {

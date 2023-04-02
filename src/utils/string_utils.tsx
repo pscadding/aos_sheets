@@ -25,3 +25,8 @@ export function lowerCaseArray(items: string[]): string[] {
 export function removeQuotesFromArray(a: string[]): string[] {
   return a.map((s) => removeQuotes(s));
 }
+
+export function hasKeyword(sList: string[], s: string) {
+  const lowerSearchString = s.toLowerCase();
+  return sList.filter((str) => str.toLowerCase() === lowerSearchString).length > 0;
+}

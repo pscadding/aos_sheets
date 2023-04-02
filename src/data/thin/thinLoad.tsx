@@ -15,12 +15,6 @@ export namespace ThinLoad {
     return ProfileController.loadAll();
   };
 
-  export const loadProfileUnits = (profileId: string): Promise<Unit[]> => {
-    return loadUnitConfigurations(profileId).then((configurations) => {
-      return loadUnitsFromConfig(configurations);
-    });
-  };
-
   export const loadProfileBattleTraits = (profile: Profile): Promise<Ability[]> => {
     return Promise.all(
       profile.battleTraitTypes.map((battle) =>
@@ -28,13 +22,10 @@ export namespace ThinLoad {
       )
     ).then((abilityArrays) => abilityArrays.flat());
   };
+
+  export const loadProfileAbilities = (profile: Profile): Promise<Ability[]> => {
+    return Promise.all(
+      profile.armyAbilities.map((abilityName) => AbilityController.loadByName(abilityName))
+    );
+  };
 }
-
-const loadUnitConfigurations = (profileId: string) => {
-  return query('unit_configurations').where('armyProfileId', profileId).fetch();
-};
-
-const loadUnitsFromConfig = (unitConfigs: UnitConfiguration[]): Promise<Unit[]> => {
-  const unitIds = unitConfigs.map((uConfig) => uConfig.unitId);
-  return UnitController.loadFromIds(unitIds);
-};

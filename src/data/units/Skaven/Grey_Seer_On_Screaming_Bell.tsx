@@ -4,6 +4,7 @@ import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
 export const greySeerScreamingBell: Unit = {
+  id: '',
   name: 'Grey Seer On Screaming Bell',
   type: UnitType.Leader,
   stats: {

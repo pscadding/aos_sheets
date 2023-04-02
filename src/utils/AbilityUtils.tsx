@@ -27,35 +27,6 @@ export const attachByKeyword = (keyword: string, unit: Unit, abilities: Ability[
   addAbilitiesToUnit(unit, filteredAbilities);
 };
 
-/**
- * Attach abilities listed in the profile against each unit to the respective unit.
- * @param profile
- * @param units
- * @param abilities
- */
-export const attachByProfileUnit = (
-  profile: Profile,
-  units: Unit[],
-  abilities: Ability[]
-): void => {
-  Object.keys(profile.unitNames).forEach((profileUnitName) => {
-    const profileUnitAbilities = profile.unitNames[profileUnitName].abilityNames;
-    if (profileUnitAbilities != null && profileUnitAbilities.length) {
-      const unit = units.find((unit) => lowerCase(unit.name) === lowerCase(profileUnitName));
-
-      if (unit != null) {
-        const abilitiesToAdd = profileUnitAbilities
-          .map((abilityName) => {
-            return abilities.find((ability) => lowerCase(ability.name) === lowerCase(abilityName));
-          })
-          .filter(Boolean) as Ability[];
-
-        addAbilitiesToUnit(unit, abilitiesToAdd);
-      }
-    }
-  });
-};
-
 export const filterAbilitiesByNames = (abilities: Ability[], abilityNames: string[]): Ability[] => {
   const lowerAbilityNames = lowerCaseArray(abilityNames);
   return abilities.filter((ability) => lowerAbilityNames.includes(ability.name.toLowerCase()));
@@ -84,7 +55,7 @@ export const filterAbilitiesByUnitKeyword = (abilities: Ability[], units: Unit[]
 };
 
 export function sortAbilities(abilities: Ability[]): void {
-  abilities.sort((a, b) => (a.type < b.type ? 1 : a.name === b.name ? 1 : -1));
+  abilities.sort((a, b) => (a.type < b.type ? 1 : a.name > b.name ? 1 : -1));
 }
 
 /**

@@ -4,6 +4,7 @@ import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
 export const saurusOldbloodOnCarnosaur: Unit = {
+  id: '',
   name: 'Saurus Oldblood on Carnosaur',
   type: UnitType.Leader,
   stats: {

@@ -9,7 +9,7 @@ import {
   query,
   Turn
 } from 'thin-backend';
-import { removeQuotesFromArray, toSnakeCase } from '../string_utils';
+import { removeQuotesFromArray, toSnakeCase } from '../../utils/string_utils';
 import { abilityParser } from '../../parsers/AbilityParser';
 import { PhaseRule } from '../../models/Phase';
 import { phaseRuleParser } from '../../parsers/PhaseRuleParser';
@@ -94,6 +94,20 @@ export namespace AbilityController {
         return loadAbilities(filtered);
       });
   }
+
+  export function loadNonUnitAbilities(): Promise<Ability[]> {
+    return query('ability')
+      .where('unitId', null)
+      .fetch()
+      .then((abilities) => loadAbilities(abilities));
+  }
+
+  export function loadByName(name: string): Promise<Ability> {
+    return query('ability')
+      .where('name', name)
+      .fetchOne()
+      .then((thinAbility) => loadAbility(thinAbility));
+  }
 }
 
 function remove(abilityId: string) {
@@ -110,14 +124,19 @@ function removePhaseRules(abilityId: string) {
     });
 }
 
-async function loadAbilities(thinAbilities: ThinAbility[]) {
-  const abilities: Ability[] = [];
-  for (let i = 0; i < thinAbilities.length; i++) {
-    const thinAbility = thinAbilities[i];
-    const phaseRules = await loadAbilityPhaseRules(thinAbility.id);
-    abilities.push(abilityParser(thinAbility, phaseRules));
-  }
-  return abilities;
+async function loadAbilities(thinAbilities: ThinAbility[]): Promise<Ability[]> {
+  return Promise.all(
+    thinAbilities.map((thinAbility) => {
+      return loadAbilityPhaseRules(thinAbility.id).then((phaseRules) =>
+        abilityParser(thinAbility, phaseRules)
+      );
+    })
+  );
+}
+
+async function loadAbility(thinAbility: ThinAbility) {
+  const phaseRules = await loadAbilityPhaseRules(thinAbility.id);
+  return abilityParser(thinAbility, phaseRules);
 }
 
 function loadAbilityPhaseRules(abilityId: string): Promise<PhaseRule[]> {

@@ -4,7 +4,7 @@ import { useState, ChangeEvent, MouseEvent, useRef } from 'react';
 import { Container, direction } from '../../../components/Container/Container';
 import { ThinUserProfile } from '../../ThinUserProfile/ThinUserProfile';
 import { ConnectedProfilePicker } from '../../ConnectedProfilePicker/ConnectedProfilePicker';
-import { importJson } from '../../../utils/DataImporter';
+import { importJson } from '../../../data/DataImporter';
 import { battleTraits, enhancements } from '../../../data/abilities/abilities';
 import { units } from '../../../data/units/units';
 

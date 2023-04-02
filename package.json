@@ -77,7 +77,7 @@
     "@storybook/react": "^6.5.16",
     "@storybook/testing-library": "^0.0.9",
     "@types/node": "^17.0.45",
-    "@types/thin-backend": "https://thin.dev/types/f461260d-f39c-4a0b-a374-d799b0c17640/OMotbBYYlnEWAoZWriiMRpMjOePOjDfg",
+    "@types/thin-backend": "https://thin.dev/types/2943ec28-c13b-4583-8573-f50a9d2951da/CjanwcLvbqHAuxMaMDpONmwUfnJDXVtT",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
     "eslint": "^8.36.0",

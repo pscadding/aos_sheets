@@ -8,18 +8,18 @@ import { UnitContainerMemo } from '../../../components/UnitContainer/UnitContain
 import { PhaseUnitTableMemo } from '../../../components/PhaseUnitTable/PhaseUnitTable';
 import { Ability } from '../../../models/Ability';
 import { AbilityContainerMemo } from '../../../components/AbilityContainer/AbilityContainer';
-import { loadBattleTraits, loadProfile, loadProfileUnits } from '../../../utils/DataLoader';
-import { Profile } from '../../../models/Profile';
 import {
-  attachByKeyword,
-  attachByProfileUnit,
-  filterAbilitiesByNames,
-  filterAbilitiesByUnitKeyword,
-  sortAbilities
-} from '../../../utils/AbilityUtils';
-import { useQuery, useQuerySingleResult } from 'thin-backend-react';
-import { ArmyProfile, query, UnitConfiguration } from 'thin-backend';
-import { unitParser } from '../../../parsers/UnitParser';
+  loadArmyAbilities,
+  loadBattleTraits,
+  loadProfile,
+  loadProfileUnits
+} from '../../../data/DataLoader';
+import { Profile } from '../../../models/Profile';
+import { universalTriumphs } from '../../../data/abilities/General/UniversalTriumphs';
+import { skinkStarpriest } from '../../../data/units/Seraphon/Skink_Starpriest';
+import { commonSpells } from '../../../data/abilities/General/CommonSpells';
+import { kruleboyzAbilities } from '../../../data/abilities/Orruk/Kruleboyz';
+import { KillaBossOnGreatGnashtoof } from '../../../data/units/Orruk/Killaboss_on_Great_Gnashtoof';
 
 interface ArmySummaryPageProps {
   profileId: string;
@@ -52,25 +52,21 @@ const ArmyName = styled(Title)`
 
 function loadData(
   profileId: string,
-  setProfile: (p: ArmyProfile) => void,
+  setProfile: (p: Profile) => void,
   setUnits: (u: Unit[]) => void,
   setArmyAbilities: (a: Ability[]) => void
 ) {
-  loadProfileUnits(profileId).then((units: Unit[]) => {
-    console.log('units', units);
-    setUnits(units);
-  });
+  // console.log(JSON.stringify(KillaBossOnGreatGnashtoof));
 
-  loadProfile(profileId).then((profile) => {
-    loadBattleTraits(profile).then((abilities) => {
-      setArmyAbilities(abilities);
+  const profilePromise = loadProfile(profileId);
+  profilePromise.then(loadProfileUnits).then(setUnits);
+  profilePromise.then((profile) => {
+    loadBattleTraits(profile).then((battleTraits) => {
+      loadArmyAbilities(profile).then((abilities) => {
+        setArmyAbilities([...abilities, ...battleTraits]);
+      });
     });
   });
-
-  // console.log('profile', profile);
-  // const unitConfigurations = useQuery(
-  //   query('unit_configurations').filterWhere('armyProfileId', profileId).limit(1)
-  // );
 
   // loadProfile('Orruk').then((profile: Profile) => {
   //   if (profile) {
@@ -109,7 +105,7 @@ function loadData(
  * Primary UI component for user interaction
  */
 export const ArmySummaryPage = ({ profileId, ...props }: ArmySummaryPageProps) => {
-  const [profile, setProfile] = useState<ArmyProfile>();
+  const [profile, setProfile] = useState<Profile>();
   const [units, setUnits] = useState<Unit[]>([]);
   const [armyAbilities, setArmyAbilities] = useState<Ability[]>([]);
   const componentRef = useRef(null);

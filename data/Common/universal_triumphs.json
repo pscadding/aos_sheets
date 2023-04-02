@@ -1,0 +1,62 @@
+[
+  {
+    "type": "ability",
+    "content": {
+      "name": "Bloodthirsty",
+      "type": "Triumph",
+      "phaseRules": [
+        {
+          "type": "Used In",
+          "phases": [
+            "Charge"
+          ],
+          "turns": [
+            "Yours"
+          ]
+        }
+      ],
+      "description": "Once per battle, after making a charge roll for a friendly unit, you re-roll that charge roll."
+    }
+  },
+  {
+    "type": "ability",
+    "content": {
+      "name": "Inspired",
+      "type": "Triumph",
+      "phaseRules": [
+        {
+          "type": "Used In",
+          "phases": [
+            "Shooting",
+            "Combat"
+          ],
+          "turns": [
+            "Yours",
+            "Opponents"
+          ]
+        }
+      ],
+      "description": "Once per battle, after picking friendly unit to shoot or fight, **add 1 to wound rolls** for attacks made by that unit until the end of that phase."
+    }
+  },
+  {
+    "type": "ability",
+    "content": {
+      "name": "Indomitable",
+      "type": "Triumph",
+      "phaseRules": [
+        {
+          "type": "Used In",
+          "phases": [
+            "Battleshock"
+          ],
+          "turns": [
+            "Yours",
+            "Opponents"
+          ]
+        }
+      ],
+      "description": "Once per battle, after taking battleshock test for friendly unit, you can choose no models from that unit to flee in that battleshock phase."
+    }
+  }
+]

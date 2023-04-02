@@ -1,6 +1,5 @@
 import { UnitData } from '../../models/JsonModels';
-import { createRecord, deleteRecord, query, UnitType } from 'thin-backend';
-import { Unit } from '../../models/Unit';
+import { createRecord, deleteRecord, query, UnitType, Unit as ThinUnit } from 'thin-backend';
 import { WeaponController } from './weaponController';
 import { AbilityController } from './abilityController';
 import { unitParser } from '../../parsers/UnitParser';
@@ -28,14 +27,26 @@ export namespace UnitController {
       .whereIn('id', unitIds)
       .fetch()
       .then(async (thinUnits) => {
-        const units: Unit[] = [];
-        for (let i = 0; i < thinUnits.length; i++) {
-          const thinUnit = thinUnits[i];
-          const weapons = await WeaponController.load(thinUnit.id);
-          const abilities = await AbilityController.loadByUnit(thinUnit.id);
-          units.push(unitParser(thinUnit, weapons, abilities));
-        }
-        return units;
+        return thinUnits.map((thinUnit) => loadUnit(thinUnit));
       });
   }
+  export function loadFromName(name: string) {
+    return query('units')
+      .where('name', name)
+      .fetchOne()
+      .then((thinUnit) => {
+        if (thinUnit) {
+          return loadUnit(thinUnit);
+        }
+        return null;
+      });
+  }
+}
+
+function loadUnit(thinUnit: ThinUnit) {
+  return WeaponController.load(thinUnit.id).then((weapons) => {
+    return AbilityController.loadByUnit(thinUnit.id).then((abilities) => {
+      return unitParser(thinUnit, weapons, abilities);
+    });
+  });
 }

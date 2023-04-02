@@ -1,19 +1,8 @@
 import { Profile } from '../models/Profile';
-import { units } from '../data/units/units';
-import { battleTraits, enhancements } from '../data/abilities/abilities';
+import { units } from './units/units';
+import { battleTraits, enhancements } from './abilities/abilities';
 import { Unit } from '../models/Unit';
 import { Ability } from '../models/Ability';
-
-export function loadUnits(profile: Profile): Promise<Unit[]> {
-  return new Promise((resolve) => {
-    // debugging only:
-    console.log(JSON.stringify(units));
-    const profileUnits = units.filter((unit) =>
-      lowerCaseArray(Object.keys(profile.unitNames)).includes(unit.name.toLowerCase())
-    );
-    resolve(profileUnits);
-  });
-}
 
 export function loadBattleTraits(profile: Profile): Promise<Ability[]> {
   return new Promise((resolve) => {

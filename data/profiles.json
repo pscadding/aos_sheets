@@ -99,7 +99,9 @@
         "Kruleboyz",
         "Big Yellers"
       ],
-      "armyAbilities": []
+      "armyAbilities": [
+        "Inspired"
+      ]
     }
   },
   {
@@ -128,7 +130,7 @@
         "Clanrats": {},
         "Doomwheel": {},
         "Plague Monks": {},
-        "PLague Claw": {}
+        "Plague Claw": {}
       },
       "battleTraitTypes": [],
       "armyAbilities": [

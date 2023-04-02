@@ -4,6 +4,7 @@ import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
 export const bastildonSolar: Unit = {
+  id: '',
   name: 'Bastiladon',
   subName: 'with Solar Engine',
   type: UnitType.Behemoth,
