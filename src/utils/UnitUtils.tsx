@@ -1,5 +1,5 @@
 import { Unit } from '../models/Unit';
-import { lowerCaseArray } from './AbilityUtils';
+import { hasKeyword } from './string_utils';
 
 /**
  * If the passed keyword is not found in the list of units it will return false otherwise true
@@ -10,8 +10,7 @@ import { lowerCaseArray } from './AbilityUtils';
 export function unitsHaveKeyword(keyword: string, units: Unit[]): boolean {
   return (
     units.filter((unit) => {
-      const unitKeywords = lowerCaseArray(unit.keywords);
-      return unitKeywords.includes(keyword);
+      return hasKeyword(unit.keywords, keyword);
     }).length > 0
   );
 }

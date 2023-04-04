@@ -8,18 +8,8 @@ import { UnitContainerMemo } from '../../../components/UnitContainer/UnitContain
 import { PhaseUnitTableMemo } from '../../../components/PhaseUnitTable/PhaseUnitTable';
 import { Ability } from '../../../models/Ability';
 import { AbilityContainerMemo } from '../../../components/AbilityContainer/AbilityContainer';
-import {
-  loadArmyAbilities,
-  loadBattleTraits,
-  loadProfile,
-  loadProfileUnits
-} from '../../../data/DataLoader';
+import { loadAbilities, loadProfile, loadProfileUnits } from '../../../data/DataLoader';
 import { Profile } from '../../../models/Profile';
-import { universalTriumphs } from '../../../data/abilities/General/UniversalTriumphs';
-import { skinkStarpriest } from '../../../data/units/Seraphon/Skink_Starpriest';
-import { commonSpells } from '../../../data/abilities/General/CommonSpells';
-import { kruleboyzAbilities } from '../../../data/abilities/Orruk/Kruleboyz';
-import { KillaBossOnGreatGnashtoof } from '../../../data/units/Orruk/Killaboss_on_Great_Gnashtoof';
 
 interface ArmySummaryPageProps {
   profileId: string;
@@ -59,46 +49,12 @@ function loadData(
   // console.log(JSON.stringify(KillaBossOnGreatGnashtoof));
 
   const profilePromise = loadProfile(profileId);
-  profilePromise.then(loadProfileUnits).then(setUnits);
-  profilePromise.then((profile) => {
-    loadBattleTraits(profile).then((battleTraits) => {
-      loadArmyAbilities(profile).then((abilities) => {
-        setArmyAbilities([...abilities, ...battleTraits]);
-      });
-    });
-  });
+  const unitsPromise = profilePromise.then(loadProfileUnits);
 
-  // loadProfile('Orruk').then((profile: Profile) => {
-  //   if (profile) {
-  //     loadUnits(profile).then((units: Unit[]) => {
-  //       loadEnhancements().then((enhancements: Ability[]) => {
-  //         // Attach any enhancement abilities to the units if defined in the profile
-  //         attachByProfileUnit(profile, units, enhancements);
-  //
-  //         const armyEnhancements = filterAbilitiesByNames(enhancements, profile.armyAbilities);
-  //
-  //         units.forEach((unit) => {
-  //           // Add common spells to all wizards
-  //           attachByKeyword('wizard', unit, enhancements);
-  //           // Filter out any unit abilities that affect units that aren't in the army
-  //           const unitAbilities = filterAbilitiesByUnitKeyword(unit.abilities, units);
-  //           sortAbilities(unitAbilities);
-  //           unit.abilities = unitAbilities;
-  //         });
-  //
-  //         loadBattleTraits(profile).then((battleTraits: Ability[]) => {
-  //           // Filter out any abilities that affect units that aren't in the army
-  //           battleTraits = filterAbilitiesByUnitKeyword(battleTraits, units);
-  //
-  //           const armyAbilities = [...armyEnhancements, ...battleTraits];
-  //           sortAbilities(armyAbilities);
-  //           setArmyAbilities(armyAbilities);
-  //         });
-  //         setUnits(units);
-  //       });
-  //     });
-  //   }
-  // });
+  unitsPromise.then(setUnits);
+  profilePromise.then((profile) => {
+    return unitsPromise.then((units) => loadAbilities(profile, units)).then(setArmyAbilities);
+  });
 }
 
 /**
