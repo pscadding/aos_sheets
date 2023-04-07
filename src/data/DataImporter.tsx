@@ -1,18 +1,20 @@
 import { AbilityData, ImportData, ProfileData, UnitData } from '../models/JsonModels';
 import { ThinImport } from './thin/thinImport';
 
-export const importJson = (data: ImportData[]) => {
-  data.forEach((entry) => {
+export const importJson = async (data: ImportData[]) => {
+  data.map(async (entry) => {
     switch (entry.type) {
       case 'unit':
-        ThinImport.importUnit(entry.content as UnitData);
+        await ThinImport.importUnit(entry.content as UnitData);
+        console.log('ThinImport.importUnit DONE', (entry.content as UnitData).name);
         break;
       case 'ability':
-        ThinImport.importAbility(entry.content as AbilityData);
+        await ThinImport.importAbility(entry.content as AbilityData);
         break;
       case 'profile':
-        ThinImport.importProfile(entry.content as ProfileData);
+        await ThinImport.importProfile(entry.content as ProfileData);
         break;
     }
   });
+  console.log('end of Import Json');
 };

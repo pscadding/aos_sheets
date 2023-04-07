@@ -10,6 +10,8 @@ import { Ability } from '../../../models/Ability';
 import { AbilityContainerMemo } from '../../../components/AbilityContainer/AbilityContainer';
 import { loadAbilities, loadProfile, loadProfileUnits } from '../../../data/DataLoader';
 import { Profile } from '../../../models/Profile';
+import { breakaBoss } from '../../../data/units/Orruk/Breaka_boss_On_Mirebrute_Troggoth';
+import { gutrippaz } from '../../../data/units/Orruk/Gutrippaz';
 
 interface ArmySummaryPageProps {
   profileId: string;
@@ -46,7 +48,7 @@ function loadData(
   setUnits: (u: Unit[]) => void,
   setArmyAbilities: (a: Ability[]) => void
 ) {
-  // console.log(JSON.stringify(KillaBossOnGreatGnashtoof));
+  // console.log(JSON.stringify(gutrippaz));
 
   const profilePromise = loadProfile(profileId);
   const unitsPromise = profilePromise.then(loadProfileUnits);

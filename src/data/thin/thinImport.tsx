@@ -6,10 +6,12 @@ import { ProfileController } from './profileController';
 
 export namespace ThinImport {
   export const importUnit = async (unitJson: UnitData) => {
+    console.log('starting ', unitJson.name);
     await deleteExistingUnit(unitJson);
     const unit = await UnitController.create(unitJson);
     await WeaponController.createBatch(unitJson.weapons, unit.id);
     await AbilityController.createBatch(unitJson.abilities, unit.id);
+    console.log('finished importing ', unit.name);
   };
 
   export const importAbility = async (abilityJson: AbilityData) => {

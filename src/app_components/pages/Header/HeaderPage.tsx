@@ -45,17 +45,32 @@ export const Header = ({ onLoadProfile, onLogout, ...props }: HeaderProps) => {
       return;
     }
 
-    const reader = new FileReader();
+    const data: string[] = [];
+    const fileCount = e.target.files.length;
 
-    reader.onload = function (ev) {
+    const read = (ev: ProgressEvent<FileReader>) => {
       const content = ev.target?.result;
-      const jsonData = JSON.parse(content as string);
-      importJson(jsonData);
+      data.push(content as string);
       e.target.value = '';
     };
 
-    // TODO: loop over the files instead
-    reader.readAsText(e.target.files[0]);
+    const onLoadEnd = (e: ProgressEvent<FileReader>) => {
+      if (data.length === fileCount) {
+        data.forEach(async (fileContent) => {
+          const jsonData = JSON.parse(fileContent as string);
+          await importJson(jsonData);
+          console.log('importJson DONE');
+        });
+      }
+    };
+
+    for (var i = 0; i < fileCount; i++) {
+      const reader = new FileReader();
+      reader.onload = read;
+      reader.onloadend = onLoadEnd;
+      console.log('reading', e.target.files[i]);
+      reader.readAsText(e.target.files[i]);
+    }
   };
 
   return (
@@ -74,6 +89,7 @@ export const Header = ({ onLoadProfile, onLogout, ...props }: HeaderProps) => {
             ref={hiddenFileInput}
             type="file"
             onChange={fileSelectedHandler}
+            multiple
           />
 
           <Container direction={direction.horizontal} spacing="1em" alignItems={'center'}>
