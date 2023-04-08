@@ -19,7 +19,7 @@ export namespace UnitController {
   }
 
   export function remove(unitId: string) {
-    return deleteRecord('units', unitId);
+    return deleteRecord('units', unitId).then(() => console.log(`removed unit ${unitId}`));
   }
 
   export function loadFromIds(unitIds: string[]) {

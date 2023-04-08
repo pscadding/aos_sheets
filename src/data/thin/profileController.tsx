@@ -20,6 +20,7 @@ export namespace ProfileController {
       .fetchOne()
       .then((profile) => {
         if (profile) {
+          console.log('removing found existing profile', profile);
           return removeUnitConfiguraiton(profile.id).then(() => remove(profile.id));
         }
       });
@@ -77,5 +78,7 @@ function removeUnitConfiguraiton(profileId: string) {
 }
 
 function remove(profileId: string) {
-  return deleteRecord('army_profiles', profileId);
+  return deleteRecord('army_profiles', profileId).then(() =>
+    console.log(`removed profile ${profileId}`)
+  );
 }

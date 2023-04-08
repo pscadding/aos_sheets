@@ -23,7 +23,7 @@ export namespace ThinLoad {
     ).then((abilityArrays) => abilityArrays.flat());
   };
 
-  export const loadProfileAbilities = (profile: Profile): Promise<Ability[]> => {
+  export const loadProfileAbilities = (profile: Profile): Promise<(Ability | void)[]> => {
     return Promise.all(
       profile.armyAbilities.map((abilityName) => AbilityController.loadByName(abilityName))
     );

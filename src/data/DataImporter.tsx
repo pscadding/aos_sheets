@@ -2,11 +2,10 @@ import { AbilityData, ImportData, ProfileData, UnitData } from '../models/JsonMo
 import { ThinImport } from './thin/thinImport';
 
 export const importJson = async (data: ImportData[]) => {
-  data.map(async (entry) => {
+  for (const entry of data) {
     switch (entry.type) {
       case 'unit':
         await ThinImport.importUnit(entry.content as UnitData);
-        console.log('ThinImport.importUnit DONE', (entry.content as UnitData).name);
         break;
       case 'ability':
         await ThinImport.importAbility(entry.content as AbilityData);
@@ -15,6 +14,5 @@ export const importJson = async (data: ImportData[]) => {
         await ThinImport.importProfile(entry.content as ProfileData);
         break;
     }
-  });
-  console.log('end of Import Json');
+  }
 };

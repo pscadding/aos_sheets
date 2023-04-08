@@ -54,13 +54,12 @@ export const Header = ({ onLoadProfile, onLogout, ...props }: HeaderProps) => {
       e.target.value = '';
     };
 
-    const onLoadEnd = (e: ProgressEvent<FileReader>) => {
+    const onLoadEnd = async (e: ProgressEvent<FileReader>) => {
       if (data.length === fileCount) {
-        data.forEach(async (fileContent) => {
+        for (const fileContent of data) {
           const jsonData = JSON.parse(fileContent as string);
           await importJson(jsonData);
-          console.log('importJson DONE');
-        });
+        }
       }
     };
 

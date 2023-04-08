@@ -30,7 +30,13 @@ export namespace WeaponController {
       .where('unitId', unitId)
       .fetch()
       .then((weapons) => {
-        return Promise.all(weapons.map((weapon) => deleteRecord('weapons', weapon.id)));
+        return Promise.all(
+          weapons.map((weapon) =>
+            deleteRecord('weapons', weapon.id).then(() =>
+              console.log(`removed weapon ${weapon.id}`)
+            )
+          )
+        );
       });
   }
 

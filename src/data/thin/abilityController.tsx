@@ -55,7 +55,7 @@ export namespace AbilityController {
       .where('unitId', unitId)
       .fetch()
       .then((abilities) => {
-        Promise.all(
+        return Promise.all(
           abilities.map((ability) => {
             return remove(ability.id);
           })
@@ -69,6 +69,7 @@ export namespace AbilityController {
       .fetchOne()
       .then((ability) => {
         if (ability) {
+          console.log('Removing found existing ability', ability);
           return remove(ability.id);
         }
       });
@@ -102,16 +103,23 @@ export namespace AbilityController {
       .then((abilities) => loadAbilities(abilities));
   }
 
-  export function loadByName(name: string): Promise<Ability> {
+  export function loadByName(name: string): Promise<Ability | void> {
     return query('ability')
       .where('name', name)
       .fetchOne()
-      .then((thinAbility) => loadAbility(thinAbility));
+      .then((thinAbility) => {
+        if (thinAbility) {
+          return loadAbility(thinAbility);
+        }
+        return;
+      });
   }
 }
 
 function remove(abilityId: string) {
-  return removePhaseRules(abilityId).then(() => deleteRecord('ability', abilityId));
+  return removePhaseRules(abilityId).then(() =>
+    deleteRecord('ability', abilityId).then(() => console.log(`removed ability ${abilityId}`))
+  );
 }
 
 function removePhaseRules(abilityId: string) {
@@ -120,7 +128,13 @@ function removePhaseRules(abilityId: string) {
     .fetch()
     .then((phaseRules) => {
       // TODO: should check that the phase rule exists before removing
-      return Promise.all(phaseRules.map((phaseRule) => deleteRecord('phase_rule', phaseRule.id)));
+      return Promise.all(
+        phaseRules.map((phaseRule) =>
+          deleteRecord('phase_rule', phaseRule.id).then(() =>
+            console.log(`removed phase rule ${phaseRule.id}`)
+          )
+        )
+      );
     });
 }
 

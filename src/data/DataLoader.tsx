@@ -46,11 +46,11 @@ function attachAbilities(unit: Unit, abilities: Ability[], abilityNames: string[
 }
 
 function loadBattleTraits(profile: Profile): Promise<Ability[]> {
-  return ThinLoad.loadProfileBattleTraits(profile);
+  return ThinLoad.loadProfileBattleTraits(profile).then(filterNull);
 }
 
 function loadArmyAbilities(profile: Profile): Promise<Ability[]> {
-  return ThinLoad.loadProfileAbilities(profile);
+  return ThinLoad.loadProfileAbilities(profile).then(filterNull);
 }
 
 function filterAbilitiesByKeywords(abilities: Ability[], keywords: Set<string>): Ability[] {
@@ -78,8 +78,8 @@ function filterAbilities(units: Unit[], keywords: Set<string>): Unit[] {
   });
 }
 
-function filterNull(units: (Unit | null)[]): Unit[] {
-  return units.filter((u): u is Unit => u !== null);
+function filterNull<Type>(entityArray: (Type | null | void)[]): Type[] {
+  return entityArray.filter((e): e is Type => e != null);
 }
 
 const loadUnitsFromConfig = (unitConfigs: UnitConfiguration[]): Promise<Unit[]> => {
@@ -97,7 +97,7 @@ const loadUnitsFromConfig = (unitConfigs: UnitConfiguration[]): Promise<Unit[]> 
         });
       })
     )
-      .then(filterNull)
+      .then(filterNull<Unit>)
       .then((u) => filterAbilities(u, allUnitKeywords));
   });
 };
