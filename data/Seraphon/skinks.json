@@ -1,0 +1,121 @@
+[
+  {
+    "type": "unit",
+    "content": {
+      "id": "",
+      "name": "Skinks",
+      "type": "Battleline",
+      "stats": {
+        "move": "8\"",
+        "save": "6+",
+        "wounds": "1",
+        "bravery": "5"
+      },
+      "weapons": [
+        {
+          "name": "Meteoric Javelin",
+          "type": "Missile",
+          "range": "8\"",
+          "attacks": "1",
+          "toHit": "5+",
+          "toWound": "4+",
+          "rend": "",
+          "damage": "1"
+        },
+        {
+          "name": "Boltspitter",
+          "type": "Missile",
+          "range": "16\"",
+          "attacks": "1",
+          "toHit": "5+",
+          "toWound": "5+",
+          "rend": "",
+          "damage": "1"
+        },
+        {
+          "name": "Celestite Dagger",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "1",
+          "toHit": "5+",
+          "toWound": "5+",
+          "rend": "",
+          "damage": "1"
+        },
+        {
+          "name": "Moonstone Club",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "1",
+          "toHit": "4+",
+          "toWound": "4+",
+          "rend": "",
+          "damage": "1"
+        }
+      ],
+      "keywords": [
+        "Order",
+        "Seraphon",
+        "Skinks"
+      ],
+      "abilities": [
+        {
+          "name": "Skink Alpha",
+          "type": "Standard",
+          "phaseRules": [
+            {
+              "type": "Affects",
+              "phases": [
+                "Combat"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "Add **1** to attacks alpha's melee weapons."
+        },
+        {
+          "name": "Swarming Cohort",
+          "type": "Ability",
+          "phaseRules": [
+            {
+              "type": "Affects",
+              "phases": [
+                "Combat",
+                "Shooting"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "Add **1** to attacks of weapons used by unit while has 15 or more models"
+        },
+        {
+          "name": "Star-buckler",
+          "type": "Ability",
+          "phaseRules": [
+            {
+              "type": "Affects",
+              "phases": [
+                "Hero",
+                "Movement",
+                "Shooting",
+                "Combat",
+                "Charge"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "Add **1** to save rolls if has Star-bucklers."
+        }
+      ]
+    }
+  }
+]

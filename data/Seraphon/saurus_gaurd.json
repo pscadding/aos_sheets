@@ -1,0 +1,116 @@
+[
+  {
+    "type": "unit",
+    "content": {
+      "id": "",
+      "name": "Saurus Guard",
+      "type": "Battleline",
+      "stats": {
+        "move": "5\"",
+        "save": "4+",
+        "wounds": "2",
+        "bravery": "8"
+      },
+      "weapons": [
+        {
+          "name": "Celestite Polearm",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "2",
+          "toHit": "3+",
+          "toWound": "3+",
+          "rend": "-1",
+          "damage": "1"
+        },
+        {
+          "name": "Powerful Jaws",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "1",
+          "toHit": "5+",
+          "toWound": "4+",
+          "rend": "",
+          "damage": "1"
+        }
+      ],
+      "keywords": [
+        "Order",
+        "Seraphon",
+        "Saurus",
+        "Saurus Guard"
+      ],
+      "abilities": [
+        {
+          "name": "Saurus Guard Alpha",
+          "type": "Standard",
+          "phaseRules": [
+            {
+              "type": "Affects",
+              "phases": [
+                "Combat"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "Add **1** to attacks of Alphas Celestite Polearm."
+        },
+        {
+          "name": "Stardrake Icon Bearer",
+          "type": "Standard",
+          "phaseRules": [
+            {
+              "type": "Affects",
+              "phases": [
+                "Battleshock"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "**1** in every **5** models in unit can be Stardrake Icon Bearer. Subtract **1** from the bravery of enemy units within **6\"** of the bearers"
+        },
+        {
+          "name": "Wardrummer",
+          "type": "Standard",
+          "phaseRules": [
+            {
+              "type": "Affects",
+              "phases": [
+                "Charge"
+              ],
+              "turns": [
+                "Yours"
+              ]
+            }
+          ],
+          "description": "**1** in every **5** models in unit can be Wardrummer. Reroll charge roles for unit."
+        },
+        {
+          "name": "Selfless Protectors",
+          "type": "Ability",
+          "filterUnitKeywords": [
+            "Slann"
+          ],
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Any"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "Roll a dice before allocating wound | mortal wound to a friendly **Slann** while within **3\"** of any units with this ability. On **2+** you must allocate that wound | mortal wound to a friendly unit with this ability within **3\"** of that **Slann**."
+        }
+      ]
+    }
+  }
+]

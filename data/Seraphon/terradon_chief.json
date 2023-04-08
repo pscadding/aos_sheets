@@ -1,0 +1,87 @@
+[
+  {
+    "type": "unit",
+    "content": {
+      "id": "",
+      "name": "Terradon Chief",
+      "type": "Other",
+      "stats": {
+        "move": "16\"",
+        "save": "6+",
+        "wounds": "5",
+        "bravery": "6"
+      },
+      "weapons": [
+        {
+          "name": "Skyblade",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "3",
+          "toHit": "3+",
+          "toWound": "4+",
+          "rend": "-1",
+          "damage": "1"
+        },
+        {
+          "name": "Razor-sharp Jaws (Mount)",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "4",
+          "toHit": "4+",
+          "toWound": "4+",
+          "rend": "",
+          "damage": "1"
+        }
+      ],
+      "keywords": [
+        "Order",
+        "Seraphon",
+        "Skink",
+        "Terradon",
+        "Hero",
+        "Terradon Chief"
+      ],
+      "abilities": [
+        {
+          "name": "Fly",
+          "type": "Standard",
+          "description": "Can fly.",
+          "phaseRules": []
+        },
+        {
+          "name": "Lead from on High",
+          "type": "Ability",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Combat"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "**Subtract 1** from hit rolls for attacks made with melee weapons by models that cannot fly that target this model."
+        },
+        {
+          "name": "Coordinated Attack",
+          "type": "Command Ability",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Movement"
+              ],
+              "turns": [
+                "Yours"
+              ]
+            }
+          ],
+          "description": "When a friendly Terradon Riders unit uses **Deadly Cargo** ability while it is wholly with **12\"** of a friendly model with this ability. Enemy unit suffers **D3 mortal wounds** for each **2+** instead of 4+."
+        }
+      ]
+    }
+  }
+]

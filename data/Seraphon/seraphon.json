@@ -1,0 +1,168 @@
+[
+  {
+    "type": "ability",
+    "content": {
+      "name": "Contemplations of the Ancient Ones",
+      "type": "Battle Trait",
+      "phaseRules": [
+        {
+          "type": "Used In",
+          "phases": [
+            "Hero"
+          ],
+          "turns": [
+            "Yours"
+          ]
+        }
+      ],
+      "tags": [
+        "Seraphon"
+      ],
+      "filterUnitKeywords": [
+        "Slann"
+      ],
+      "description": "At end of your Hero phase, pick **1** friendly **Slann** replace the spell they know from the **Lore of Celestial Domination** table. Choose or roll for the new spell, rolling again if you generate the previous spell."
+    }
+  },
+  {
+    "type": "ability",
+    "content": {
+      "name": "Sacred Asterisms",
+      "type": "Battle Trait",
+      "phaseRules": [
+        {
+          "type": "Used In",
+          "phases": [
+            "Hero"
+          ],
+          "turns": [
+            "Yours"
+          ]
+        }
+      ],
+      "tags": [
+        "Seraphon"
+      ],
+      "description": "At the start of your hero phase pick **1** of the following until your next hero phase: **\"The Great Drake\"**, **\"The Hunter's Steed\"**, and **\"The Sage's Staff\"**"
+    }
+  },
+  {
+    "type": "ability",
+    "content": {
+      "name": "The Great Drake",
+      "type": "Battle Trait",
+      "phaseRules": [
+        {
+          "type": "Used In",
+          "phases": [
+            "Combat"
+          ],
+          "turns": [
+            "Yours",
+            "Opponents"
+          ]
+        }
+      ],
+      "tags": [
+        "Seraphon"
+      ],
+      "description": "If picked (Sacred Asterisms), in combat phase, pick **1** friendly **Seraphon Hero**. Until end of that phase you can **add 1** to attacks of hero's melee weapons"
+    }
+  },
+  {
+    "type": "ability",
+    "content": {
+      "name": "The Hunter's Steed",
+      "type": "Battle Trait",
+      "tags": [
+        "Seraphon"
+      ],
+      "phaseRules": [
+        {
+          "type": "Affects",
+          "phases": [
+            "Charge",
+            "Movement"
+          ],
+          "turns": [
+            "Yours"
+          ]
+        }
+      ],
+      "description": "If picked (Sacred Asterisms), **Add 1** to run rolls and charge rolls for Seraphon units."
+    }
+  },
+  {
+    "type": "ability",
+    "content": {
+      "name": "The Sage's Staff",
+      "type": "Battle Trait",
+      "tags": [
+        "Seraphon"
+      ],
+      "phaseRules": [
+        {
+          "type": "Used In",
+          "phases": [
+            "Hero"
+          ],
+          "turns": [
+            "Yours",
+            "Opponents"
+          ]
+        }
+      ],
+      "description": "If picked (Sacred Asterisms), **pick 1** Seraphon Wizard. You can **add 1** to casting or dispelling rolls and **add 1** to unbinding rolls."
+    }
+  },
+  {
+    "type": "ability",
+    "content": {
+      "name": "Incandescent Rectrices",
+      "type": "Ability",
+      "enhancement": true,
+      "phaseRules": [
+        {
+          "type": "Used In",
+          "phases": [
+            "Any"
+          ],
+          "turns": [
+            "Yours",
+            "Opponents"
+          ]
+        }
+      ],
+      "tags": [
+        "Artefact of Power",
+        "Seraphon",
+        "Skink"
+      ],
+      "description": "The first time bearer is slain, before removing them from the battlefield, roll a dice. On a **1-3, the bearer is slain**. On a **4-6, the bearer is not slain**, all wounds allocated to them are healed, and any wounds that currently remain to be allocated to them are negated."
+    }
+  },
+  {
+    "type": "ability",
+    "content": {
+      "name": "Tide of Serpents",
+      "type": "Spell",
+      "enhancement": true,
+      "phaseRules": [
+        {
+          "type": "Used In",
+          "phases": [
+            "Hero"
+          ],
+          "turns": [
+            "Yours"
+          ]
+        }
+      ],
+      "tags": [
+        "Seraphon",
+        "Skink"
+      ],
+      "description": "casting value of **8**. If successfully cast, **pick 1 enemy unit within 12\"** of the caster and roll a number of dice equal to the number of models in that unit. For each **5+**, that unit suffers **1 mortal wound**."
+    }
+  }
+]

@@ -1,0 +1,123 @@
+[
+  {
+    "type": "unit",
+    "content": {
+      "id": "",
+      "name": "Saurus Warriors",
+      "type": "Battleline",
+      "stats": {
+        "move": "5\"",
+        "save": "4+",
+        "wounds": "1",
+        "bravery": "8"
+      },
+      "weapons": [
+        {
+          "name": "Celestite Club",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "1",
+          "toHit": "4+",
+          "toWound": "3+",
+          "rend": "-1",
+          "damage": "1"
+        },
+        {
+          "name": "Celestite Spear",
+          "type": "Melee",
+          "range": "2\"",
+          "attacks": "1",
+          "toHit": "4+",
+          "toWound": "3+",
+          "rend": "",
+          "damage": "1"
+        },
+        {
+          "name": "Powerful Jaws",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "1",
+          "toHit": "5+",
+          "toWound": "4+",
+          "rend": "",
+          "damage": "1"
+        }
+      ],
+      "keywords": [
+        "Order",
+        "Seraphon",
+        "Saurus",
+        "Saurus Wariors"
+      ],
+      "abilities": [
+        {
+          "name": "Saurus Warrior Alpha",
+          "type": "Standard",
+          "phaseRules": [
+            {
+              "type": "Affects",
+              "phases": [
+                "Combat"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "Add **1** to attacks of Alphas Celestite Club | Spear."
+        },
+        {
+          "name": "Stardrake Icon Bearer",
+          "type": "Standard",
+          "phaseRules": [
+            {
+              "type": "Affects",
+              "phases": [
+                "Battleshock"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "**1** in every **5** models in unit can be Stardrake Icon Bearer. Subtract **1** from the bravery of enemy units within **6\"** of the bearers"
+        },
+        {
+          "name": "Wardrummer",
+          "type": "Standard",
+          "phaseRules": [
+            {
+              "type": "Affects",
+              "phases": [
+                "Charge"
+              ],
+              "turns": [
+                "Yours"
+              ]
+            }
+          ],
+          "description": "**1** in every **5** models in unit can be Wardrummer. Reroll charge roles for unit."
+        },
+        {
+          "name": "Ordered Coholt",
+          "type": "Ability",
+          "phaseRules": [
+            {
+              "type": "Affects",
+              "phases": [
+                "Combat"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "Add **1** to attacks of weapons used by unit while has 15 or more model"
+        }
+      ]
+    }
+  }
+]
