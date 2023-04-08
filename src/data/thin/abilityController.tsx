@@ -31,7 +31,10 @@ export namespace AbilityController {
       description: abilityJson.description,
       attachKeyword: abilityJson.attachKeyword,
       filterUnitKeywords: abilityJson.filterUnitKeywords,
-      unitId: unitId
+      unitId: unitId,
+      // Columns and rows are for damage tables.
+      columns: abilityJson.columns,
+      rows: prepDamageTableRows(abilityJson.rows)
     }).then((ability) => {
       return Promise.all(
         abilityJson.phaseRules.map((phaseRule) =>
@@ -40,15 +43,6 @@ export namespace AbilityController {
       );
     });
   }
-
-  const createPhaseRuleRecord = (phaseRule: PhaseRuleData, thinAbility: ThinAbility) => {
-    return createRecord('phase_rule', {
-      phases: phaseRule.phases.map((p) => p.toLowerCase() as Phase),
-      phaseType: toSnakeCase(phaseRule.type) as PhaseType,
-      turns: phaseRule.turns.map((t) => t.toLowerCase() as Turn),
-      abilityId: thinAbility.id
-    });
-  };
 
   export function removeByUnit(unitId: string) {
     return query('ability')
@@ -161,3 +155,23 @@ function loadAbilityPhaseRules(abilityId: string): Promise<PhaseRule[]> {
       return thinPhaseRules.map((thinPhaseRule) => phaseRuleParser(thinPhaseRule));
     });
 }
+
+/**
+ * In the DB the rows are stores as string[] so the inner array needs to be serialized to json
+ * @param rows
+ */
+function prepDamageTableRows(rows: string[][] | undefined): string {
+  if (!rows) {
+    return '';
+  }
+  return JSON.stringify(rows);
+}
+
+const createPhaseRuleRecord = (phaseRule: PhaseRuleData, thinAbility: ThinAbility) => {
+  return createRecord('phase_rule', {
+    phases: phaseRule.phases.map((p) => p.toLowerCase() as Phase),
+    phaseType: toSnakeCase(phaseRule.type) as PhaseType,
+    turns: phaseRule.turns.map((t) => t.toLowerCase() as Turn),
+    abilityId: thinAbility.id
+  });
+};

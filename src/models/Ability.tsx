@@ -21,13 +21,10 @@ export interface Ability {
   phaseRules: PhaseRule[];
   attachKeyword?: string;
   filterUnitKeywords?: string[];
+  columns?: string[];
+  rows?: string[][];
 }
 
 export interface BattleTraits {
   [key: string]: Ability[];
-}
-
-export interface AbilityDamageTable extends Ability {
-  columns: string[];
-  rows: string[][];
 }

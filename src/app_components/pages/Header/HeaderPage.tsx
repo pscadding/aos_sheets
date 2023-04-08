@@ -6,7 +6,9 @@ import { ThinUserProfile } from '../../ThinUserProfile/ThinUserProfile';
 import { ConnectedProfilePicker } from '../../ConnectedProfilePicker/ConnectedProfilePicker';
 import { importJson } from '../../../data/DataImporter';
 import { battleTraits, enhancements } from '../../../data/abilities/abilities';
-import { units } from '../../../data/units/units';
+import { manSkewerBoltboyz } from '../../../data/units/Orruk/Man-skewer_Boltboyz';
+import { swampbossSkumdrekk } from '../../../data/units/Orruk/Swampboss_Skumdrekk';
+import { swampcallaShaman } from '../../../data/units/Orruk/Swampcalla_Shaman';
 
 interface HeaderProps {
   onLoadProfile: (profileName: string) => void;
@@ -28,11 +30,21 @@ const FormWrapper = styled.div`
   width: 100%;
 `;
 
+function convertToJson(o: any) {
+  const v = [
+    {
+      type: 'unit',
+      content: o
+    }
+  ];
+  console.log(JSON.stringify(v));
+}
+
 export const Header = ({ onLoadProfile, onLogout, ...props }: HeaderProps) => {
   const [selectedProfile, setSelectedProfile] = useState<string>('');
   const hiddenFileInput = useRef<HTMLInputElement>(null);
 
-  // console.log(JSON.stringify(battleTraits));
+  convertToJson(swampcallaShaman);
 
   const handleClick = (_: MouseEvent<HTMLButtonElement>) => {
     if (hiddenFileInput.current != null) {
@@ -60,6 +72,7 @@ export const Header = ({ onLoadProfile, onLogout, ...props }: HeaderProps) => {
           const jsonData = JSON.parse(fileContent as string);
           await importJson(jsonData);
         }
+        console.log('Import complete');
       }
     };
 
