@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
 import styled from 'styled-components';
 import { AppStyle } from '../../styles/style';
+import { useEffect } from 'react';
+import { Profile } from '../../models/Profile';
 
 interface ProfilePickerProps {
-  armyProfileNames: string[];
+  armyProfiles: Profile[];
   onArmySelected?: (armyId: string) => void;
 }
 
@@ -21,24 +22,23 @@ const OptionWrapper = styled.option`
 /**
  * Primary UI component for user interaction
  */
-export const ProfilePicker = ({
-  armyProfileNames,
-  onArmySelected,
-  ...props
-}: ProfilePickerProps) => {
-  const armyProfileComponents = armyProfileNames.map((profileName: string, index) => (
-    <OptionWrapper key={index}>{profileName}</OptionWrapper>
+export const ProfilePicker = ({ armyProfiles, onArmySelected, ...props }: ProfilePickerProps) => {
+  const armyProfileComponents = armyProfiles.map((profile: Profile, index) => (
+    <OptionWrapper key={index} value={profile.id}>
+      {profile.name}
+    </OptionWrapper>
   ));
 
   useEffect(() => {
-    if (onArmySelected != null) {
-      onArmySelected(armyProfileNames[0]);
+    if (onArmySelected != null && armyProfiles.length) {
+      onArmySelected(armyProfiles[0].id);
     }
-  }, [armyProfileNames]);
+  }, [armyProfiles, onArmySelected]);
 
   return (
     <SelectBox
       id="profiles"
+      defaultValue={armyProfiles.length ? armyProfiles[0].id : ''}
       onChange={(event) => {
         onArmySelected ? onArmySelected(event.target.value) : null;
       }}>

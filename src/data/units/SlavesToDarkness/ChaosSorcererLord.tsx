@@ -4,6 +4,7 @@ import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
 export const chaosSorcererLord: Unit = {
+  id: '',
   name: 'Chaos Sorcerer Lord',
   type: UnitType.Leader,
   stats: {

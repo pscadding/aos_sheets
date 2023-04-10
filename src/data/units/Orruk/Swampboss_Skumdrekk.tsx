@@ -4,6 +4,7 @@ import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
 export const swampbossSkumdrekk: Unit = {
+  id: '',
   name: 'Swampboss Skumdrekk',
   type: UnitType.Leader,
   stats: {

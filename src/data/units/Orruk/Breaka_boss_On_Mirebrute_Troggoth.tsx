@@ -4,6 +4,7 @@ import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
 export const breakaBoss: Unit = {
+  id: '',
   name: 'Breaka-boss on Mirebrute Troggoth',
   type: UnitType.Leader,
   stats: {

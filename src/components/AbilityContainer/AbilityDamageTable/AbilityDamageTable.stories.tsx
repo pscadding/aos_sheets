@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import AbilityDamageTablePanel from './AbilityDamageTable';
 import { mockUnits } from '../../../mock_data/mock_units';
-import { AbilityDamageTable, AbilityType } from '../../../models/Ability';
+import { Ability, AbilityType } from '../../../models/Ability';
 
 export default {
   title: 'Components/Abilities/AbilityDamageTable',
@@ -20,5 +20,5 @@ export const Primary = Template.bind({});
 Primary.args = {
   ability: mockUnits
     .find((unit) => unit.name === 'Saurus Oldblood on Carnosaur')
-    ?.abilities.find((ability) => ability.type === AbilityType.DamageTable) as AbilityDamageTable
+    ?.abilities.find((ability) => ability.type === AbilityType.DamageTable) as Ability
 };

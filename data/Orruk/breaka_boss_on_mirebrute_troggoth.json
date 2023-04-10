@@ -1,0 +1,100 @@
+[
+  {
+    "type": "unit",
+    "content": {
+      "id": "",
+      "name": "Breaka-boss on Mirebrute Troggoth",
+      "type": "Leader",
+      "stats": {
+        "move": "5\"",
+        "save": "4+",
+        "bravery": "7",
+        "wounds": "12"
+      },
+      "weapons": [
+        {
+          "name": "Bident-goad",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "5",
+          "toHit": "3+",
+          "toWound": "3+",
+          "rend": "",
+          "damage": "2"
+        },
+        {
+          "name": "Iron-bound Clubs",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "4",
+          "toHit": "3+",
+          "toWound": "3+",
+          "rend": "-2",
+          "damage": "3"
+        }
+      ],
+      "keywords": [
+        "Destruction",
+        "Orruk Warclans",
+        "Orruk",
+        "Kruleboyz",
+        "Troggoth",
+        "Mirebrute Troggoth",
+        "Hero",
+        "Breaka-boss"
+      ],
+      "abilities": [
+        {
+          "name": "Mount",
+          "type": "Standard",
+          "phaseRules": [
+            {
+              "type": "Affects",
+              "phases": [
+                "Combat"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "Mirebrute Troggoth is armed with the Iron-bound Clubs."
+        },
+        {
+          "name": "Breaka-harness",
+          "type": "Ability",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Combat"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "At the start of the combat phase, you can say that the Breaka-boss is yanking on his Mirebrute Troggoth's harness.If you do so, this unit suffers **D3 mortal wounds** but for each mortal wound it suffers, you can add **2** to the Attacks characteristic of its Iron-bound Clubs until the end of that phase."
+        },
+        {
+          "name": "Regeneration",
+          "type": "Ability",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Hero"
+              ],
+              "turns": [
+                "Yours"
+              ]
+            }
+          ],
+          "description": "In your hero phase, you can roll a dice for this unit. If you do so, on a **4+**, heal up to **D3** wounds allocated to this unit."
+        }
+      ]
+    }
+  }
+]

@@ -4,6 +4,7 @@ import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
 export const astreiaSolbright: Unit = {
+  id: '',
   name: 'Astreia Solbright',
   type: UnitType.Leader,
   stats: {

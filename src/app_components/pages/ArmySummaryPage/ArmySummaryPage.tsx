@@ -3,28 +3,18 @@ import { useReactToPrint } from 'react-to-print';
 import { Unit } from '../../../models/Unit';
 import styled from 'styled-components';
 import { AppStyle } from '../../../styles/style';
-import { Container, direction } from '../../Container/Container';
-import { UnitContainerMemo } from '../../UnitContainer/UnitContainer';
-import { PhaseUnitTableMemo } from '../../PhaseUnitTable/PhaseUnitTable';
+import { Container, direction } from '../../../components/Container/Container';
+import { UnitContainerMemo } from '../../../components/UnitContainer/UnitContainer';
+import { PhaseUnitTableMemo } from '../../../components/PhaseUnitTable/PhaseUnitTable';
 import { Ability } from '../../../models/Ability';
-import { AbilityContainerMemo } from '../../AbilityContainer/AbilityContainer';
-import {
-  loadBattleTraits,
-  loadEnhancements,
-  loadProfile,
-  loadUnits
-} from '../../../utils/DataLoader';
+import { AbilityContainerMemo } from '../../../components/AbilityContainer/AbilityContainer';
+import { loadAbilities, loadProfile, loadProfileUnits } from '../../../data/DataLoader';
 import { Profile } from '../../../models/Profile';
-import {
-  attachByKeyword,
-  attachByProfileUnit,
-  filterAbilitiesByNames,
-  filterAbilitiesByUnitKeyword,
-  sortAbilities
-} from '../../../utils/AbilityUtils';
+import { breakaBoss } from '../../../data/units/Orruk/Breaka_boss_On_Mirebrute_Troggoth';
+import { gutrippaz } from '../../../data/units/Orruk/Gutrippaz';
 
 interface ArmySummaryPageProps {
-  profileName: string;
+  profileId: string;
 }
 
 const Button = styled.button`
@@ -53,47 +43,27 @@ const ArmyName = styled(Title)`
 `;
 
 function loadData(
-  profileName: string,
+  profileId: string,
+  setProfile: (p: Profile) => void,
   setUnits: (u: Unit[]) => void,
   setArmyAbilities: (a: Ability[]) => void
 ) {
-  loadProfile(profileName).then((profile: Profile) => {
-    if (profile) {
-      loadUnits(profile).then((units: Unit[]) => {
-        loadEnhancements().then((enhancements: Ability[]) => {
-          // Attach any enhancement abilities to the units if defined in the profile
-          attachByProfileUnit(profile, units, enhancements);
+  // console.log(JSON.stringify(gutrippaz));
 
-          const armyEnhancements = filterAbilitiesByNames(enhancements, profile.armyAbilities);
+  const profilePromise = loadProfile(profileId);
+  const unitsPromise = profilePromise.then(loadProfileUnits);
 
-          units.forEach((unit) => {
-            // Add common spells to all wizards
-            attachByKeyword('wizard', unit, enhancements);
-            // Filter out any unit abilities that affect units that aren't in the army
-            const unitAbilities = filterAbilitiesByUnitKeyword(unit.abilities, units);
-            sortAbilities(unitAbilities);
-            unit.abilities = unitAbilities;
-          });
-
-          loadBattleTraits(profile).then((battleTraits: Ability[]) => {
-            // Filter out any abilities that affect units that aren't in the army
-            battleTraits = filterAbilitiesByUnitKeyword(battleTraits, units);
-
-            const armyAbilities = [...armyEnhancements, ...battleTraits];
-            sortAbilities(armyAbilities);
-            setArmyAbilities(armyAbilities);
-          });
-          setUnits(units);
-        });
-      });
-    }
+  unitsPromise.then(setUnits);
+  profilePromise.then((profile) => {
+    return unitsPromise.then((units) => loadAbilities(profile, units)).then(setArmyAbilities);
   });
 }
 
 /**
  * Primary UI component for user interaction
  */
-export const ArmySummaryPage = ({ profileName, ...props }: ArmySummaryPageProps) => {
+export const ArmySummaryPage = ({ profileId, ...props }: ArmySummaryPageProps) => {
+  const [profile, setProfile] = useState<Profile>();
   const [units, setUnits] = useState<Unit[]>([]);
   const [armyAbilities, setArmyAbilities] = useState<Ability[]>([]);
   const componentRef = useRef(null);
@@ -106,8 +76,8 @@ export const ArmySummaryPage = ({ profileName, ...props }: ArmySummaryPageProps)
     setUnits([]);
     setArmyAbilities([]);
     // Load the profile, then load the units for the profile, and store them in state.
-    loadData(profileName, setUnits, setArmyAbilities);
-  }, [profileName]);
+    loadData(profileId, setProfile, setUnits, setArmyAbilities);
+  }, [profileId]);
 
   const unitComponents = units.map((unit, index) => (
     <UnitWrapper key={index}>
@@ -123,7 +93,7 @@ export const ArmySummaryPage = ({ profileName, ...props }: ArmySummaryPageProps)
       <div style={{ margin: '3em' }}>
         <div ref={componentRef}>
           <PageWrapper>
-            <ArmyName>{profileName}</ArmyName>
+            <ArmyName>{profile ? profile.name : ''}</ArmyName>
             <Title>Units With Abilities By Phases</Title>
             <PhaseUnitTableMemo units={units} abilities={armyAbilities}></PhaseUnitTableMemo>
             <Title>Battle Traits</Title>

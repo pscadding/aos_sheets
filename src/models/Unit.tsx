@@ -1,4 +1,4 @@
-import { Ability, AbilityDamageTable } from './Ability';
+import { Ability } from './Ability';
 import { UnitStats } from './UnitStats';
 import { Weapon } from './Weapon';
 
@@ -11,12 +11,15 @@ export enum UnitType {
   Other = 'Other'
 }
 
+export type UnitTypeStrings = keyof typeof UnitType;
+
 export interface Unit {
+  id: string;
   name: string;
   subName?: string;
   type: UnitType;
   stats: UnitStats;
   weapons: Weapon[];
   keywords: string[];
-  abilities: (Ability | AbilityDamageTable)[];
+  abilities: Ability[];
 }

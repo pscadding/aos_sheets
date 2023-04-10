@@ -1,0 +1,168 @@
+[
+  {
+    "type": "unit",
+    "content": {
+      "id": "",
+      "name": "Stormfiends",
+      "type": "Other",
+      "stats": {
+        "move": "6\"",
+        "save": "4+",
+        "wounds": "6",
+        "bravery": "6"
+      },
+      "weapons": [
+        {
+          "name": "Ratling Cannons",
+          "type": "Missile",
+          "range": "12\"",
+          "attacks": "3D6",
+          "toHit": "3+",
+          "toWound": "3+",
+          "rend": "-1",
+          "damage": "1"
+        },
+        {
+          "name": "Windlaunchers",
+          "type": "Missile",
+          "range": "24\"",
+          "attacks": "3",
+          "toHit": "4+",
+          "toWound": "3+",
+          "rend": "-3",
+          "damage": "D3"
+        },
+        {
+          "name": "Warpfire Projectors",
+          "type": "Missile",
+          "range": "8\"",
+          "attacks": "*",
+          "toHit": "*",
+          "toWound": "*",
+          "rend": "*",
+          "damage": "*"
+        },
+        {
+          "name": "Doomflayer Gauntlets",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "2D3",
+          "toHit": "3+",
+          "toWound": "3+",
+          "rend": "-2",
+          "damage": "D3"
+        },
+        {
+          "name": "Grinderfists",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "4",
+          "toHit": "3+",
+          "toWound": "3+",
+          "rend": "-2",
+          "damage": "2"
+        },
+        {
+          "name": "Shock Gauntlets",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "4",
+          "toHit": "4+",
+          "toWound": "3+",
+          "rend": "-",
+          "damage": "2"
+        },
+        {
+          "name": "Clubbing Blows",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "4",
+          "toHit": "4+",
+          "toWound": "3+",
+          "rend": "-",
+          "damage": "2"
+        }
+      ],
+      "keywords": [
+        "Chaos",
+        "Skaven",
+        "Masterclan",
+        "Daemon",
+        "Verminlord",
+        "Monster",
+        "Hero",
+        "Wizard",
+        "Warpgnaw Verminlord"
+      ],
+      "abilities": [
+        {
+          "name": "Elite",
+          "type": "Standard",
+          "phaseRules": [
+            {
+              "type": "Affects",
+              "phases": [
+                "Any"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "Can issue commands to it's own unit."
+        },
+        {
+          "name": "Doomflayer Gauntlets",
+          "type": "Ability",
+          "description": "Add 1 to the Attacks characteristic of Doomflayer Gauntlets if the attacking model made a charge move in the same turn.",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Combat"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Grinderfist Tunnellers",
+          "type": "Ability",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Movement"
+              ],
+              "turns": [
+                "Yours"
+              ]
+            }
+          ],
+          "description": "If this unit includes any models armed with Grinderfists, instead of setting up this unit on the battlefield, you can place it to one side and say that it is set up underground as a reserve unit. At the end of your movement phase, you can set up this unit on the battlefield, more than **9\"** from all enemy units."
+        },
+        {
+          "name": "Shock Gauntlets",
+          "type": "Ability",
+          "phaseRules": [
+            {
+              "type": "Affects",
+              "phases": [
+                "Battleshock"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "If the unmodified hit roll for an attack made with Shock Gauntlets is **6**, that attack scores **D6** hits on the target instead of **1**. Make a wound roll and save roll for each hit."
+        }
+      ]
+    }
+  }
+]

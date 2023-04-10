@@ -1,0 +1,136 @@
+[
+  {
+    "type": "unit",
+    "content": {
+      "id": "",
+      "name": "Swampcalla Shaman",
+      "subName": "And Pot-Grot",
+      "type": "Leader",
+      "stats": {
+        "move": "5\"",
+        "save": "5+",
+        "wounds": "6",
+        "bravery": "5"
+      },
+      "weapons": [
+        {
+          "name": "Bogbark Staff",
+          "type": "Melee",
+          "range": "3\"",
+          "attacks": "2",
+          "toHit": "3+",
+          "toWound": "3+",
+          "rend": "-1",
+          "damage": "D3"
+        },
+        {
+          "name": "Back-up Stabba",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "2",
+          "toHit": "4+",
+          "toWound": "4+",
+          "rend": "",
+          "damage": "1"
+        }
+      ],
+      "keywords": [
+        "Destruction",
+        "Orruk Warclans",
+        "Orruk",
+        "Kruleboyz",
+        "Hero",
+        "Wizard",
+        "Swampcalla Shaman",
+        "Swampcalla Shaman and Pot-grot"
+      ],
+      "abilities": [
+        {
+          "name": "Companion",
+          "type": "Standard",
+          "description": "Pot-grot must stay within 1\" of Shaman. Treated as a single model.",
+          "phaseRules": [
+            {
+              "type": "Affects",
+              "phases": [
+                "Movement"
+              ],
+              "turns": [
+                "Yours"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Wizard",
+          "type": "Standard",
+          "description": "Cast 1 spell, unbind 1 spell",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Hero"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Poisons and Elixars",
+          "type": "Ability",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Hero"
+              ],
+              "turns": [
+                "Yours"
+              ]
+            },
+            {
+              "type": "Affects",
+              "phases": [
+                "Any"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "At start of your **hero phase**, if this unit is more than **3\"** from all enemy units, instead of casting or dispelling a spell, it can say it is brewing either a poison or an elixir. If you do, pick **1 friendly Kruleboyz Orruk** unit wholly within **12\"**, more than **3\"** from enemy and with at least one model within **3\"**, to be given poison or elixar. One poison or elixir per unit in same hero phase. Effects last until until your next hero phase. If given poison, when using **\"Venom-encrusted Weapons\"** battle trait, mortal wounds are caused on unmodified hit roll of **+5** instead of 6. If given elixir, **add 1** to save rolls for attacks that target that unit."
+        },
+        {
+          "name": "Summon Boggy Mist",
+          "type": "Spell",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Hero"
+              ],
+              "turns": [
+                "Yours"
+              ]
+            },
+            {
+              "type": "Affects",
+              "phases": [
+                "Charge"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "Casting value **7**. On success until next hero phase, **add 1 to charge rolls** for friendly **Kruleboyz Orruk** units, and **subtract 1 from charge rolls** for other units."
+        }
+      ]
+    }
+  }
+]

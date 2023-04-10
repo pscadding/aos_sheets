@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { memo } from 'react';
 import { AppStyle } from '../../styles/style';
-import { Ability, AbilityType, AbilityDamageTable } from '../../models/Ability';
+import { Ability, AbilityType } from '../../models/Ability';
 import { AbilityPanelMemo } from './AbilityPanel/AbilityPanel';
 import AbilityDamageTablePanel from './AbilityDamageTable/AbilityDamageTable';
 
@@ -21,7 +21,7 @@ export const AbilityContainer = ({ abilities }: AbilityContainerProps) => {
   if (abilities) {
     abilityComponents = abilities.map((ability, index) => {
       if (ability.type === AbilityType.DamageTable) {
-        return <AbilityDamageTablePanel key={index} ability={ability as AbilityDamageTable} />;
+        return <AbilityDamageTablePanel key={index} ability={ability} />;
       } else {
         return <AbilityPanelMemo key={index} ability={ability} />;
       }

@@ -4,6 +4,7 @@ import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
 export const swampcallaShaman: Unit = {
+  id: '',
   name: 'Swampcalla Shaman',
   subName: 'And Pot-Grot',
   type: UnitType.Leader,

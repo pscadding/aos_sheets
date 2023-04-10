@@ -4,6 +4,7 @@ import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
 export const stegadon: Unit = {
+  id: '',
   name: 'Stegadon',
   type: UnitType.Behemoth,
   stats: {

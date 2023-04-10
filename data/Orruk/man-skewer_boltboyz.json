@@ -1,0 +1,90 @@
+[
+  {
+    "type": "unit",
+    "content": {
+      "id": "",
+      "name": "Man-skewer Boltboyz",
+      "type": "Battleline",
+      "stats": {
+        "move": "5\"",
+        "save": "6+",
+        "bravery": "5",
+        "wounds": "2"
+      },
+      "weapons": [
+        {
+          "name": "Man-skewer Crossbow: Hasty Shot",
+          "type": "Missile",
+          "range": "12\"",
+          "attacks": "2",
+          "toHit": "4+",
+          "toWound": "3+",
+          "rend": "-1",
+          "damage": "2"
+        },
+        {
+          "name": "Man-skewer Crossbow: Aimed Shot",
+          "type": "Missile",
+          "range": "24\"",
+          "attacks": "1",
+          "toHit": "2+",
+          "toWound": "3+",
+          "rend": "-1",
+          "damage": "2"
+        },
+        {
+          "name": "Jaggedy Blade",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "2",
+          "toHit": "4+",
+          "toWound": "4+",
+          "rend": "-",
+          "damage": "1"
+        }
+      ],
+      "keywords": [
+        "Destruction",
+        "Orruk Warclans",
+        "Orruk",
+        "Kruleboyz",
+        "Man-skewer Boltboyz"
+      ],
+      "abilities": [
+        {
+          "name": "Champion",
+          "type": "Standard",
+          "phaseRules": [
+            {
+              "type": "Affects",
+              "phases": [
+                "Shooting"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "1 model can be Champion. **Add 1 to Attacks** of model's missile weapon."
+        },
+        {
+          "name": "Pick 'Em Off",
+          "type": "Ability",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Shooting"
+              ],
+              "turns": [
+                "Yours"
+              ]
+            }
+          ],
+          "description": "When this unit attacks with a Man-skewer Crossbow, use the Aimed Shot missile weapon characteristics if it did not make a normal move in the same turn and is more than **3\"** from all enemy units. Otherwise, use the Hasty Shot missile weapon characteristics."
+        }
+      ]
+    }
+  }
+]

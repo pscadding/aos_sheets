@@ -1,0 +1,100 @@
+[
+  {
+    "type": "unit",
+    "content": {
+      "id": "",
+      "name": "Killaboss on Great Gnashtoof",
+      "type": "Leader",
+      "stats": {
+        "move": "10\"",
+        "save": "3+",
+        "bravery": "7",
+        "wounds": "10"
+      },
+      "weapons": [
+        {
+          "name": "Jagged Boss-stikka",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "4",
+          "toHit": "3+",
+          "toWound": "3+",
+          "rend": "-1",
+          "damage": "2"
+        },
+        {
+          "name": "Bone-crushing Fangs",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "4",
+          "toHit": "3+",
+          "toWound": "3+",
+          "rend": "-2",
+          "damage": "2"
+        }
+      ],
+      "keywords": [
+        "Destruction",
+        "Orruk Warclans",
+        "Orruk",
+        "Kruleboyz",
+        "Killaboss",
+        "Killaboss on Great Gnashtoof",
+        "Hero"
+      ],
+      "abilities": [
+        {
+          "name": "Mount",
+          "type": "Standard",
+          "phaseRules": [
+            {
+              "type": "Affects",
+              "phases": [
+                "Combat"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "filterUnitKeywords": [],
+          "description": "Great Gnashtoof is armed with Bone-crushing Fangs."
+        },
+        {
+          "name": "All Part of Da Plan",
+          "type": "Ability",
+          "phaseRules": [
+            {
+              "type": "Affects",
+              "phases": [
+                "Battleshock"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "If a friendly **KRULEBOYZ** unit fails a battleshock test within **3\"** of any friendly units with this ability, only 1 model from that unit will flee."
+        },
+        {
+          "name": "Savage Hound",
+          "type": "Ability",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Combat"
+              ],
+              "turns": [
+                "Yours"
+              ]
+            }
+          ],
+          "description": "Add **1** to hit rolls for attacks made by this unit if this unit made a charge move in the same turn."
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,192 @@
+[
+  {
+    "type": "unit",
+    "content": {
+      "id": "",
+      "name": "Stegadon",
+      "type": "Behemoth",
+      "stats": {
+        "move": "*",
+        "save": "4+",
+        "wounds": "10",
+        "bravery": "5"
+      },
+      "weapons": [
+        {
+          "name": "Meteoric Javelins",
+          "type": "Missile",
+          "range": "8\"",
+          "attacks": "4",
+          "toHit": "5+",
+          "toWound": "4+",
+          "rend": "",
+          "damage": "1"
+        },
+        {
+          "name": "Sunfire Throwers",
+          "type": "Missile",
+          "range": "8\"",
+          "attacks": "1",
+          "toHit": "*",
+          "toWound": "*",
+          "rend": "*",
+          "damage": "*"
+        },
+        {
+          "name": "Massive Horns (Mount)",
+          "type": "Melee",
+          "range": "2\"",
+          "attacks": "2",
+          "toHit": "3+",
+          "toWound": "3+",
+          "rend": "-1",
+          "damage": "*"
+        },
+        {
+          "name": "Grinding Jaws (Mount)",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "2",
+          "toHit": "3+",
+          "toWound": "3+",
+          "rend": "-1",
+          "damage": "2"
+        },
+        {
+          "name": "Crushing Stomps (Mount)",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "*",
+          "toHit": "3+",
+          "toWound": "3+",
+          "rend": "-1",
+          "damage": "2"
+        }
+      ],
+      "keywords": [
+        "Order",
+        "Seraphon",
+        "Skink",
+        "Monster",
+        "Stegadon"
+      ],
+      "abilities": [
+        {
+          "name": "Damage Table",
+          "type": "Damage Table",
+          "phaseRules": [],
+          "description": "",
+          "columns": [
+            "Wounds Suffered",
+            "Move",
+            "Massive Horns",
+            "Crushing Stomps"
+          ],
+          "rows": [
+            [
+              "0-2",
+              "8\"",
+              "4",
+              "5"
+            ],
+            [
+              "3-4",
+              "7\"",
+              "3",
+              "4"
+            ],
+            [
+              "5-6",
+              "6\"",
+              "2",
+              "3"
+            ],
+            [
+              "7-8",
+              "5\"",
+              "2",
+              "2"
+            ],
+            [
+              "9+",
+              "4\"",
+              "1",
+              "1"
+            ]
+          ]
+        },
+        {
+          "name": "Armoured Crest",
+          "type": "Ability",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Combat"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "At the start of the combat phase, you can **pick 1 enemy unit** within **3\"** of this model and that has **up to 5 models**. If you do so, until the end of that phase, **add 1** to save rolls for attacks made by that unit that target this model."
+        },
+        {
+          "name": "Gout of Sunfire",
+          "type": "Standard",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Shooting"
+              ],
+              "turns": [
+                "Yours"
+              ]
+            }
+          ],
+          "description": "Do not use attack sequence for Sunfire Throwers. Instead, roll a number of dice equal to the number of models from the target unit within **8\"** of the attacking model.For each **5+**, the target unit suffers **1 mortal wound**."
+        },
+        {
+          "name": "Steadfast Majesty",
+          "type": "Ability",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Battleshock"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "filterUnitKeywords": [
+            "Skink",
+            "Skinks"
+          ],
+          "description": "You can re-roll battleshot tests for friendly **Skink** units while they are wholly within **18\"** of any friendly Stegadons."
+        },
+        {
+          "name": "Unstoppable Stampede",
+          "type": "Ability",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Charge"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "**Roll 1 dice** for each enemy unit that is withing **1\"** of this model when this model finishes a charge move. On a **3+**, that enemy unit suffers **D3 mortal wounds**."
+        }
+      ]
+    }
+  }
+]

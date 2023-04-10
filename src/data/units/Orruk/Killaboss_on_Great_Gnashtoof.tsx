@@ -4,6 +4,7 @@ import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
 export const KillaBossOnGreatGnashtoof: Unit = {
+  id: '',
   name: 'Killaboss on Great Gnashtoof',
   type: UnitType.Leader,
   stats: {

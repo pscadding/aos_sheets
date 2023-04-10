@@ -10,6 +10,8 @@ export enum AbilityType {
   DamageTable = 'Damage Table'
 }
 
+export type AbilityTypeStrings = keyof typeof AbilityType;
+
 export interface Ability {
   name: string;
   type: AbilityType;
@@ -19,13 +21,10 @@ export interface Ability {
   phaseRules: PhaseRule[];
   attachKeyword?: string;
   filterUnitKeywords?: string[];
+  columns?: string[];
+  rows?: string[][];
 }
 
 export interface BattleTraits {
   [key: string]: Ability[];
-}
-
-export interface AbilityDamageTable extends Ability {
-  columns: string[];
-  rows: string[][];
 }

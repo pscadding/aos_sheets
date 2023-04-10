@@ -4,6 +4,7 @@ import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
 export const hobgrotSlittaz: Unit = {
+  id: '',
   name: 'Hobgrot Slittaz',
   type: UnitType.Other,
   stats: {

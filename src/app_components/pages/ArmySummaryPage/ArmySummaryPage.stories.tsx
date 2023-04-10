@@ -26,5 +26,5 @@ const Template: ComponentStory<typeof ArmySummaryPage> = (args) => (
 export const Primary = Template.bind({});
 
 Primary.args = {
-  profileName: 'Seraphon'
+  profileId: '1234'
 };

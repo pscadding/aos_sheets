@@ -3,6 +3,8 @@ export enum WeaponType {
   Melee = 'Melee'
 }
 
+export type WeaponTypeStrings = keyof typeof WeaponType;
+
 export interface Weapon {
   name: string;
   type: WeaponType;

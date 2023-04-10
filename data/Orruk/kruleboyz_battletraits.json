@@ -1,0 +1,68 @@
+[
+  {"type": "ability",
+    "content":   {
+      "name": "Dirty Tricks",
+      "type": "Battle Trait",
+      "phaseRules": [
+        {
+          "type": "Affects",
+          "phases": [
+            "Hero"
+          ],
+          "turns": [
+            "Yours"
+          ]
+        }
+      ],
+      "tags": [
+        "Kruleboyz"
+      ],
+      "description": ""
+    }
+  },
+  {"type": "ability",
+    "content": {
+      "name": "Kruleboyz Waagh!",
+      "type": "Battle Trait",
+      "phaseRules": [
+        {
+          "type": "Used In",
+          "phases": [
+            "Combat"
+          ],
+          "turns": [
+            "Yours",
+            "Opponents"
+          ]
+        }
+      ],
+      "tags": [
+        "Kruleboyz"
+      ],
+      "description": "Once per battle, in the combat phase, when you pick a friendly KRULEBOYZ general to fight, you can say that they are calling a Kruleboyz Waaagh!. If you do so, pick up to 2 other friendly KRULEBOYZ units wholly within 18” of that general and that have not yet fought in that combat phase. That general and the units you picked can fight one after the other in the order of your choice."
+    }
+  },
+  {"type": "ability",
+    "content":{
+      "name": "Venom-encrusted Weapons",
+      "type": "Battle Trait",
+      "phaseRules": [
+        {
+          "type": "Affects",
+          "phases": [
+            "Combat",
+            "Shooting"
+          ],
+          "turns": [
+            "Yours",
+            "Opponents"
+          ]
+        }
+      ],
+      "tags": [
+        "Kruleboyz"
+      ],
+      "description": "If the unmodified hit roll for an attack made by a KRULEBOYZ ORRUK model is 6, that attack causes a number of mortal wounds to the target equal to the weapon’s Damage characteristic and the attack sequence ends (do not make a wound roll or save roll). This ability has no effect on attacks made by a mount unless noted otherwise."
+    }
+  }
+]

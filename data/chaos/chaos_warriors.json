@@ -1,0 +1,164 @@
+[
+  {
+    "type": "unit",
+    "content": {
+      "id": "",
+      "name": "Chaos Warriors",
+      "type": "Other",
+      "stats": {
+        "move": "5\"",
+        "save": "4+",
+        "wounds": "2",
+        "bravery": "7"
+      },
+      "weapons": [
+        {
+          "name": "Chaos Hand Weapon(s)",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "2",
+          "toHit": "3+",
+          "toWound": "3+",
+          "rend": "",
+          "damage": "1"
+        },
+        {
+          "name": "Chaos Halberd",
+          "type": "Melee",
+          "range": "2\"",
+          "attacks": "2",
+          "toHit": "3+",
+          "toWound": "4+",
+          "rend": "",
+          "damage": "1"
+        },
+        {
+          "name": "Cursed Greatblade",
+          "type": "Melee",
+          "range": "1\"",
+          "attacks": "2",
+          "toHit": "4+",
+          "toWound": "3+",
+          "rend": "-1",
+          "damage": "1"
+        }
+      ],
+      "keywords": [
+        "Chaos",
+        "Mortal",
+        "Slaves to Darkness",
+        "Mark of Chaos",
+        "Chaos Warriors"
+      ],
+      "abilities": [
+        {
+          "name": "Aspiring Champion",
+          "type": "Standard",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Combat"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "1 model in this unit can be an Aspiring Champion. **Add 1 to attacks** for model's melee weapon."
+        },
+        {
+          "name": "Standard Bearer",
+          "type": "Standard",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Battleshock"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "1 in 5 models can be Standard Bearer. **Add 1 to Bravery** for unit while has Standard Bearer."
+        },
+        {
+          "name": "Hornblower",
+          "type": "Standard",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Charge"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "1 in 5 models can be Hornblower. **Add 1 to run and charge** rolls unit while has Hornblower."
+        },
+        {
+          "name": "Mark of Chaos",
+          "type": "Standard",
+          "phaseRules": [],
+          "description": "When you select this model to be part of your army, you must give it one of the following Mark of Chaos keywords: **KHORNE**, **TZEENTCH**, **NURGLE**, **SLAANESH** or **UNDIVIDED**."
+        },
+        {
+          "name": "Chaos Runeshields",
+          "type": "Standard",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Any"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "Roll a dice each time you allocate a mortal wound to a unit that carries Chaos Runeshields. On **5+** mortal wound is negated."
+        },
+        {
+          "name": "Legions of Chaos",
+          "type": "Ability",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Any"
+              ],
+              "turns": [
+                "Yours",
+                "Opponents"
+              ]
+            }
+          ],
+          "description": "**Add 1** to save rolls for attacks that target this unit while it has at least 10 models."
+        },
+        {
+          "name": "Pair of Chaos Hand Weapons",
+          "type": "Ability",
+          "phaseRules": [
+            {
+              "type": "Used In",
+              "phases": [
+                "Combat"
+              ],
+              "turns": [
+                "Yours"
+              ]
+            }
+          ],
+          "description": "You can **re-roll hit rolls** for attacks made with a pair of Chaos Hand Weapons."
+        }
+      ]
+    }
+  }
+]

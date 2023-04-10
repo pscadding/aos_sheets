@@ -3,7 +3,7 @@ import { Unit } from '../../models/Unit';
 import { UnitName } from './PhaseUnitTableStyles';
 import { abilityHasPhase } from '../../utils/AbilityUtils';
 import { PhaseUnitTableColumnCellWrapper } from './PhaseUnitTableColumnCellWrapper';
-import { AbilityType } from '../../models/Ability';
+import { Ability, AbilityType } from '../../models/Ability';
 import { PhaseUnitTableAbilityLine } from './PhaseUnitTableAbilityLine';
 import { AppStyle } from '../../styles/style';
 
@@ -19,25 +19,18 @@ export function PhaseUnitTableUnitRow({
   phaseType,
   ...props
 }: PhaseUnitTableUnitRowProps) {
-  //TODO: Improve these loops, we're filtering the abilities twice
+  const getAbilityComponents = (phase: Phase, abilities: Ability[]) => {
+    return abilities
+      .filter((ability) => abilityHasPhase(ability, phase, phaseType))
+      .map((ability, abilityIndex) => (
+        <PhaseUnitTableAbilityLine key={abilityIndex} ability={ability} phaseType={phaseType} />
+      ));
+  };
+
   const components = phases.map((phase, phaseIndex) => {
-    const unitNames = units
-      .filter((unit) => {
-        const abilities = unit.abilities.filter(
-          (ability) =>
-            abilityHasPhase(ability, phase, phaseType) && ability.type !== AbilityType.Standard
-        );
-        return !!abilities.length;
-      })
-      .map((unit, unitIndex) => {
-        const abilityComponents = unit.abilities
-          .filter(
-            (ability) =>
-              abilityHasPhase(ability, phase, phaseType) && ability.type !== AbilityType.Standard
-          )
-          .map((ability, abilityIndex) => (
-            <PhaseUnitTableAbilityLine key={abilityIndex} ability={ability} phaseType={phaseType} />
-          ));
+    const abilityUnitElements = units.flatMap((unit, unitIndex) => {
+      const abilityComponents = getAbilityComponents(phase, unit.abilities);
+      if (abilityComponents.length !== 0) {
         return (
           <div key={unitIndex + 'r'} style={{ marginLeft: AppStyle.spacing.small }}>
             <UnitName key={unitIndex}>
@@ -47,10 +40,12 @@ export function PhaseUnitTableUnitRow({
             {abilityComponents}
           </div>
         );
-      });
+      }
+      return [];
+    });
     return (
       <PhaseUnitTableColumnCellWrapper phase={phase} key={phaseIndex}>
-        {unitNames}
+        {abilityUnitElements}
       </PhaseUnitTableColumnCellWrapper>
     );
   });

@@ -4,6 +4,7 @@ import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
 export const terradonChief: Unit = {
+  id: '',
   name: 'Terradon Chief',
   type: UnitType.Other,
   stats: {

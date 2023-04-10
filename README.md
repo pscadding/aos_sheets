@@ -39,3 +39,12 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+## Backend
+
+This uses a thin.dev as a backend which is just an API wrapper around a Postgresql DB.
+
+Use the following to clear the main tables.
+```postgres
+truncate weapons, phase_rule, ability, units;
+```

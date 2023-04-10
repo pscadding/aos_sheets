@@ -1,5 +1,12 @@
+export interface UnitConfiguration {
+  unitName: string;
+  abilityNames: string[];
+}
+
 export interface Profile {
-  unitNames: { [key: string]: { abilityNames?: string[] } };
+  id: string;
+  name: string;
+  units: UnitConfiguration[];
   battleTraitTypes: string[];
   armyAbilities: string[];
 }

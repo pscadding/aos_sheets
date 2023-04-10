@@ -1,11 +1,11 @@
 import { AppStyle } from '../../../styles/style';
 import { memo } from 'react';
-import { AbilityDamageTable } from '../../../models/Ability';
 import { Table, TableBodyCell, TableHeaderRow, TableHeaderCell } from '../../Table/Table';
 import styled from 'styled-components';
+import { Ability } from '../../../models/Ability';
 
 interface AbilityDamageTableProps {
-  ability: AbilityDamageTable;
+  ability: Ability;
 }
 
 const Wrapper = styled.div`
@@ -17,12 +17,15 @@ const Wrapper = styled.div`
  * Primary UI component for user interaction
  */
 const AbilityDamageTablePanel = ({ ability }: AbilityDamageTableProps) => {
-  const headers = ability.columns.map((columnName, index) => (
+  const columns = ability.columns ? ability.columns : [];
+  const rows = ability.rows ? ability.rows : [];
+
+  const headers = columns.map((columnName, index) => (
     <TableHeaderCell compact={true} key={index}>
       {columnName}
     </TableHeaderCell>
   ));
-  const rows = ability.rows.map((row, rowIndex) => {
+  const rowsElems = rows.map((row, rowIndex) => {
     const rowElements = row.map((cell, cellIndex) => (
       <TableBodyCell key={cellIndex}>{cell}</TableBodyCell>
     ));
@@ -35,7 +38,7 @@ const AbilityDamageTablePanel = ({ ability }: AbilityDamageTableProps) => {
         <thead>
           <TableHeaderRow>{headers}</TableHeaderRow>
         </thead>
-        <tbody>{rows}</tbody>
+        <tbody>{rowsElems}</tbody>
       </Table>
     </Wrapper>
   );

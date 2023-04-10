@@ -4,6 +4,7 @@ import { Unit, UnitType } from '../../../models/Unit';
 import { WeaponType } from '../../../models/Weapon';
 
 export const chaosKnights: Unit = {
+  id: '',
   name: 'Chaos Knights',
   type: UnitType.Other,
   stats: {
